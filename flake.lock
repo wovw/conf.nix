@@ -312,7 +312,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-89E/sc75pUiHlFDVxwJkkDTUVQmOk2wZgjhSNHQOZr8=",
+        "narHash": "sha256-ZifS8Otdzf9Iv8b5JGRGb/Jd+ZLEMRCJcLdAS14oGTw=",
         "path": "./pkgs/zen-browser",
         "type": "path"
       },

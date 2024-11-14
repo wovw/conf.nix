@@ -44,7 +44,7 @@
               home-manager.backupFileExtension = "backup";
               home-manager.users.${username} = import ./hosts/${host}/home.nix;
             }
-            ({pkgs, ... }: {
+            ({ pkgs, ... }: {
               environment.systemPackages = with pkgs; [
                 zen-browser.packages.${system}.default
               ];

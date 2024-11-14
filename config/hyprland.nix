@@ -40,13 +40,12 @@ with lib;
           env = MOZ_ENABLE_WAYLAND, 1
           exec-once = dbus-update-activation-environment --systemd --all
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec-once = killall -q swww;sleep .5 && swww init
+          exec-once = swww init && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
+          monitor=,preferred,auto,1
           exec-once = killall -q waybar;sleep .5 && waybar
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
-          monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
             gaps_in = 6
@@ -85,6 +84,8 @@ with lib;
             workspace_swipe_fingers = 3
           }
           misc {
+            disable_hyprland_logo = true
+            disable_splash_rendering = true
             initial_workspace_tracking = 0
             mouse_move_enables_dpms = true
             key_press_enables_dpms = false

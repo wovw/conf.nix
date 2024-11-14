@@ -235,6 +235,8 @@ in
     })
     sccache
     fzf
+    kanata
+    wev
   ];
 
   environment.sessionVariables = {
@@ -337,7 +339,15 @@ in
     rpcbind.enable = false;
     nfs.server.enable = false;
     upower.enable = true;
-  };
+    kanata = {
+      enable = true;
+      keyboards."home-row" = {
+        configFile = ../../config/kanata/home-row.kbd;
+        port = 6666;
+        extraDefCfg = "danger-enable-cmd yes";
+      };
+    };
+ };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
     script = ''
