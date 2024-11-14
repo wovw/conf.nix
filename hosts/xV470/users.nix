@@ -24,7 +24,7 @@ in
       ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
-      packages = with pkgs; [];
+      packages = with pkgs; [ tree-sitter webcord ];
     };
   };
   users.groups.uinput = {};

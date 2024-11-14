@@ -209,7 +209,6 @@ in
         playerctl
         nh
         nixfmt-rfc-style
-        discord
         libvirt
         swww
         grim
@@ -221,10 +220,10 @@ in
         gimp
         pavucontrol
         tree
-        spotify
         neovide
         greetd.tuigreet
         glib
+        spotify
         rustup
         go
         (pnpm.override {
@@ -234,6 +233,7 @@ in
         sccache
         fzf
         wev
+        xwaylandvideobridge
     ];
 
     environment.sessionVariables = {
@@ -266,12 +266,11 @@ in
         wlr.enable = true;
         extraPortals = [
             pkgs.xdg-desktop-portal-gtk
-            pkgs.xdg-desktop-portal
+            pkgs.xdg-desktop-portal-kde
         ];
         configPackages = [
             pkgs.xdg-desktop-portal-gtk
-            pkgs.xdg-desktop-portal-hyprland
-            pkgs.xdg-desktop-portal
+            pkgs.xdg-desktop-portal-kde
         ];
     };
 

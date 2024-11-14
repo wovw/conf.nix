@@ -37,7 +37,6 @@ with lib;
           env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
           env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
           env = SDL_VIDEODRIVER, x11
-          env = MOZ_ENABLE_WAYLAND, 1
           exec-once = dbus-update-activation-environment --systemd --all
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = swww init && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
@@ -81,6 +80,13 @@ with lib;
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
           windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
+
+          windowrulev2 = opacity 0.0 override, class:^(xwaylandvideobridge)$
+          windowrulev2 = noanim, class:^(xwaylandvideobridge)$
+          windowrulev2 = noinitialfocus, class:^(xwaylandvideobridge)$
+          windowrulev2 = maxsize 1 1, class:^(xwaylandvideobridge)$
+          windowrulev2 = noblur, class:^(xwaylandvideobridge)$
+
           gestures {
             workspace_swipe = true
             workspace_swipe_fingers = 3
@@ -126,8 +132,6 @@ with lib;
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin
-          bind = ${modifier},D,exec,discord
-          bind = ${modifier},O,exec,obs
           bind = ${modifier},C,exec,hyprpicker -a
           bind = ${modifier},G,exec,gimp
           bind = ${modifier}SHIFT,G,exec,godot4

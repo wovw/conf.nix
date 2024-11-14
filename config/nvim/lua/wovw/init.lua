@@ -8,12 +8,9 @@ local wovwGroup = augroup('wovw', {})
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
---[[
--- Not very useful for nixos
 function R(name)
     require("plenary.reload").reload_module(name)
 end
---]]
 
 autocmd('TextYankPost', {
     group = yank_group,
