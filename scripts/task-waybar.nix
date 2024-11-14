@@ -5,7 +5,6 @@ pkgs.writeShellApplication {
 
     runtimeInputs = with pkgs; [
         swaynotificationcenter
-        gnused
     ];
 
     text = ''

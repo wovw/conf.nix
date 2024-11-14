@@ -31,7 +31,7 @@ with lib;
                             inherit host;
                         })}
                         ${(import ./settings.nix {
-                            colors = config.stylix.base16Scheme;
+                            colors = config.lib.stylix.colors;
                             inherit host;
                         })}
                         ${builtins.readFile ./window-rules.conf}

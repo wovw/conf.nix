@@ -29,7 +29,7 @@ in
             "nvidia_drm.fbdev=1"
         ];
         extraModprobeConfig = ''
-      options nvidia_drm modeset=1 fbdev=1
+            options nvidia_drm modeset=1 fbdev=1
         '';
         # Needed For Some Steam Games
         kernel.sysctl = {
@@ -58,26 +58,11 @@ in
     # Styling Options
     stylix = {
         enable = true;
-        image = ../../config/wallpapers/beautifulmountainscape.jpg;
-        base16Scheme = {
-            base00 = "232136";
-            base01 = "2a273f";
-            base02 = "393552";
-            base03 = "6e6a86";
-            base04 = "908caa";
-            base05 = "e0def4";
-            base06 = "e0def4";
-            base07 = "56526e";
-            base08 = "eb6f92";
-            base09 = "f6c177";
-            base0A = "ea9a97";
-            base0B = "3e8fb0";
-            base0C = "9ccfd8";
-            base0D = "c4a7e7";
-            base0E = "f6c177";
-            base0F = "56526e";
+        image = pkgs.fetchurl {
+            url = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cd31a73a-791d-418a-83fd-8a67d6675b5d/dem9giz-dfb2dba5-78a4-4752-9327-d22dc8b7e441.png/v1/fill/w_1192,h_670,q_70,strp/blue_spider_lily_by_fei_t_dem9giz-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA4MCIsInBhdGgiOiJcL2ZcL2NkMzFhNzNhLTc5MWQtNDE4YS04M2ZkLThhNjdkNjY3NWI1ZFwvZGVtOWdpei1kZmIyZGJhNS03OGE0LTQ3NTItOTMyNy1kMjJkYzhiN2U0NDEucG5nIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.bTEI0os5s3mllLtJZasZBPVbHlbnecVecQ-XYJHV3TI";
+            sha256 = "sha256-pPGckHYVZDurUYhm8nOS8sg5OMGwyQdUxNbltC+h9mM=";
         };
-        polarity = "dark";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
         opacity.terminal = 0.8;
         cursor.package = pkgs.bibata-cursors;
         cursor.name = "Bibata-Modern-Ice";
@@ -97,8 +82,8 @@ in
             };
             sizes = {
                 applications = 12;
-                terminal = 15;
-                desktop = 11;
+                terminal = 14;
+                desktop = 12;
                 popups = 12;
             };
         };
@@ -329,7 +314,7 @@ in
             alsa.enable = true;
             alsa.support32Bit = true;
             pulse.enable = true;
-            jack.enable = true;
+            # jack.enable = true;
         };
         rpcbind.enable = false;
         nfs.server.enable = false;
@@ -389,7 +374,7 @@ in
     '';
     security.pam.services.swaylock = {
         text = ''
-      auth include login
+            auth include login
         '';
     };
     security.pam.services.login.enableGnomeKeyring = true;
