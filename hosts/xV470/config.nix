@@ -78,7 +78,7 @@ in
             base0F = "56526e";
         };
         polarity = "dark";
-        opacity.terminal = 0.7;
+        opacity.terminal = 0.8;
         cursor.package = pkgs.bibata-cursors;
         cursor.name = "Bibata-Modern-Ice";
         cursor.size = 24;
@@ -224,6 +224,7 @@ in
         greetd.tuigreet
         glib
         spotify
+        (callPackage ../../scripts/spotx.nix { inherit pkgs; })
         rustup
         go
         (pnpm.override {
@@ -234,6 +235,7 @@ in
         fzf
         wev
         xwaylandvideobridge
+        zip
     ];
 
     environment.sessionVariables = {

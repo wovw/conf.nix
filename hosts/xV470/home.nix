@@ -17,7 +17,7 @@ in
     imports = [
         ../../config/emoji.nix
         ../../config/fastfetch
-        ../../config/hyprland.nix
+        ../../config/hyprland/hyprland.nix
         ../../config/nvim/neovim.nix
         ../../config/rofi/rofi.nix
         ../../config/rofi/config-emoji.nix
@@ -45,9 +45,8 @@ in
     show_panel=false
     line_size=5
     text_size=20
-    text_font=Ubuntu
     paint_mode=brush
-    early_exit=true
+    early_exit=false
     fill_shape=false
     '';
 
@@ -94,9 +93,9 @@ in
     home.packages = [
         (import ../../scripts/emopicker9000.nix { inherit pkgs; })
         (import ../../scripts/task-waybar.nix { inherit pkgs; })
-        (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
         (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
         (import ../../scripts/screenshootin.nix { inherit pkgs; })
+        (import ../../scripts/tmux-sessionizer.nix { inherit pkgs; })
         (import ../../scripts/zen-browser/zen.nix { inherit pkgs; })
     ];
 
@@ -141,11 +140,14 @@ in
                 confirm_os_window_close = 0;
             };
             extraConfig = ''
-        tab_bar_style fade
-        tab_fade 1
-        active_tab_font_style   bold
-        inactive_tab_font_style bold
+                tab_bar_style fade
+                tab_fade 1
+                active_tab_font_style   bold
+                inactive_tab_font_style bold
             '';
+            keybindings = {
+                "ctrl+f" = "send_text all tmux-sessionizer\\x0d";
+            };
         };
         zsh = {
             enable = true;
@@ -160,19 +162,19 @@ in
                 ];
             };
             initExtra = ''
-        # Initialize rustup
-        if [ -f $HOME/.cargo/env ]; then
-          source $HOME/.cargo/env
-        fi
+                # Initialize rustup
+                if [ -f $HOME/.cargo/env ]; then
+                  source $HOME/.cargo/env
+                fi
 
-        # Initialize pnpm
-        export PNPM_HOME="$HOME/.local/share/pnpm"
-        export PATH="$PNPM_HOME:$PATH"
+                # Initialize pnpm
+                export PNPM_HOME="$HOME/.local/share/pnpm"
+                export PATH="$PNPM_HOME:$PATH"
 
-        # Source personal configurations if they exist
-        if [ -f $HOME/.zshrc-personal ]; then
-          source $HOME/.zshrc-personal
-        fi
+                # Source personal configurations if they exist
+                if [ -f $HOME/.zshrc-personal ]; then
+                  source $HOME/.zshrc-personal
+                fi
             '';
             shellAliases = {
                 rebuild = "sudo nixos-rebuild switch --flake ~/nixos#";
@@ -185,6 +187,7 @@ in
                 la = "eza -lah --icons --group-directories-first";
                 ".." = "cd ..";
                 c = "code";
+                tms = "tmux-sessionizer";
             };
         };
         tmux = {
@@ -221,11 +224,7 @@ in
                 bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
                 bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-                # Reload configuration
-                unbind r
-                bind r source-file ~/.config/tmux/tmux.conf
-
-                # Additional custom settings can go here
+                bind-key -r f run-shell "tmux-sessionizer"
             '';
         };
         hyprlock = {

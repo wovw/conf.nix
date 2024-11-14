@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (import ../hosts/${host}/variables.nix)
+  inherit (import ../../hosts/${host}/variables.nix)
     browser
     terminal
     extraMonitorSettings
@@ -26,24 +26,8 @@ with lib;
       in
       concatStrings [
         ''
-          env = NIXOS_OZONE_WL, 1
-          env = NIXPKGS_ALLOW_UNFREE, 1
-          env = XDG_CURRENT_DESKTOP, Hyprland
-          env = XDG_SESSION_TYPE, wayland
-          env = XDG_SESSION_DESKTOP, Hyprland
-          env = GDK_BACKEND, wayland, x11
-          env = CLUTTER_BACKEND, wayland
-          env = QT_QPA_PLATFORM=wayland;xcb
-          env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
-          env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
-          env = SDL_VIDEODRIVER, x11
-          exec-once = dbus-update-activation-environment --systemd --all
-          exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec-once = swww init && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
-          exec-once = killall -q waybar;sleep .5 && waybar
-          exec-once = killall -q swaync;sleep .5 && swaync
-          exec-once = nm-applet --indicator
-          exec-once = lxqt-policykit-agent
+          ${builtins.readFile ./env.conf}
+          ${builtins.readFile ./startup.conf}
 
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
@@ -98,27 +82,7 @@ with lib;
             mouse_move_enables_dpms = true
             key_press_enables_dpms = false
           }
-          animations {
-            enabled = yes
-            bezier = wind, 0.05, 0.9, 0.1, 1.05
-            bezier = winIn, 0.1, 1.1, 0.1, 1.1
-            bezier = winOut, 0.3, -0.3, 0, 1
-            bezier = liner, 1, 1, 1, 1
-            animation = windows, 1, 6, wind, slide
-            animation = windowsIn, 1, 6, winIn, slide
-            animation = windowsOut, 1, 5, winOut, slide
-            animation = windowsMove, 1, 5, wind, slide
-            animation = border, 1, 1, liner
-            animation = fade, 1, 10, default
-            animation = workspaces, 1, 5, wind
-          }
-          decoration {
-            rounding = 10
-            drop_shadow = true
-            shadow_range = 4
-            shadow_render_power = 3
-            col.shadow = rgba(1a1a1aee)
-          }
+          ${builtins.readFile ./decor.conf}
           plugin {
             hyprtrails {
             }
@@ -129,14 +93,10 @@ with lib;
           }
           bind = ${modifier},Return,exec,${terminal}
           bind = ${modifier}SHIFT,Return,exec,rofi-launcher
-          bind = ${modifier},W,exec,${browser}
           bind = ${modifier},E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin
           bind = ${modifier},C,exec,hyprpicker -a
-          bind = ${modifier},G,exec,gimp
-          bind = ${modifier}SHIFT,G,exec,godot4
           bind = ${modifier},T,exec,thunar
-          bind = ${modifier},M,exec,spotify
           bind = ${modifier},Q,killactive,
           bind = ${modifier},P,pseudo,
           bind = ${modifier}SHIFT,I,togglesplit,
