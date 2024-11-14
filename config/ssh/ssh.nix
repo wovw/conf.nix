@@ -4,6 +4,10 @@
     openssh
   ];
 
+  # ssh files
+  home.file.".ssh/git_rsa".source = ./git_rsa;
+  home.file.".ssh/git_rsa.pub".source = ./git_rsa.pub;
+
   programs.ssh = {
     enable = true;
     matchBlocks = {

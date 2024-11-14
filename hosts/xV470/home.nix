@@ -1,13 +1,13 @@
 {
-  pkgs,
-  username,
-  host,
-  ...
+pkgs,
+username,
+host,
+...
 }:
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
 in
-{
+  {
   # Home Manager Settings
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
@@ -52,10 +52,6 @@ in
     early_exit=true
     fill_shape=false
   '';
-
-  # ssh files
-  # home.file.".ssh/git_rsa".source = ../../config/ssh/git_rsa;
-  # home.file.".ssh/git_rsa.pub".source = ../../config/ssh/git_rsa.pub;
 
   # Install & Configure Git
   programs.git = {
@@ -122,16 +118,13 @@ in
   ];
 
   services = {
-    ssh-agent = {
-      enable = true;
-    };
     hypridle = {
       settings = {
         general = {
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
-          };
+        };
         listener = [
           {
             timeout = 900;
@@ -148,6 +141,7 @@ in
   };
 
   programs = {
+    home-manager.enable = true;
     gh.enable = true;
     btop = {
       enable = true;
@@ -171,38 +165,85 @@ in
         inactive_tab_font_style bold
       '';
     };
-     starship = {
-            enable = true;
-            package = pkgs.starship;
-     };
-    bash = {
+    zsh = {
       enable = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
-      profileExtra = ''
-        #if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-        #  exec Hyprland
-        #fi
-      '';
+      oh-my-zsh = {
+        enable = true;
+        theme = "robbyrussell";
+        plugins = [
+          "git"
+          "fzf"
+        ];
+      };
       initExtra = ''
-        fastfetch
-        if [ -f $HOME/.bashrc-personal ]; then
-          source $HOME/.bashrc-personal
+        # Initialize rustup
+        if [ -f $HOME/.cargo/env ]; then
+          source $HOME/.cargo/env
+        fi
+
+        # Initialize pnpm
+        export PNPM_HOME="$HOME/.local/share/pnpm"
+        export PATH="$PNPM_HOME:$PATH"
+
+        # Source personal configurations if they exist
+        if [ -f $HOME/.zshrc-personal ]; then
+          source $HOME/.zshrc-personal
         fi
       '';
       shellAliases = {
-        sv = "sudo nvim";
-        fr = "nh os switch --hostname ${host} /home/${username}/nixos";
-        fu = "nh os switch --hostname ${host} --update /home/${username}/nixos";
-        ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
+        sv = "sudo nvim";
+        ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         cat = "bat";
         ls = "eza --icons";
         ll = "eza -lh --icons --group-directories-first";
         la = "eza -lah --icons --group-directories-first";
         ".." = "cd ..";
+        c = "code";
       };
     };
-    home-manager.enable = true;
+    tmux = {
+      enable = true;
+      shell = "${pkgs.zsh}/bin/zsh";
+      terminal = "tmux-256color";
+      mouse = true;
+      prefix = "C-Space";
+      escapeTime = 0;
+      baseIndex = 1;
+
+      # Plugin management
+      plugins = with pkgs.tmuxPlugins; [
+        sensible
+        vim-tmux-navigator
+        catppuccin
+        yank
+      ];
+
+      extraConfig = ''
+      # Terminal overrides
+      set -ag terminal-overrides ",xterm-256color:RGB"
+
+      # Shift Alt vim keys to switch windows
+      bind -n M-H previous-window
+      bind -n M-L next-window
+
+      # Set vi mode
+      set-window-option -g mode-keys vi
+
+      # Vim-style copy mode bindings
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+      # Reload configuration
+      unbind r
+      bind r source-file ~/.config/tmux/tmux.conf
+
+      # Additional custom settings can go here
+      '';
+    };
     hyprlock = {
       enable = true;
       settings = {
@@ -246,6 +287,203 @@ in
             shadow_passes = 2;
           }
         ];
+      };
+    };
+    starship = {
+      enable = true;
+      settings = {
+        aws = {
+          format = "\\[[$symbol($profile)(\\($region\\))(\\[$duration\\])]($style)\\]";
+        };
+        bun = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        c = {
+          format = "\\[[$symbol($version(-$name))]($style)\\]";
+        };
+        cmake = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        cmd_duration = {
+          format = "\\[[⏱ $duration]($style)\\]";
+        };
+        cobol = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        conda = {
+          format = "\\[[$symbol$environment]($style)\\]";
+        };
+        crystal = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        daml = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        dart = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        deno = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        docker_context = {
+          format = "\\[[$symbol$context]($style)\\]";
+        };
+        dotnet = {
+          format = "\\[[$symbol($version)(🎯 $tfm)]($style)\\]";
+        };
+        elixir = {
+          format = "\\[[$symbol($version \\(OTP $otp_version\\))]($style)\\]";
+        };
+        elm = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        erlang = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        fennel = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        fossil_branch = {
+          format = "\\[[$symbol$branch]($style)\\]";
+        };
+        gcloud = {
+          format = "\\[[$symbol$account(@$domain)(\\($region\\))]($style)\\]";
+        };
+        git_branch = {
+          format = "\\[[$symbol$branch]($style)\\]";
+        };
+        git_status = {
+          format = "(\\[[$all_status$ahead_behind\\]]($style))";
+        };
+        golang = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        gradle = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        guix_shell = {
+          format = "\\[[$symbol]($style)\\]";
+        };
+        haskell = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        haxe = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        helm = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        hg_branch = {
+          format = "\\[[$symbol$branch]($style)\\]";
+        };
+        java = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        julia = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        kotlin = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        kubernetes = {
+          format = "\\[[$symbol$context( \\($namespace\\))]($style)\\]";
+        };
+        lua = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        memory_usage = {
+          format = "\\[$symbol[$ram( | $swap)]($style)\\]";
+        };
+        meson = {
+          format = "\\[[$symbol$project]($style)\\]";
+        };
+        nim = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        nix_shell = {
+          format = "\\[[$symbol$state( \\($name\\))]($style)\\]";
+        };
+        nodejs = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        ocaml = {
+          format = "\\[[$symbol($version)(\\($switch_indicator$switch_name\\))]($style)\\]";
+        };
+        opa = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        openstack = {
+          format = "\\[[$symbol$cloud(\\($project\\))]($style)\\]";
+        };
+        os = {
+          format = "\\[[$symbol]($style)\\]";
+        };
+        package = {
+          format = "\\[[$symbol$version]($style)\\]";
+        };
+        perl = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        php = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        pijul_channel = {
+          format = "\\[[$symbol$channel]($style)\\]";
+        };
+        pulumi = {
+          format = "\\[[$symbol$stack]($style)\\]";
+        };
+        purescript = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        python = {
+          format = "\\[[$symbol$pyenv_prefix($version)(\\($virtualenv\\))]($style)\\]";
+        };
+        raku = {
+          format = "\\[[$symbol($version-$vm_version)]($style)\\]";
+        };
+        red = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        ruby = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        rust = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        scala = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        spack = {
+          format = "\\[[$symbol$environment]($style)\\]";
+        };
+        sudo = {
+          format = "\\[[as $symbol]($style)\\]";
+        };
+        swift = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        terraform = {
+          format = "\\[[$symbol$workspace]($style)\\]";
+        };
+        time = {
+          format = "\\[[$time]($style)\\]";
+        };
+        username = {
+          format = "\\[[$user]($style)\\]";
+        };
+        vagrant = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        vlang = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        zig = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
+        solidity = {
+          format = "\\[[$symbol($version)]($style)\\]";
+        };
       };
     };
   };
