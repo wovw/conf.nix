@@ -10,14 +10,10 @@
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
-    zen-browser = {
-      url = "path:pkgs/zen-browser";
-      flake = true;
-    };
   };
 
   outputs =
-    { nixpkgs, home-manager, zen-browser, ... }@inputs:
+    { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "xV470";
@@ -47,11 +43,6 @@
               home-manager.backupFileExtension = "backup";
               home-manager.users.${username} = import ./hosts/${host}/home.nix;
             }
-            ({ pkgs, ... }: {
-              environment.systemPackages = with pkgs; [
-                zen-browser.packages.${system}.default
-              ];
-            })
           ];
         };
       };

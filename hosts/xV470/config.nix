@@ -342,8 +342,6 @@ in
       enable = true;
       keyboards."home-row" = {
         configFile = ../../config/kanata/home-row.kbd;
-        port = 6666;
-        extraDefCfg = "danger-enable-cmd yes";
       };
     };
     # kanata
