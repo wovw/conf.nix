@@ -13,7 +13,7 @@ in ''
   binde = , xf86MonBrightnessUp, exec, ${brightness}/bin/brightness-control --inc
 
   # mirror vs extend, TODO: extend is being weird
-  # bind = ${modifier}, P, exec, ${toggleMirror}/bin/toggle-mirror
+  bind = ${modifier}, P, exec, ${toggleMirror}/bin/toggle-mirror
 
   # `hyprctl devices`
   $Touchpad_Device=elan0412:00-04f3:3162-touchpad

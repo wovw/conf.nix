@@ -1,7 +1,7 @@
 { pkgs }:
 
 pkgs.writeShellApplication {
-  name = "clipboard-manager";
+  name = "clip-manager";
 
   runtimeInputs = with pkgs; [
     cliphist
@@ -10,8 +10,6 @@ pkgs.writeShellApplication {
   ];
 
   text = ''
-    # Clipboard Manager. This script uses cliphist, rofi, and wl-copy.
-    #
     # Actions:
     # CTRL Del to delete an entry
     # ALT Del to wipe clipboard contents

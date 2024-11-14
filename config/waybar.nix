@@ -110,18 +110,18 @@ with lib;
               ""
             ];
           };
-          on-click = "sleep 0.1 && pavucontrol";
+          on-click = "pavucontrol";
         };
         "custom/exit" = {
           tooltip = false;
           format = "";
-          on-click = "sleep 0.1 && wlogout";
+          on-click = "wlogout-launcher";
         };
         "custom/startmenu" = {
           tooltip = false;
           format = "";
           # exec = "rofi -show drun";
-          on-click = "sleep 0.1 && rofi-launcher";
+          on-click = "rofi-launcher";
         };
         "idle_inhibitor" = {
           format = "{icon}";
@@ -147,7 +147,7 @@ with lib;
           return-type = "json";
           exec-if = "which swaync-client";
           exec = "swaync-client -swb";
-          on-click = "sleep 0.1 && task-waybar";
+          on-click = "task-waybar";
           escape = true;
         };
         "battery" = {

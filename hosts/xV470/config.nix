@@ -233,6 +233,7 @@ in
         xwaylandvideobridge
         zip
         fastfetch
+        normcap
     ];
 
     environment.sessionVariables = {

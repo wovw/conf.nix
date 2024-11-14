@@ -1,7 +1,6 @@
 {
 pkgs,
 username,
-host,
 ...
 }:
 let
@@ -94,11 +93,11 @@ in
 
     # Scripts
     home.packages = [
-        (import ../../scripts/emopicker9000.nix { inherit pkgs; })
         (import ../../scripts/task-waybar.nix { inherit pkgs; })
         (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
-        (import ../../scripts/screenshootin.nix { inherit pkgs; })
+        (import ../../scripts/wlogout-launcher.nix { inherit pkgs; })
         (import ../../scripts/tmux-sessionizer.nix { inherit pkgs; })
+        (import ../../scripts/screenshootin.nix { inherit pkgs; })
         (import ../../scripts/zen-browser/zen.nix { inherit pkgs; })
     ];
 
