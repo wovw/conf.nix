@@ -7,6 +7,7 @@ exec-once = nm-applet --indicator
 exec-once = swaync
 exec-once = waybar
 exec-once = lxqt-policykit-agent
+exec-once = noisetorch -s alsa_input.pci-0000_00_1f.3.analog-stereo -i
 
 # clipboard manager
 exec-once = wl-paste --type text --watch cliphist store
