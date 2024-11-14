@@ -25,6 +25,7 @@ in
     ../../config/swaync.nix
     ../../config/waybar.nix
     ../../config/wlogout.nix
+    ../../config/ssh/ssh.nix
     ../../config/fastfetch
   ];
 
@@ -51,6 +52,10 @@ in
     early_exit=true
     fill_shape=false
   '';
+
+  # ssh files
+  # home.file.".ssh/git_rsa".source = ../../config/ssh/git_rsa;
+  # home.file.".ssh/git_rsa.pub".source = ../../config/ssh/git_rsa.pub;
 
   # Install & Configure Git
   programs.git = {
@@ -117,6 +122,9 @@ in
   ];
 
   services = {
+    ssh-agent = {
+      enable = true;
+    };
     hypridle = {
       settings = {
         general = {
@@ -189,8 +197,8 @@ in
         v = "nvim";
         cat = "bat";
         ls = "eza --icons";
-        ll = "eza -lh --icons --grid --group-directories-first";
-        la = "eza -lah --icons --grid --group-directories-first";
+        ll = "eza -lh --icons --group-directories-first";
+        la = "eza -lah --icons --group-directories-first";
         ".." = "cd ..";
       };
     };
