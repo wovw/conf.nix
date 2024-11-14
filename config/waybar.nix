@@ -131,7 +131,6 @@ in
                 "custom/startmenu" = {
                     tooltip = false;
                     format = "";
-                    # exec = "rofi -show drun";
                     on-click = "rofi-launcher";
                 };
                 "idle_inhibitor" = {
@@ -196,20 +195,22 @@ in
               min-height: 0px;
             }
             window#waybar {
-              background: rgba(0,0,0,0);
+              background-color: transparent;
             }
             #workspaces {
               color: #${config.lib.stylix.colors.base00};
               background: #${config.lib.stylix.colors.base01};
-              margin: 4px 4px;
-              padding: 5px 5px;
+              margin: 4px;
+              padding: 0px 1px;
               border-radius: 16px;
+              border: 0px;
             }
             #workspaces button {
               font-weight: bold;
-              padding: 0px 5px;
-              margin: 0px 3px;
+              padding: 0px 4px;
+              margin: 4px 3px;
               border-radius: 16px;
+              border: 0px;
               color: #${config.lib.stylix.colors.base00};
               background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
               opacity: 0.5;
@@ -217,8 +218,8 @@ in
             }
             #workspaces button.active {
               font-weight: bold;
-              padding: 0px 5px;
-              margin: 0px 3px;
+              padding: 0px 4px;
+              margin: 4px 3px;
               border-radius: 16px;
               color: #${config.lib.stylix.colors.base00};
               background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
@@ -244,15 +245,15 @@ in
             }
             #window, #pulseaudio, #cpu, #memory, #idle_inhibitor {
               font-weight: bold;
-              margin: 4px 0px;
-              margin-left: 7px;
-              padding: 0px 18px;
-              background: #${config.lib.stylix.colors.base04};
-              color: #${config.lib.stylix.colors.base00};
-              border-radius: 24px 10px 24px 10px;
+              margin: 4px;
+              padding: 2px 16px;
+              background: #${config.lib.stylix.colors.base01};
+              color: #${config.lib.stylix.colors.base08};
+              border-radius: 50px 50px;
+              border-bottom: 2px solid #${config.lib.stylix.colors.base0D};
             }
             #custom-startmenu {
-              color: #${config.lib.stylix.colors.base0B};
+              color: #${config.lib.stylix.colors.base0D};
               background: #${config.lib.stylix.colors.base02};
               font-size: 28px;
               margin: 0px;
@@ -262,12 +263,13 @@ in
             #custom-hyprbindings, #network, #battery,
             #custom-notification, #tray, #custom-exit {
               font-weight: bold;
-              background: #${config.lib.stylix.colors.base0F};
-              color: #${config.lib.stylix.colors.base00};
-              margin: 4px 0px;
-              margin-right: 7px;
-              border-radius: 10px 24px 10px 24px;
-              padding: 0px 18px;
+              background: #${config.lib.stylix.colors.base01};
+              color: #${config.lib.stylix.colors.base08};
+              margin: 4px;
+              margin-right: 8px;
+              border-radius: 50px 50px;
+              border-bottom: 2px solid #${config.lib.stylix.colors.base0D};
+              padding: 2px 16px;
             }
             #clock {
               font-weight: bold;

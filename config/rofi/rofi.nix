@@ -65,7 +65,7 @@
               "dummy"
               "mode-switcher"
             ];
-            background-image = mkLiteral ''url("~/Pictures/wallpapers/lil chicken.png", width)'';
+            background-image = mkLiteral ''url("~/Pictures/wallpapers/fei-spider-lilies-16x9.jpg", width)'';
           };
           "entry" = {
             enabled = true;

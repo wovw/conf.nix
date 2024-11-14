@@ -31,10 +31,6 @@ in
         extraModprobeConfig = ''
             options nvidia_drm modeset=1 fbdev=1
         '';
-        # Needed For Some Steam Games
-        kernel.sysctl = {
-            "vm.max_map_count" = 2147483642;
-        };
         # Bootloader.
         loader.systemd-boot.enable = true;
         loader.efi.canTouchEfiVariables = true;
@@ -128,12 +124,6 @@ in
             enableSSHSupport = true;
         };
         virt-manager.enable = true;
-        steam = {
-            enable = true;
-            gamescopeSession.enable = true;
-            remotePlay.openFirewall = true;
-            dedicatedServer.openFirewall = true;
-        };
         thunar = {
             enable = true;
             plugins = with pkgs.xfce; [
@@ -230,6 +220,8 @@ in
 
         # pnpm
         PNPM_HOME = "$HOME/.local/share/pnpm";
+
+        GSK_RENDERER = "gl";
     };
 
     fonts = {
@@ -237,8 +229,6 @@ in
             noto-fonts-emoji
             noto-fonts-cjk-sans
             font-awesome
-            # Commenting Symbola out to fix install this will need to be fixed or an alternative found.
-            # symbola
             material-icons
         ];
     };
@@ -246,14 +236,12 @@ in
     # Extra Portal Configuration
     xdg.portal = {
         enable = true;
-        wlr.enable = true;
+        wlr.enable = false;
         extraPortals = [
             pkgs.xdg-desktop-portal-gtk
-            pkgs.xdg-desktop-portal
         ];
         configPackages = [
             pkgs.xdg-desktop-portal-gtk
-            pkgs.xdg-desktop-portal-hyprland
             pkgs.xdg-desktop-portal
         ];
     };

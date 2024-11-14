@@ -90,7 +90,6 @@ in
         platformTheme.name = "gtk3";
     };
 
-
     # Scripts
     home.packages = [
         (import ../../scripts/task-waybar.nix { inherit pkgs; })
@@ -281,8 +280,8 @@ in
         };
         git = {
             enable = true;
-            userName = "${gitUsername}";
-            userEmail = "${gitEmail}";
+            userName = gitUsername;
+            userEmail = gitEmail;
         };
         obs-studio.enable = true;
     };
