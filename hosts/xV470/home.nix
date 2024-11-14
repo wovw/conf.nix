@@ -38,8 +38,6 @@ in
     source = ../../config/wlogout;
     recursive = true;
   };
-  home.file.".face.icon".source = ../../config/face.jpg;
-  home.file.".config/face.jpg".source = ../../config/face.jpg;
   home.file.".config/swappy/config".text = ''
     [Default]
     save_dir=/home/${username}/Pictures/Screenshots
@@ -79,6 +77,7 @@ in
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
   stylix.targets.hyprland.enable = false;
+  stylix.targets.neovim.enable = false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -261,18 +260,6 @@ in
             path = "/home/${username}/Pictures/Wallpapers/Rainnight.jpg";
             blur_passes = 3;
             blur_size = 8;
-          }
-        ];
-        image = [
-          {
-            path = "/home/${username}/.config/face.jpg";
-            size = 150;
-            border_size = 4;
-            border_color = "rgb(0C96F9)";
-            rounding = -1; # Negative means circle
-            position = "0, 200";
-            halign = "center";
-            valign = "center";
           }
         ];
         input-field = [
