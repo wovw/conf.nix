@@ -41,12 +41,14 @@ with lib;
           exec-once = dbus-update-activation-environment --systemd --all
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = swww init && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
-          monitor=,preferred,auto,1
           exec-once = killall -q waybar;sleep .5 && waybar
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
+
+          monitor=,preferred,auto,1
           ${extraMonitorSettings}
+
           general {
             gaps_in = 6
             gaps_out = 8
@@ -121,9 +123,6 @@ with lib;
           }
           bind = ${modifier},Return,exec,${terminal}
           bind = ${modifier}SHIFT,Return,exec,rofi-launcher
-          bind = ${modifier}SHIFT,W,exec,web-search
-          bind = ${modifier}ALT,W,exec,wallsetter
-          bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin

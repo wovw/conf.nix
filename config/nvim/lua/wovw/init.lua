@@ -8,15 +8,12 @@ local wovwGroup = augroup('wovw', {})
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
+--[[
+-- Not very useful for nixos
 function R(name)
     require("plenary.reload").reload_module(name)
 end
-
-vim.filetype.add({
-    extension = {
-        templ = 'templ',
-    }
-})
+--]]
 
 autocmd('TextYankPost', {
     group = yank_group,
@@ -42,6 +39,17 @@ autocmd('BufEnter', {
     end
 })
 
+autocmd('FileType', {
+    group = wovwGroup,
+    pattern = 'netrw',
+    callback = function()
+        vim.opt_local.number = true
+        vim.opt_local.relativenumber = true
+    end
+})
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+vim.g.netrw_preview = 1
+vim.g.netrw_altv = 1

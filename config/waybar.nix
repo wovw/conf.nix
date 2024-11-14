@@ -123,11 +123,6 @@ with lib;
           # exec = "rofi -show drun";
           on-click = "sleep 0.1 && rofi-launcher";
         };
-        "custom/hyprbindings" = {
-          tooltip = false;
-          format = "󱕴";
-          on-click = "sleep 0.1 && list-hypr-bindings";
-        };
         "idle_inhibitor" = {
           format = "{icon}";
           format-icons = {

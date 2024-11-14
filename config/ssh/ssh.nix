@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    openssh
-  ];
-
   # ssh files
   home.file.".ssh/git_rsa".source = ./git_rsa;
   home.file.".ssh/git_rsa.pub".source = ./git_rsa.pub;
