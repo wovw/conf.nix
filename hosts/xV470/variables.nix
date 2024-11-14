@@ -5,12 +5,6 @@
     gitUsername = "wovw";
     gitEmail = "anthonypasala12@gmail.com";
 
-    # Hyprland Settings
-    extraMonitorSettings = ''
-    monitor=eDP-1,preferred,0x0,1.25
-    monitor=HDMI-A-4,preferred,auto-right,1
-    '';
-
     # Waybar Settings
     clock24h = false;
 

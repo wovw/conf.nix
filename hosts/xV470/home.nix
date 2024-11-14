@@ -6,7 +6,6 @@ host,
 }:
 let
     inherit (import ./variables.nix) gitUsername gitEmail;
-    tmux-sessionizer = pkgs.callPackage ../../scripts/tmux-sessionizer.nix { };
 in
     {
     # Home Manager Settings
@@ -17,15 +16,14 @@ in
     # Import Program Configurations
     imports = [
         ../../config/emoji.nix
-        ../../config/fastfetch
         ../../config/hyprland/hyprland.nix
         ../../config/nvim/neovim.nix
         ../../config/rofi/rofi.nix
         ../../config/rofi/config-emoji.nix
         ../../config/rofi/config-long.nix
-        ../../config/swaync.nix
+        ../../config/swaync/swaync.nix
         ../../config/waybar.nix
-        ../../config/wlogout.nix
+        ../../config/wlogout/wlogout.nix
         ../../config/ssh/ssh.nix
         ../../config/starship.nix
     ];
@@ -36,7 +34,11 @@ in
         recursive = true;
     };
     home.file.".config/wlogout/icons" = {
-        source = ../../config/wlogout;
+        source = ../../config/wlogout/icons;
+        recursive = true;
+    };
+    home.file.".config/swaync/icons" = {
+        source = ../../config/swaync/icons;
         recursive = true;
     };
     home.file.".config/swappy/config".text = ''
@@ -96,7 +98,7 @@ in
         (import ../../scripts/task-waybar.nix { inherit pkgs; })
         (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
         (import ../../scripts/screenshootin.nix { inherit pkgs; })
-        tmux-sessionizer
+        (import ../../scripts/tmux-sessionizer.nix { inherit pkgs; })
         (import ../../scripts/zen-browser/zen.nix { inherit pkgs; })
     ];
 
@@ -147,7 +149,7 @@ in
                 inactive_tab_font_style bold
             '';
             keybindings = {
-                "ctrl+f" = "send_text all ${tmux-sessionizer}/bin/tmux-sessionizer\\x0d";
+                "ctrl+f" = "send_text all tmux-sessionizer\\x0d";
             };
         };
         zsh = {
@@ -225,7 +227,7 @@ in
                 bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
                 bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-                bind-key -r f run-shell "tmux neww ${tmux-sessionizer}/bin/tmux-sessionizer"
+                bind-key -r f run-shell "tmux neww tmux-sessionizer"
             '';
         };
         hyprlock = {
@@ -241,7 +243,7 @@ in
                 };
                 background = [
                     {
-                        path = "/home/${username}/Pictures/Wallpapers/Rainnight.jpg";
+                        path = "~/Pictures/Wallpapers/Rainnight.jpg";
                     }
                 ];
                 input-field = [

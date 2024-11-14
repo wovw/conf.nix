@@ -22,7 +22,8 @@ in
     boot = {
         # Kernel
         kernelPackages = pkgs.linuxPackages_zen;
-        kernelModules = [ "v4l2loopback" "nvidia" "nvidia_drm" "nvidia_uvm" "nvidia_modeset" "uinput"];
+        extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+        kernelModules = [ "v4l2loopback" "nvidia" "nvidia_drm" "nvidia_uvm" "nvidia_modeset" "uinput" "i2c-dev" ];
         kernelParams = [
             "nvidia_drm.modeset=1"
             "nvidia_drm.fbdev=1"
@@ -30,7 +31,6 @@ in
         extraModprobeConfig = ''
       options nvidia_drm modeset=1 fbdev=1
         '';
-        extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
         # Needed For Some Steam Games
         kernel.sysctl = {
             "vm.max_map_count" = 2147483642;
@@ -200,6 +200,8 @@ in
         hyprpicker
         ninja
         brightnessctl
+        i2c-tools
+        ddcutil
         virt-viewer
         swappy
         appimage-run
@@ -223,8 +225,6 @@ in
         neovide
         greetd.tuigreet
         glib
-        spotify
-        (callPackage ../../scripts/spotx.nix { inherit pkgs; })
         rustup
         go
         sccache
@@ -232,6 +232,7 @@ in
         wev
         xwaylandvideobridge
         zip
+        fastfetch
     ];
 
     environment.sessionVariables = {
@@ -338,8 +339,6 @@ in
                 configFile = ../../config/kanata/home-row.kbd;
             };
         };
-        # kanata
-        udev.extraRules = ''KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"'';
     };
     systemd.services.flatpak-repo = {
         path = [ pkgs.flatpak ];
@@ -352,6 +351,9 @@ in
         extraBackends = [ pkgs.sane-airscan ];
         disabledDefaultBackends = [ "escl" ];
     };
+
+    # ddcutil
+    hardware.i2c.enable = true;
 
     # Extra Logitech Support
     hardware.logitech.wireless.enable = false;

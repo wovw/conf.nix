@@ -43,7 +43,8 @@ return {
                 "rust_analyzer",
                 "gopls",
                 "eslint",
-                "ts_ls"
+                "ts_ls",
+                "nil_ls"
             },
             automatic_installation = true,
             handlers = {
