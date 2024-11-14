@@ -6,8 +6,9 @@ pkgs.writeShellApplication {
     runtimeInputs = with pkgs; [
         tmux
         fzf
-        findutils  # for find
-        coreutils  # for basename and other utilities
+        findutils
+        coreutils
+        procps
     ];
 
     text = ''
@@ -36,7 +37,11 @@ pkgs.writeShellApplication {
         tmux new-session -ds "$selected_name" -c "$selected"
     fi
 
-    tmux attach -t "$selected_name"
+    if [[ -n ''${TMUX:-} ]]; then
+        tmux switch-client -t "$selected_name"
+    else
+        tmux attach -t "$selected_name"
+    fi
     '';
 }
 

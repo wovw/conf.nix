@@ -24,8 +24,16 @@ in
       ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
-      packages = with pkgs; [ tree-sitter webcord ];
+      packages = with pkgs; [
+                tree-sitter
+                webcord
+                nodejs_20
+                (pnpm.override {
+                    version = "9.12.1";
+                    hash = "sha256-kUUv36RiNK5EfUbVxPxOfgpwWPkElcS293+L7ruxVOM=";
+                })
+            ];
+        };
     };
-  };
-  users.groups.uinput = {};
+    users.groups.uinput = {};
 }

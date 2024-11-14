@@ -227,10 +227,6 @@ in
         (callPackage ../../scripts/spotx.nix { inherit pkgs; })
         rustup
         go
-        (pnpm.override {
-            version = "9.12.1";
-            hash = "sha256-kUUv36RiNK5EfUbVxPxOfgpwWPkElcS293+L7ruxVOM=";
-        })
         sccache
         fzf
         wev

@@ -6,6 +6,7 @@ host,
 }:
 let
     inherit (import ./variables.nix) gitUsername gitEmail;
+    tmux-sessionizer = pkgs.callPackage ../../scripts/tmux-sessionizer.nix { };
 in
     {
     # Home Manager Settings
@@ -95,7 +96,7 @@ in
         (import ../../scripts/task-waybar.nix { inherit pkgs; })
         (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
         (import ../../scripts/screenshootin.nix { inherit pkgs; })
-        (import ../../scripts/tmux-sessionizer.nix { inherit pkgs; })
+        tmux-sessionizer
         (import ../../scripts/zen-browser/zen.nix { inherit pkgs; })
     ];
 
@@ -146,7 +147,7 @@ in
                 inactive_tab_font_style bold
             '';
             keybindings = {
-                "ctrl+f" = "send_text all tmux-sessionizer\\x0d";
+                "ctrl+f" = "send_text all ${tmux-sessionizer}/bin/tmux-sessionizer\\x0d";
             };
         };
         zsh = {
@@ -224,7 +225,7 @@ in
                 bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
                 bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-                bind-key -r f run-shell "tmux-sessionizer"
+                bind-key -r f run-shell "tmux neww ${tmux-sessionizer}/bin/tmux-sessionizer"
             '';
         };
         hyprlock = {
@@ -232,15 +233,15 @@ in
             settings = {
                 general = {
                     disable_loading_bar = true;
-                    grace = 10;
+                    grace = 0;
                     hide_cursor = true;
                     no_fade_in = false;
+                    ignore_empty_input = false;
+                    immediate_timeout = false;
                 };
                 background = [
                     {
                         path = "/home/${username}/Pictures/Wallpapers/Rainnight.jpg";
-                        blur_passes = 3;
-                        blur_size = 8;
                     }
                 ];
                 input-field = [

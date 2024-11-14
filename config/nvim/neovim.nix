@@ -14,7 +14,9 @@
             extraLuaConfig = ''
                 ${builtins.readFile ./init.lua}
             '';
-
+            extraPackages = with pkgs; [
+                lua-language-server
+            ];
         };
     };
 
