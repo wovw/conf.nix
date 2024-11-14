@@ -221,7 +221,7 @@ in
         # pnpm
         PNPM_HOME = "$HOME/.local/share/pnpm";
 
-        GSK_RENDERER = "gl";
+        GSK_RENDERER = "ngl";
     };
 
     fonts = {
@@ -236,12 +236,14 @@ in
     # Extra Portal Configuration
     xdg.portal = {
         enable = true;
-        wlr.enable = false;
+        wlr.enable = true;
         extraPortals = [
             pkgs.xdg-desktop-portal-gtk
+            pkgs.xdg-desktop-portal
         ];
         configPackages = [
             pkgs.xdg-desktop-portal-gtk
+            pkgs.xdg-desktop-portal-hyprland
             pkgs.xdg-desktop-portal
         ];
     };
