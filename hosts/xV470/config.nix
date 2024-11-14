@@ -168,6 +168,8 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    gnumake
+    gcc
     vim
     wget
     killall
@@ -236,6 +238,8 @@ in
     fzf
     kanata
     wev
+    lua5_1
+    lua51Packages.luarocks
   ];
 
   environment.sessionVariables = {

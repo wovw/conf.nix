@@ -18,7 +18,7 @@ in
     ../../config/emoji.nix
     ../../config/fastfetch
     ../../config/hyprland.nix
-    ../../config/neovim.nix
+    ../../config/nvim/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
@@ -225,6 +225,7 @@ in
 
       extraConfig = ''
       # Terminal overrides
+      set -g default-terminal "screen-256color"
       set -ag terminal-overrides ",xterm-256color:RGB"
 
       # Shift Alt vim keys to switch windows
