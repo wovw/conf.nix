@@ -7,6 +7,7 @@ return {
         "christoomey/vim-tmux-navigator",
         lazy = false
     },
+    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
     {
         "supermaven-inc/supermaven-nvim",
         config = function()

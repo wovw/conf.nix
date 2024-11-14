@@ -169,6 +169,12 @@ in
             enable = true;
             autosuggestion.enable = true;
             enableCompletion = true;
+            history = {
+                ignoreDups = true;
+                ignoreAllDups = true;
+                extended = false;
+                expireDuplicatesFirst = true;
+            };
             oh-my-zsh = {
                 enable = true;
                 theme = "robbyrussell";
@@ -191,6 +197,9 @@ in
                 if [ -f $HOME/.zshrc-personal ]; then
                   source $HOME/.zshrc-personal
                 fi
+
+                eval "$(uv generate-shell-completion zsh)"
+                eval "$(uvx --generate-shell-completion zsh)"
             '';
             shellAliases = {
                 rebuild = "sudo nixos-rebuild switch --flake ~/nixos#";

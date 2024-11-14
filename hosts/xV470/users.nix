@@ -36,6 +36,8 @@ in
                 })
                 cliphist
                 rclone
+                python313
+                uv
                 inputs.zen-browser.packages."${system}".specific
             ];
             openssh.authorizedKeys.keys = [];
