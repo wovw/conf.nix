@@ -14,7 +14,7 @@ pkgs.writeShellApplication {
       pkill -x rofi
       exit 0
     fi
-    rofi -show drun -modi drun,filebrowser,run,window
+    rofi -show combi -modi combi,drun,recursivebrowser,run
   '';
 }
 
