@@ -207,6 +207,7 @@ in
         zip
         fastfetch
         normcap
+        jq
     ];
 
     environment.sessionVariables = {

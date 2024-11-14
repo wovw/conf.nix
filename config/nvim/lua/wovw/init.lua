@@ -23,16 +23,34 @@ autocmd('TextYankPost', {
     end,
 })
 
+
 autocmd({ "BufWritePre" }, {
     group = wovwGroup,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
+    callback = function(args)
+        -- Check if any attached LSP client can format
+        local clients = vim.lsp.get_active_clients({ bufnr = args.buf })
+        local can_format = false
+        for _, client in pairs(clients) do
+            if client.supports_method("textDocument/formatting") then
+                can_format = true
+                break
+            end
+        end
+
+        if can_format then
+            vim.lsp.buf.format({ async = false })
+        else
+            -- Fallback to removing trailing whitespace
+            vim.cmd([[%s/\s\+$//e]])
+        end
+    end,
 })
 
 autocmd('BufEnter', {
     group = wovwGroup,
     callback = function()
         vim.cmd.colorscheme("tokyonight-night")
+        vim.cmd [[highlight TreesitterContext guibg=NONE ctermbg=NONE]]
     end
 })
 

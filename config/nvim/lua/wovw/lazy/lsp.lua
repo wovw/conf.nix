@@ -68,7 +68,6 @@ return {
                     })
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
-
                 end,
                 ["eslint"] = function()
                     require("lspconfig").eslint.setup({
@@ -111,8 +110,8 @@ return {
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
             }, {
-                    { name = 'buffer' },
-                })
+                { name = 'buffer' },
+            })
         })
 
         vim.diagnostic.config({
