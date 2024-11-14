@@ -97,7 +97,6 @@ in
         (import ../../scripts/wlogout-launcher.nix { inherit pkgs; })
         (import ../../scripts/tmux-sessionizer.nix { inherit pkgs; })
         (import ../../scripts/screenshootin.nix { inherit pkgs; })
-        (import ../../scripts/zen-browser/zen.nix { inherit pkgs; })
     ];
 
     home.sessionVariables = {

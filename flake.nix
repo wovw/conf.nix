@@ -8,6 +8,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         stylix.url = "github:danth/stylix";
+        zen-browser.url = "github:0xc000022070/zen-browser-flake";
         fine-cmdline = {
             url = "github:VonHeikemen/fine-cmdline.nvim";
             flake = false;
@@ -39,6 +40,7 @@
                         inputs.stylix.nixosModules.stylix
                         ({pkgs, ...}: {
                             nixpkgs.overlays = [oskars-dotfiles.overlays.spotx];
+                            environment.systemPackages = [pkgs.spotify];
                         })
                         home-manager.nixosModules.home-manager
                         {

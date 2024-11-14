@@ -316,6 +316,14 @@ in
                 configFile = ../../config/kanata/home-row.kbd;
             };
         };
+        openssh = {
+            enable = true;
+            settings = {
+                PermitRootLogin = "no";
+                PasswordAuthentication = false;
+            };
+            openFirewall = true;
+        };
     };
     systemd.services.flatpak-repo = {
         path = [ pkgs.flatpak ];

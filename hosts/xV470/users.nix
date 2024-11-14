@@ -1,5 +1,6 @@
 {
 pkgs,
+inputs,
 username,
 ...
 }:
@@ -27,7 +28,6 @@ in
             ignoreShellProgramCheck = true;
             packages = with pkgs; [
                 tree-sitter
-                spotify
                 webcord
                 nodejs_20
                 (pnpm.override {
@@ -36,7 +36,9 @@ in
                 })
                 cliphist
                 rclone
+                inputs.zen-browser.packages."${system}".specific
             ];
+            openssh.authorizedKeys.keys = [];
         };
     };
 }
