@@ -312,12 +312,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-ZifS8Otdzf9Iv8b5JGRGb/Jd+ZLEMRCJcLdAS14oGTw=",
-        "path": "./pkgs/zen-browser",
+        "narHash": "sha256-UZlNbfbW9/RKFFKFS4ClGqCT7WsIK9arnMJ9tdPswGQ=",
+        "path": "pkgs/zen-browser",
         "type": "path"
       },
       "original": {
-        "path": "./pkgs/zen-browser",
+        "path": "pkgs/zen-browser",
         "type": "path"
       }
     }

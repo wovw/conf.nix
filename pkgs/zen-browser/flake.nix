@@ -10,13 +10,10 @@
     nixpkgs,
     }: let
       system = "x86_64-linux";
-      version = "1.0.1-a.16";
+      version = "1.0.1-a.17";
       downloadUrl = {
         specific.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
-        specific.sha256 = "0nmcr4czycgabj5zdxa7sllbnhmcn90kh55f78n9x88cda481q9f";
-
-        generic.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-generic.tar.bz2";
-        generic.sha256 = "1mkc2hpj2n0a9aj6g6yz4gx7j2lcdjhxhil5jhixbddpfp84yvcn";
+        specific.sha256 = "0ahpig3kafphg0pnkl1r60b9phfp5s2rilpxb20q2fwz41d1miwi";
       };
 
       pkgs = import nixpkgs {
@@ -108,7 +105,7 @@
 
           patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/opt/zen/zen
           wrapProgram $out/opt/zen/zen --set LD_LIBRARY_PATH "${pkgs.lib.makeLibraryPath runtimeLibs}" \
-          --set MOZ_LEGACY_PROFILES 1 --set MOZ_ALLOW_DOWNGRADE 1 --set MOZ_APP_LAUNCHER zen --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH" \
+          --set MOZ_LEGACY_PROFILES 1 --set MOZ_ALLOW_DOWNGRADE 1 --set MOZ_APP_LAUNCHER zen --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH"
 
           patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/opt/zen/zen-bin
           wrapProgram $out/opt/zen/zen-bin --set LD_LIBRARY_PATH "${pkgs.lib.makeLibraryPath runtimeLibs}" \
@@ -128,7 +125,6 @@
         };
     in {
       packages."${system}" = {
-        generic = mkZen {variant = "generic";};
         specific = mkZen {variant = "specific";};
         default = self.packages.${system}.specific;
       };

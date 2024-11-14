@@ -22,8 +22,7 @@ in
   boot = {
     # Kernel
     kernelPackages = pkgs.linuxPackages_zen;
-    # This is for NVIDIA + OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" "nvidia" "nvidia_drm" "nvidia_uvm" "nvidia_modeset" ];
+    kernelModules = [ "v4l2loopback" "nvidia" "nvidia_drm" "nvidia_uvm" "nvidia_modeset" "uinput"];
     kernelParams = [
       "nvidia_drm.modeset=1"
       "nvidia_drm.fbdev=1"
@@ -347,6 +346,8 @@ in
         extraDefCfg = "danger-enable-cmd yes";
       };
     };
+    # kanata
+    udev.extraRules = ''KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"'';
  };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];

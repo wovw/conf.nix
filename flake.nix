@@ -10,7 +10,10 @@
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
-    zen-browser.url = "path:./pkgs/zen-browser";
+    zen-browser = {
+      url = "path:pkgs/zen-browser";
+      flake = true;
+    };
   };
 
   outputs =

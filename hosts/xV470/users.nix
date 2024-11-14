@@ -19,10 +19,13 @@ in
         "libvirtd"
         "scanner"
         "lp"
+        "input"
+        "uinput"
       ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [];
     };
   };
+  users.groups.uinput = {};
 }
