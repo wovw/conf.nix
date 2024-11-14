@@ -5,11 +5,7 @@
     gitUsername = "wovw";
     gitEmail = "anthonypasala12@gmail.com";
 
-    # Waybar Settings
-    clock24h = false;
-
     # Program Options
-    browser = "zen-alpha"; # Set Default Browser (google-chrome-stable for google-chrome)
-    terminal = "kitty"; # Set Default System Terminal
+    terminal = "kitty";
     keyboardLayout = "us";
 }

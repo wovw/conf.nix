@@ -28,7 +28,7 @@ in
     ];
 
     # Place Files Inside Home Directory
-    home.file."Pictures/Wallpapers" = {
+    home.file."Pictures/wallpapers" = {
         source = ../../config/wallpapers;
         recursive = true;
     };
@@ -100,6 +100,22 @@ in
         (import ../../scripts/screenshootin.nix { inherit pkgs; })
         (import ../../scripts/zen-browser/zen.nix { inherit pkgs; })
     ];
+
+    home.sessionVariables = {
+        DEFAULT_BROWSER = "zen";
+        BROWSER = "zen";
+    };
+
+    xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+            "text/html" = "zen.desktop";
+            "x-scheme-handler/http" = "zen.desktop";
+            "x-scheme-handler/https" = "zen.desktop";
+            "x-scheme-handler/about" = "zen.desktop";
+            "x-scheme-handler/unknown" = "zen.desktop";
+        };
+    };
 
     services = {
         hypridle = {
@@ -242,7 +258,7 @@ in
                 };
                 background = [
                     {
-                        path = "~/Pictures/Wallpapers/Rainnight.jpg";
+                        path = "~/Pictures/wallpapers/Rainnight.jpg";
                     }
                 ];
                 input-field = [

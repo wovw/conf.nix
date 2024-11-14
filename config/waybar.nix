@@ -1,18 +1,15 @@
 {
 pkgs,
 lib,
-host,
 config,
 ...
 }:
 
 let
     betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
-    inherit (import ../hosts/${host}/variables.nix) clock24h;
 in
     with lib;
 {
-    # Configure & Theme Waybar
     programs.waybar = {
         enable = true;
         package = pkgs.waybar;
@@ -56,7 +53,7 @@ in
                 };
                 "clock" = {
                     interval = 1;
-                    format = if clock24h == true then '' {:L%H:%M:%S}'' else '' {:L%I:%M:%S %p}'';
+                    format = '' {:L%I:%M:%S %p}'';
                     format-alt = " {:%H:%M:%S   %Y, %d %B, %A}";
                     tooltip = true;
                     tooltip-format = "<tt><small>{calendar}</small></tt>";
@@ -204,7 +201,7 @@ in
             #workspaces {
               color: #${config.lib.stylix.colors.base00};
               background: #${config.lib.stylix.colors.base01};
-              margin: 4px 0px;
+              margin: 4px 4px;
               padding: 5px 5px;
               border-radius: 16px;
             }

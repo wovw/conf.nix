@@ -35,6 +35,7 @@ in
                     hash = "sha256-kUUv36RiNK5EfUbVxPxOfgpwWPkElcS293+L7ruxVOM=";
                 })
                 cliphist
+                rclone
             ];
         };
     };

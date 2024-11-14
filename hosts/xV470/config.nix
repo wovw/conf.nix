@@ -58,11 +58,9 @@ in
     # Styling Options
     stylix = {
         enable = true;
-        image = pkgs.fetchurl {
-            url = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cd31a73a-791d-418a-83fd-8a67d6675b5d/dem9giz-dfb2dba5-78a4-4752-9327-d22dc8b7e441.png/v1/fill/w_1192,h_670,q_70,strp/blue_spider_lily_by_fei_t_dem9giz-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA4MCIsInBhdGgiOiJcL2ZcL2NkMzFhNzNhLTc5MWQtNDE4YS04M2ZkLThhNjdkNjY3NWI1ZFwvZGVtOWdpei1kZmIyZGJhNS03OGE0LTQ3NTItOTMyNy1kMjJkYzhiN2U0NDEucG5nIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.bTEI0os5s3mllLtJZasZBPVbHlbnecVecQ-XYJHV3TI";
-            sha256 = "sha256-pPGckHYVZDurUYhm8nOS8sg5OMGwyQdUxNbltC+h9mM=";
-        };
+        image = ../../config/wallpapers/fei-spider-lilies-16x9.jpg;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+        polarity = "dark";
         opacity.terminal = 0.8;
         cursor.package = pkgs.bibata-cursors;
         cursor.name = "Bibata-Modern-Ice";
@@ -251,11 +249,12 @@ in
         wlr.enable = true;
         extraPortals = [
             pkgs.xdg-desktop-portal-gtk
-            pkgs.xdg-desktop-portal-kde
+            pkgs.xdg-desktop-portal
         ];
         configPackages = [
             pkgs.xdg-desktop-portal-gtk
-            pkgs.xdg-desktop-portal-kde
+            pkgs.xdg-desktop-portal-hyprland
+            pkgs.xdg-desktop-portal
         ];
     };
 
@@ -314,7 +313,7 @@ in
             alsa.enable = true;
             alsa.support32Bit = true;
             pulse.enable = true;
-            # jack.enable = true;
+            jack.enable = true;
         };
         rpcbind.enable = false;
         nfs.server.enable = false;

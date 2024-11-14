@@ -1,6 +1,7 @@
 {
 lib,
 host,
+username,
 config,
 pkgs,
 ...
@@ -23,7 +24,9 @@ with lib;
                             inherit pkgs;
                             inherit modifier;
                         })}
-                        ${builtins.readFile ./startup.conf}
+                        ${(import ./startup.nix {
+                            inherit username;
+                        })}
                         ${builtins.readFile ./decor.conf}
                         ${(import ./keybinds.nix {
                             inherit pkgs;
