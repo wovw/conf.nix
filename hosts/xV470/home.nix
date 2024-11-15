@@ -72,6 +72,7 @@ in
     stylix.targets.rofi.enable = false;
     stylix.targets.hyprland.enable = false;
     stylix.targets.neovim.enable = false;
+    stylix.targets.kitty.enable = false;
     gtk = {
         iconTheme = {
             name = "Papirus-Dark";
@@ -150,6 +151,9 @@ in
             enable = true;
             package = pkgs.kitty;
             settings = {
+                background_opacity = "0.8";
+                font_size = 14;
+                font_family = "JetBrainsMono Nerd Font Mono";
                 scrollback_lines = 2000;
                 wheel_scroll_min_lines = 1;
                 window_padding_width = 4;
@@ -172,7 +176,6 @@ in
             history = {
                 ignoreDups = true;
                 ignoreAllDups = true;
-                extended = false;
                 expireDuplicatesFirst = true;
             };
             oh-my-zsh = {
@@ -211,7 +214,6 @@ in
                 ll = "eza -lh --icons --group-directories-first";
                 la = "eza -lah --icons --group-directories-first";
                 ".." = "cd ..";
-                c = "code";
                 tms = "tmux-sessionizer";
             };
         };

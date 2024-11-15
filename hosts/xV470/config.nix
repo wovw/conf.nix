@@ -57,7 +57,6 @@ in
         image = ../../config/wallpapers/fei-spider-lilies-16x9.jpg;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
         polarity = "dark";
-        opacity.terminal = 0.8;
         cursor.package = pkgs.bibata-cursors;
         cursor.name = "Bibata-Modern-Ice";
         cursor.size = 24;
@@ -76,7 +75,6 @@ in
             };
             sizes = {
                 applications = 12;
-                terminal = 14;
                 desktop = 12;
                 popups = 12;
             };

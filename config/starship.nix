@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.starship = {
     enable = true;
@@ -64,7 +64,7 @@
         format = "\\[[$symbol$branch]($style)\\]";
       };
       git_status = {
-        format = "(\\[[$all_status$ahead_behind\\]]($style))";
+        format = "\\[[$all_status$ahead_behind]($style)\\]";
       };
       golang = {
         format = "\\[[$symbol($version)]($style)\\]";

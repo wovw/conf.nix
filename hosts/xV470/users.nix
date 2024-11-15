@@ -39,6 +39,7 @@ in
                 python313
                 uv
                 inputs.zen-browser.packages."${system}".specific
+                qbittorrent
             ];
             openssh.authorizedKeys.keys = [];
         };
