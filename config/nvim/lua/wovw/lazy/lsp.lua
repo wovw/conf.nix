@@ -22,8 +22,9 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
 
+        local nvim_lsp = require("lspconfig")
         -- Configure lua_ls directly with Nix binary
-        require("lspconfig").lua_ls.setup({
+        nvim_lsp.lua_ls.setup({
             cmd = { "lua-language-server" },
             capabilities = capabilities,
             settings = {
@@ -43,8 +44,6 @@ return {
                 "prettier",
                 "stylua",
                 "ruff",
-                "black",
-                "isort",
             }
         })
         require("mason-lspconfig").setup({
@@ -102,6 +101,17 @@ return {
                                 }
                             }
                         }
+                    })
+                end,
+                ["nil_ls"] = function()
+                    require("lspconfig").nil_ls.setup({
+                        settings = {
+                            ['nil'] = {
+                                formatting = {
+                                    command = { "nixfmt" },
+                                },
+                            },
+                        },
                     })
                 end,
             }

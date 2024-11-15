@@ -81,17 +81,18 @@
                     };
                     "inputbar" = {
                         enabled = true;
-                        padding = mkLiteral "10px 10px 200px 10px";
+                        padding = mkLiteral "10px 10px 25px 10px";
                         margin = mkLiteral "10px";
                         background-color = mkLiteral "transparent";
                         border-radius = "25px";
+                        border-color = "@border-color";
+                        border = mkLiteral "0px 0px 2px 0px";
                         orientation = mkLiteral "horizontal";
                         children = map mkLiteral [
                             "entry"
                             "dummy"
                             "mode-switcher"
                         ];
-                        background-image = mkLiteral ''url("~/Pictures/wallpapers/fei-spider-lilies-16x9.jpg", width)'';
                     };
                     "entry" = {
                         enabled = true;
