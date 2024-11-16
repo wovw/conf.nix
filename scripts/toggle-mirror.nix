@@ -1,16 +1,16 @@
 { pkgs }:
 
 pkgs.writeShellApplication {
-    name = "toggle-mirror";
+  name = "toggle-mirror";
 
-    runtimeInputs = with pkgs; [
-        hyprland
-        libnotify
-        gawk
-        gnugrep
-    ];
+  runtimeInputs = with pkgs; [
+    hyprland
+    libnotify
+    gawk
+    gnugrep
+  ];
 
-    text = ''
+  text = ''
     INTERNAL="eDP-1"
     EXTERNAL="HDMI-A-4"
 
@@ -29,5 +29,5 @@ pkgs.writeShellApplication {
     else
         set_extended_mode
     fi
-    '';
+  '';
 }

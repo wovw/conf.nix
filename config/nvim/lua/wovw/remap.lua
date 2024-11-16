@@ -1,46 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set("n", "<leader>pv", function()
-    local current_buf = vim.api.nvim_get_current_buf()
-    local current_ft = vim.bo[current_buf].filetype
-    local current_file = vim.fn.expand("%:p")
-
-    local function find_file_in_netrw(filename)
-        local basename = vim.fn.fnamemodify(filename, ":t")
-        vim.schedule(function()
-            -- Ensure we're in netrw
-            if vim.bo.filetype ~= "netrw" then
-                return
-            end
-            -- Search for the file
-            local file_line = vim.fn.search(vim.fn.escape(basename, ".*[]\\"), "n")
-            if file_line > 0 then
-                vim.cmd(tostring(file_line))
-                -- Optional: center the cursor
-                vim.cmd("normal! zz")
-            end
-        end)
-    end
-
-    if current_file == "" then
-        vim.cmd.Ex()
-    else
-        local full_path = vim.fn.expand("%:p")
-        local dir_path = vim.fn.expand("%:p:h")
-
-        -- Try to open netrw and position cursor
-        local ok = pcall(function()
-            vim.cmd.Ex(dir_path)
-            find_file_in_netrw(full_path)
-        end)
-
-        if not ok then
-            vim.notify("Failed to open netrw", vim.log.levels.ERROR)
-        end
-    end
-end)
-
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 

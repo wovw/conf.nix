@@ -1,17 +1,17 @@
 { pkgs }:
 
 pkgs.writeShellApplication {
-    name = "tmux-sessionizer";
+  name = "tmux-sessionizer";
 
-    runtimeInputs = with pkgs; [
-        tmux
-        fzf
-        findutils
-        coreutils
-        procps
-    ];
+  runtimeInputs = with pkgs; [
+    tmux
+    fzf
+    findutils
+    coreutils
+    procps
+  ];
 
-    text = ''
+  text = ''
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
@@ -42,6 +42,5 @@ pkgs.writeShellApplication {
     else
         tmux attach -t "$selected_name"
     fi
-    '';
+  '';
 }
-

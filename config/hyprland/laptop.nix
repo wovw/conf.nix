@@ -1,10 +1,11 @@
 { pkgs, modifier }:
 let
-    INTERNAL = "eDP-1";
-    EXTERNAL = "HDMI-A-4";
-    brightness = pkgs.callPackage ../../scripts/brightness.nix { inherit pkgs; };
-    toggleMirror = pkgs.callPackage ../../scripts/toggle-mirror.nix {inherit pkgs; };
-in ''
+  INTERNAL = "eDP-1";
+  EXTERNAL = "HDMI-A-4";
+  brightness = pkgs.callPackage ../../scripts/brightness.nix { inherit pkgs; };
+  toggleMirror = pkgs.callPackage ../../scripts/toggle-mirror.nix { inherit pkgs; };
+in
+''
   # https://wiki.hyprland.org/Configuring/Monitors/
   monitor=${INTERNAL},preferred,0x0,1.25
   monitor=${EXTERNAL},preferred,auto-right,1

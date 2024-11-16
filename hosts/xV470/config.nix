@@ -45,16 +45,6 @@ in
         enable = true;
         editor = false;
         configurationLimit = 10;
-        # nix-shell -p mkpasswd --run 'mkpasswd -m sha-512'
-        extraEntries."rescue.conf" = ''
-          title NixOS - Rescue
-          version Rescue Mode
-          linux /nixos/kernel
-          initrd /nixos/initrd
-          options init=/bin/sh
-          password_entry $6$hjfot2xixTk/rel3$DAvaswNbs7JqchA6Heewqv8ujS6G52defm1ufdMwhfQiNnsP98sl9EavyAuQmbutGZr13No3IY9AiDfj0TcLw1
-        '';
-
       };
       efi.canTouchEfiVariables = true;
     };
@@ -230,6 +220,7 @@ in
     fastfetch
     normcap
     jq
+    curl
   ];
 
   environment.sessionVariables = {

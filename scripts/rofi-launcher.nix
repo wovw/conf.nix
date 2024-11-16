@@ -17,4 +17,3 @@ pkgs.writeShellApplication {
     rofi -show combi -modi combi,drun,recursivebrowser,run
   '';
 }
-
