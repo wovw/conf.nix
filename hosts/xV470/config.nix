@@ -96,11 +96,9 @@ in
   };
 
   # Extra Module Options
-  drivers.nvidia.enable = true;
-  drivers.nvidia-prime = {
-    enable = true;
-  };
   drivers.intel.enable = true;
+  drivers.nvidia.enable = true;
+  drivers.nvidia-prime.enable = true;
   local.hardware-clock.enable = false;
 
   # Enable networking
