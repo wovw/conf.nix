@@ -27,20 +27,19 @@ in
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
-        tree-sitter
-        webcord
+        sccache
         nodejs_20
-        (pnpm.override {
-          version = "9.12.1";
-          hash = "sha256-kUUv36RiNK5EfUbVxPxOfgpwWPkElcS293+L7ruxVOM=";
-        })
-        cliphist
-        rclone
+        go
         python313
         uv
+        tree-sitter
+        webcord
+        cliphist
+        rclone
         inputs.zen-browser.packages."${system}".specific
         qbittorrent
         tokei
+        showmethekey
       ];
       openssh.authorizedKeys.keys = [ ];
     };

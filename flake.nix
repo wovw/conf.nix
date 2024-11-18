@@ -17,6 +17,10 @@
       url = "github:oskardotglobal/.dotfiles/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -24,6 +28,7 @@
       nixpkgs,
       home-manager,
       oskars-dotfiles,
+      rust-overlay,
       ...
     }@inputs:
     let
@@ -46,8 +51,14 @@
             (
               { pkgs, ... }:
               {
-                nixpkgs.overlays = [ oskars-dotfiles.overlays.spotx ];
-                environment.systemPackages = [ pkgs.spotify ];
+                nixpkgs.overlays = [
+                  oskars-dotfiles.overlays.spotx
+                  rust-overlay.overlays.default
+                ];
+                environment.systemPackages = [
+                  pkgs.spotify
+                  pkgs.rust-bin.stable.latest.default
+                ];
               }
             )
             home-manager.nixosModules.home-manager

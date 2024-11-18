@@ -127,6 +127,7 @@ in
   };
 
   programs = {
+    nix-ld.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -210,9 +211,6 @@ in
     tree
     greetd.tuigreet
     glib
-    rustup
-    go
-    sccache
     fzf
     wev
     xwaylandvideobridge
@@ -226,14 +224,10 @@ in
   environment.sessionVariables = {
     # Rust
     RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
-    RUST_BACKTRACE = "1";
 
     # Go
     GOPATH = "$HOME/go";
     GOBIN = "$HOME/go/bin";
-
-    # pnpm
-    PNPM_HOME = "$HOME/.local/share/pnpm";
 
     GSK_RENDERER = "ngl";
   };

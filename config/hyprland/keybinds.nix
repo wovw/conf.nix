@@ -5,12 +5,12 @@
 }:
 let
   inherit (import ../../hosts/${host}/variables.nix) terminal;
-  rofiLauncher = pkgs.callPackage ../../scripts/rofi-launcher.nix { inherit pkgs; };
-  swaync = pkgs.callPackage ../../scripts/task-waybar.nix { inherit pkgs; };
-  wlogout = pkgs.callPackage ../../scripts/wlogout-launcher.nix { inherit pkgs; };
-  emoji = pkgs.callPackage ../../scripts/emopicker9000.nix { inherit pkgs; };
-  clipboard = pkgs.callPackage ../../scripts/clip-manager.nix { inherit pkgs; };
-  screenshot = pkgs.callPackage ../../scripts/screenshootin.nix { inherit pkgs; };
+  rofiLauncher = pkgs.callPackage ../../scripts/rofi-launcher.nix { };
+  swaync = pkgs.callPackage ../../scripts/task-waybar.nix { };
+  wlogout = pkgs.callPackage ../../scripts/wlogout-launcher.nix { };
+  emoji = pkgs.callPackage ../../scripts/emopicker9000.nix { };
+  clipboard = pkgs.callPackage ../../scripts/clip-manager.nix { };
+  screenshot = pkgs.callPackage ../../scripts/screenshootin.nix { };
 in
 ''
   $mainMod=${modifier}

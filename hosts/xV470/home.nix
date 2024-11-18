@@ -151,7 +151,7 @@ in
       enable = true;
       package = pkgs.kitty;
       settings = {
-        background_opacity = "0.7";
+        background_opacity = "0.75";
         font_size = 14;
         font_family = "JetBrainsMono Nerd Font Mono";
         scrollback_lines = 2000;
@@ -178,23 +178,36 @@ in
         ignoreAllDups = true;
         expireDuplicatesFirst = true;
       };
+      plugins = [
+        {
+          name = "autoenv";
+          src = pkgs.fetchFromGitHub {
+            owner = "hyperupcall";
+            repo = "autoenv";
+            rev = "90241f182d6a7c96e9de8a25c1eccaf2a2d1b43a";
+            sha256 = "sha256-vZrsMPhuu+xPVAww04nKyoOl7k0upvpIaxeMrCikDio=";
+          };
+        }
+      ];
       oh-my-zsh = {
         enable = true;
         theme = "robbyrussell";
         plugins = [
           "git"
           "fzf"
+          "autoenv"
         ];
       };
+      initExtraFirst = ''
+        # autoenv config
+        AUTOENV_ENV_FILENAME=".envrc"
+        AUTOENV_ASSUME_YES=true
+      '';
       initExtra = ''
         # Initialize rustup
         if [ -f $HOME/.cargo/env ]; then
           source $HOME/.cargo/env
         fi
-
-        # Initialize pnpm
-        export PNPM_HOME="$HOME/.local/share/pnpm"
-        export PATH="$PNPM_HOME:$PATH"
 
         # Source personal configurations if they exist
         if [ -f $HOME/.zshrc-personal ]; then
@@ -222,7 +235,7 @@ in
       shell = "${pkgs.zsh}/bin/zsh";
       terminal = "tmux-256color";
       mouse = true;
-      prefix = "C-Space";
+      prefix = "C-a";
       escapeTime = 0;
       baseIndex = 1;
 

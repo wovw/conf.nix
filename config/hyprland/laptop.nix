@@ -2,8 +2,8 @@
 let
   INTERNAL = "eDP-1";
   EXTERNAL = "HDMI-A-4";
-  brightness = pkgs.callPackage ../../scripts/brightness.nix { inherit pkgs; };
-  toggleMirror = pkgs.callPackage ../../scripts/toggle-mirror.nix { inherit pkgs; };
+  brightness = pkgs.callPackage ../../scripts/brightness.nix { };
+  toggleMirror = pkgs.callPackage ../../scripts/toggle-mirror.nix { };
 in
 ''
   # https://wiki.hyprland.org/Configuring/Monitors/
