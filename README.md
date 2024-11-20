@@ -1,6 +1,7 @@
 # NixOS flake
 
-My config init'd from <https://gitlab.com/Zaney/zaneyos>
+- nixos config init'd from <https://gitlab.com/Zaney/zaneyos>
+- nvim config init'd from <https://github.com/ThePrimeagen/init.lua> and <https://github.com/nvim-lua/kickstart.nvim>
 
 ### TODO
 
