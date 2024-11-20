@@ -46,12 +46,13 @@ with colors;
       disable_splash_rendering = true
       initial_workspace_tracking = 0
       mouse_move_enables_dpms = true
+      focus_on_activate = true
   }
 
 
   # Could help when scaling and not pixelating
   xwayland {
-    force_zero_scaling = true
+      force_zero_scaling = true
   }
 
   dwindle {

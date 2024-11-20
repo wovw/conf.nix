@@ -1,9 +1,9 @@
 {
   lib,
   host,
-  username,
   config,
   pkgs,
+  wallpaper,
   ...
 }:
 
@@ -28,7 +28,7 @@ with lib;
           }
           ${
             (import ./startup.nix {
-              inherit username;
+              inherit wallpaper;
             })
           }
           ${builtins.readFile ./decor.conf}

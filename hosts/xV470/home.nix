@@ -2,9 +2,9 @@
   pkgs,
   username,
   ...
-}:
+}@args:
 let
-  inherit (import ./variables.nix) gitUsername gitEmail;
+  inherit (import ./variables.nix) gitUsername gitEmail wallpaper;
 in
 {
   # Home Manager Settings
@@ -15,7 +15,7 @@ in
   # Import Program Configurations
   imports = [
     ../../config/emoji.nix
-    ../../config/hyprland/hyprland.nix
+    (import ../../config/hyprland/hyprland.nix (args // { inherit wallpaper; }))
     ../../config/nvim/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
@@ -151,7 +151,8 @@ in
       enable = true;
       package = pkgs.kitty;
       settings = {
-        background_opacity = "0.75";
+        background_opacity = "0.60";
+        background_blur = 1;
         font_size = 14;
         font_family = "JetBrainsMono Nerd Font Mono";
         scrollback_lines = 2000;

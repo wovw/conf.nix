@@ -39,7 +39,7 @@ in
         inputs.zen-browser.packages."${system}".specific
         qbittorrent
         tokei
-        showmethekey
+        screenkey
       ];
       openssh.authorizedKeys.keys = [ ];
     };

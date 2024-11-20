@@ -1,5 +1,6 @@
 {
   system = "x86_64_Linux";
+  wallpaper = ../../config/wallpapers/fei-spider-lilies-16x9.jpg;
 
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "wovw";
