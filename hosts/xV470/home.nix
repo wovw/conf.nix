@@ -98,6 +98,7 @@ in
     (import ../../scripts/wlogout-launcher.nix { inherit pkgs; })
     (import ../../scripts/tmux-sessionizer.nix { inherit pkgs; })
     (import ../../scripts/screenshootin.nix { inherit pkgs; })
+    (import ../../scripts/clip-manager.nix { inherit pkgs; })
   ];
 
   home.sessionVariables = {
@@ -143,8 +144,12 @@ in
     home-manager.enable = true;
     btop = {
       enable = true;
+      package = pkgs.btop.override { cudaSupport = true; };
       settings = {
         vim_keys = true;
+        clock_format = "";
+        show_battery = false;
+        presets = "cpu:0:default,mem:0:default,net:0:default";
       };
     };
     kitty = {
@@ -309,6 +314,8 @@ in
       extraConfig = {
         init.defaultBranch = "main";
         pull.rebase = false;
+        user.name = gitUsername;
+        user.email = gitEmail;
       };
     };
     obs-studio.enable = true;

@@ -44,6 +44,7 @@ pkgs.writeShellApplication {
         < <(cliphist list))
 
     exit_code=$?
+    echo "Exit code: $exit_code" >&2
 
     case $exit_code in
         0)  # Normal selection
@@ -66,4 +67,3 @@ pkgs.writeShellApplication {
     esac
   '';
 }
-

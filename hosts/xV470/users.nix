@@ -28,7 +28,7 @@ in
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
         sccache
-        nodejs_20
+        nodejs_23
         go
         python313
         uv

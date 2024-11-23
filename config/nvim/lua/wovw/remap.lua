@@ -10,6 +10,16 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- Remap movement keys for wrapped lines
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
+vim.keymap.set('v', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
+vim.keymap.set('v', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
+
+-- map $ and 0 to work with wrapped lines
+vim.keymap.set('n', '$', "g$")
+vim.keymap.set('n', '0', "g0")
+
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 

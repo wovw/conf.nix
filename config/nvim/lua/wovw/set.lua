@@ -7,9 +7,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.smartindent = true
-vim.opt.wrap = true
-
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
@@ -28,6 +25,9 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
 
+vim.opt.smartindent = true
+vim.opt.wrap = true
+vim.opt.linebreak = true
 vim.opt.textwidth = 80
 vim.opt.breakindent = true         -- Preserve indentation in wrapped lines
 vim.opt.breakindentopt = "shift:2" -- Shift wrapped lines
@@ -37,7 +37,6 @@ vim.opt.formatoptions = {
 	["q"] = true,                  -- Allow formatting of comments with "gq"
 	["j"] = true,                  -- Remove comment leader when joining lines
 	["n"] = true,                  -- Recognize numbered lists
-	["r"] = false,                 -- Don't continue comments when pressing Enter
 	["1"] = true,                  -- Don't break a line after a one-letter word
 }
 
