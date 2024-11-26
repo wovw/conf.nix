@@ -153,6 +153,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    whois
     gnumake
     gcc
     vim

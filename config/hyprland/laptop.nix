@@ -1,7 +1,10 @@
-{ pkgs, modifier }:
+{
+  pkgs,
+  modifier,
+  INTERNAL,
+  EXTERNAL,
+}:
 let
-  INTERNAL = "eDP-1";
-  EXTERNAL = "HDMI-A-4";
   brightness = pkgs.callPackage ../../scripts/brightness.nix { };
   toggleMirror = pkgs.callPackage ../../scripts/toggle-mirror.nix { inherit INTERNAL EXTERNAL; };
 in

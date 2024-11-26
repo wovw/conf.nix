@@ -16,6 +16,8 @@ with lib;
     extraConfig =
       let
         modifier = "SUPER";
+        INTERNAL = "eDP-1";
+        EXTERNAL = "HDMI-A-4";
       in
       concatStrings [
         ''
@@ -24,6 +26,7 @@ with lib;
             (import ./laptop.nix {
               inherit pkgs;
               inherit modifier;
+              inherit EXTERNAL INTERNAL;
             })
           }
           ${
@@ -45,7 +48,11 @@ with lib;
               inherit host;
             })
           }
-          ${builtins.readFile ./window-rules.conf}
+          ${
+            (import ./window-rules.nix {
+              inherit EXTERNAL INTERNAL;
+            })
+          }
         ''
       ];
   };
