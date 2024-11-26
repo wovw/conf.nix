@@ -282,6 +282,12 @@ in
       enable = false;
       autodetect = true;
     };
+    # to make hyprland / hypridle work
+    logind = {
+      powerKeyLongPress = "poweroff";
+      powerKey = "suspend";
+      lidSwitch = "ignore";
+    };
     libinput.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;

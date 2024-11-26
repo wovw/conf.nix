@@ -23,9 +23,10 @@ in
 
   bind = CTRL ALT, Delete, exec, hyprctl dispatch exit 0
   bind = ${modifier},Q,killactive,
+  bind = ${modifier}SHIFT,Q, exec, kill $(hyprctl activewindow | grep -o 'pid: [0-9]*' | cut -d' ' -f2)
   bind = ${modifier},F,fullscreen,
   bind = ${modifier}SHIFT,F,togglefloating,
-  bind = CTRL ALT, L, exec, pidof hyprlock || hyprlock -q
+  bind = ${modifier},L, exec, pidof hyprlock || hyprlock -q
   bind = CTRL ALT, P, exec, ${wlogout}/bin/wlogout-launcher
 
   bind = ${modifier},E,exec,${emoji}/bin/emopicker9000

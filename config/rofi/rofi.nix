@@ -6,7 +6,7 @@
       enable = true;
       package = pkgs.rofi-wayland;
       extraConfig = {
-        modi = "combi,drun,recursivebrowser,run";
+        modi = "drun,recursivebrowser,run";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
