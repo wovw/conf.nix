@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   username,
   ...
 }@args:
@@ -277,7 +278,7 @@ in
     };
     hyprlock = {
       enable = true;
-      settings = {
+      settings = lib.mkForce {
         general = {
           disable_loading_bar = true;
           grace = 0;
@@ -307,7 +308,6 @@ in
           }
         ];
       };
-
     };
     git = {
       enable = true;

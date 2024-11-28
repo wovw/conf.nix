@@ -28,6 +28,7 @@ in
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
         sccache
+        pnpm
         nodejs_22
         go
         python313

@@ -76,7 +76,6 @@ pkgs.writeShellApplication {
         # Use || true to prevent script failure if monitor is disconnected
         ddcutil setvcp 10 "$new_brightness" \
           --bus "$EXTERNAL_MONITOR_BUS" \
-          --async \
           --noverify || true
 
         get_icon "$new_brightness"

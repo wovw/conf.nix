@@ -44,5 +44,16 @@ return {
                 max_lines = 2,
             })
         end
+    },
+    {
+        "hiphish/rainbow-delimiters.nvim",
+        config = function()
+            require('rainbow-delimiters.setup').setup({
+                query = {
+                    javascript = 'rainbow-parens',
+                    tsx = 'rainbow-parens',
+                }
+            })
+        end
     }
 }
