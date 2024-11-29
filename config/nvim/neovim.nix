@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    lua5_1
+    lua51Packages.lua
     lua51Packages.luarocks
     nixfmt-rfc-style
   ];
