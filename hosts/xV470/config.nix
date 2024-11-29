@@ -32,10 +32,6 @@ in
       "uinput"
       "i2c-dev"
     ];
-    kernelParams = [
-      "nvidia_drm.modeset=1"
-      "nvidia_drm.fbdev=1"
-    ];
     extraModprobeConfig = ''
       options nvidia_drm modeset=1 fbdev=1
     '';
@@ -229,6 +225,7 @@ in
     GOPATH = "$HOME/go";
     GOBIN = "$HOME/go/bin";
 
+    # for pavucontrol
     GSK_RENDERER = "ngl";
   };
 
