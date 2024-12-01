@@ -21,6 +21,9 @@ in
       enable = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
+        egl-wayland
+        libvdpau
+        libGL
       ];
     };
 

@@ -34,6 +34,7 @@ in
         python313
         uv
         tree-sitter
+        webcord
         cliphist
         rclone
         inputs.zen-browser.packages."${system}".specific

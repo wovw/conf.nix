@@ -35,7 +35,7 @@
 
               recursivebrowser {
                   directory: "~/";
-                  filter-regex: "(\\.local|\\.cache|node_modules|\\.cargo|\\.rustup|\\.npm|\\.git|target|dist|\\.go|\\.next)";
+                  filter-regex: "(?:\.(?:local|cache|cargo|rustup|npm|git|go|next|xmcl|zen|config|vim)|(?:node_modules|target|dist))";
                   command: "xdg-open";
                   cancel-returns-1: true;
               }

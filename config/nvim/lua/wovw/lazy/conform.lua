@@ -40,16 +40,11 @@ return {
 				json = { "prettierd" },
 				html = { "prettierd" },
 				css = { "prettierd" },
-
-				python = function(bufnr)
-					if require("conform").get_formatter_info("ruff_format", bufnr).available then
-						return { "ruff_format" }
-					else
-						return { "isort", "black" }
-					end
-				end,
-				go = { "gofumpt" },
+				python = { "ruff" },
+				go = { "gofumpt", "goimports-reviser", "golines" },
 				rust = { "rustfmt" },
+				cpp = { "clang-format" },
+				c = { "clang-format" },
 
 				["_"] = { "trim_whitespace" },
 			},

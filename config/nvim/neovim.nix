@@ -4,6 +4,9 @@
     lua51Packages.lua
     lua51Packages.luarocks
     nixfmt-rfc-style
+    python312Packages.pylatexenc # for markdown preview
+    icu # for marksman
+    llvmPackages.libcxxClang
   ];
   programs = {
     neovim = {

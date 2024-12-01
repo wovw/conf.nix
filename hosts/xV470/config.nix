@@ -226,7 +226,11 @@ in
     GOBIN = "$HOME/go/bin";
 
     # for pavucontrol
-    GSK_RENDERER = "ngl";
+    GDK_DISABLE = "vulkan";
+
+    # nvim marksman
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
+
   };
 
   fonts = {

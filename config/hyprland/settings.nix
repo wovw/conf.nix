@@ -4,6 +4,10 @@ let
 in
 with colors;
 ''
+  cursor {
+      no_hardware_cursors = true
+  }
+
   general {
       gaps_in = 6
       gaps_out = 8
