@@ -68,12 +68,12 @@ in
     };
   };
 
-  # Styling Options
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
   stylix.targets.hyprland.enable = false;
-  stylix.targets.neovim.enable = false;
   stylix.targets.kitty.enable = false;
+  stylix.targets.tmux.enable = false;
+  stylix.targets.neovim.enable = false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -258,8 +258,8 @@ in
 
       extraConfig = ''
         # Terminal overrides
-        set -g default-terminal "screen-256color"
-        set -ag terminal-overrides ",xterm-256color:RGB"
+        set -g default-terminal "tmux-256color"
+        set -ag terminal-overrides ",xterm-kitty:RGB"
 
         # Shift Alt vim keys to switch windows
         bind -n M-H previous-window

@@ -43,6 +43,7 @@ return {
                 enable = true,
                 max_lines = 2,
             })
+            vim.cmd [[highlight TreesitterContext guibg=NONE ctermbg=NONE]]
         end
     },
     {

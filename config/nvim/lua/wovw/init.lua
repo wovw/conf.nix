@@ -23,14 +23,6 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd('BufEnter', {
-    group = wovwGroup,
-    callback = function()
-        vim.cmd.colorscheme("tokyonight-night")
-        vim.cmd [[highlight TreesitterContext guibg=NONE ctermbg=NONE]]
-    end
-})
-
 autocmd('FileType', {
     group = wovwGroup,
     pattern = 'netrw',
