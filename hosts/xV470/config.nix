@@ -139,7 +139,6 @@ in
         thunar-volman
       ];
     };
-    noisetorch.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;

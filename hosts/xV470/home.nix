@@ -52,6 +52,7 @@ in
     early_exit=false
     fill_shape=false
   '';
+  home.file.".config/easyeffects/input/masc_voice_noise_reduction.json".text = ''${builtins.readFile ../../config/masc_voice_noise_reduction.json}'';
 
   # Create XDG Dirs
   xdg = {
@@ -119,6 +120,10 @@ in
   };
 
   services = {
+    easyeffects = {
+      enable = true;
+      preset = "masc_voice_noise_reduction";
+    };
     hypridle = {
       enable = true;
       settings = {
@@ -225,6 +230,15 @@ in
 
         eval "$(uv generate-shell-completion zsh)"
         eval "$(uvx --generate-shell-completion zsh)"
+
+        function y() {
+            local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+            yazi "$@" --cwd-file="$tmp"
+            if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+                builtin cd -- "$cwd"
+            fi
+            rm -f -- "$tmp"
+        }
       '';
       shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos#";

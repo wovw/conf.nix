@@ -41,6 +41,7 @@ in
         qbittorrent
         tokei
         screenkey
+        yazi
       ];
       openssh.authorizedKeys.keys = [ ];
     };

@@ -9,10 +9,6 @@
     };
     stylix.url = "github:danth/stylix";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    fine-cmdline = {
-      url = "github:VonHeikemen/fine-cmdline.nvim";
-      flake = false;
-    };
     oskars-dotfiles = {
       url = "github:oskardotglobal/.dotfiles/nix";
       inputs.nixpkgs.follows = "nixpkgs";
