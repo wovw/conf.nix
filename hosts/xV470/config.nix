@@ -35,6 +35,10 @@ in
     extraModprobeConfig = ''
       options nvidia_drm modeset=1 fbdev=1
     '';
+    # Needed For Some Steam Games
+    kernel.sysctl = {
+      "vm.max_map_count" = 2147483642;
+    };
     # Bootloader.
     loader = {
       systemd-boot = {
@@ -132,6 +136,12 @@ in
       enableSSHSupport = true;
     };
     virt-manager.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [

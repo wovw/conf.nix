@@ -14,7 +14,7 @@
 
   # windowrule v2 move to workspace
   windowrulev2 = workspace 1, class:^([Tt]hunderbird|kitty)$
-  windowrulev2 = workspace 2, class:^([Ff]irefox|org.mozilla.firefox|[Ff]irefox-esr|zen-alpha)$
+  windowrulev2 = workspace 2, class:^(zen-beta)$
   windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord|[Vv]esktop|[Ss]potify)$
   windowrulev2 = workspace 4, class:^(com.obsproject.Studio)$
   windowrulev2 = workspace 5, class:^([Ll]utris)$
@@ -41,7 +41,6 @@
   windowrulev2 = float, class:^(file-roller|org.gnome.FileRoller)$ # archive manager
   windowrulev2 = float, class:^([Bb]aobab|org.gnome.[Bb]aobab)$ # Disk usage analyzer
   windowrulev2 = float, title:(Kvantum Manager)
-  windowrulev2 = float, class:^([Ss]team)$,title:^((?![Ss]team).*|[Ss]team [Ss]ettings)$
   windowrulev2 = float, class:^([Qq]alculate-gtk)$
   windowrulev2 = float, class:^([Ff]erdium)$
   windowrulev2 = float, title:^(Picture-in-Picture)$
@@ -75,4 +74,10 @@
   windowrulev2 = nodim,title:^(screenkey)$
   windowrulev2 = noblur,title:^(screenkey)$
   windowrulev2 = noshadow,title:^(screenkey)$
+
+  # steam
+  windowrule = center,^(steam)$
+  windowrulev2 = stayfocused, title:^()$,class:^(steam)$
+  windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
+  windowrulev2 = float, class:^([Ss]team)$,title:^((?![Ss]team).*|[Ss]team [Ss]ettings)$
 ''
