@@ -6,19 +6,19 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [
     tmux
     fzf
-    findutils
     coreutils
     procps
+    fd
   ];
 
   text = ''
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(find ~/ ~/projects ~/work \
-        -mindepth 1 \
-        -maxdepth 1 \
-        -type d | fzf)
+        selected=$(fd . ~/ ~/projects ~/work \
+        --min-depth 1 \
+        --max-depth 1 \
+        --type d | fzf)
     fi
 
     if [[ -z $selected ]]; then

@@ -4,6 +4,8 @@
   config,
   pkgs,
   wallpaper,
+  INTERNAL,
+  EXTERNAL,
   ...
 }:
 
@@ -16,8 +18,6 @@ with lib;
     extraConfig =
       let
         modifier = "SUPER";
-        INTERNAL = "eDP-1";
-        EXTERNAL = "HDMI-A-4";
       in
       concatStrings [
         ''

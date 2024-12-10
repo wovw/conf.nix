@@ -100,13 +100,19 @@ return {
 					"prismals",
 					"marksman",
 					"clangd",
+					"rust_analyzer"
 				},
 				automatic_installation = true,
 				handlers = {
-					function(server_name) -- default handler (optional)
-						require("lspconfig")[server_name].setup({
-							capabilities = capabilities,
-						})
+					function(server_name)
+						local exclude_servers = {
+							"rust_analyzer", -- using rustaceanvim instead of nvim-lspconfig
+						}
+						if not vim.tbl_contains(exclude_servers, server_name) then
+							require("lspconfig")[server_name].setup({
+								capabilities = capabilities,
+							})
+						end
 					end,
 					marksman = function()
 						local lspconfig = require("lspconfig")

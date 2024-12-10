@@ -11,34 +11,34 @@
         keybind = "s";
       }
       {
-        "label" = "reboot";
-        "action" = "systemctl reboot";
-        "text" = "Reboot";
-        "keybind" = "r";
+        label = "reboot";
+        action = "systemctl reboot";
+        text = "Reboot";
+        keybind = "r";
       }
       {
-        "label" = "logout";
-        "action" = "hyprctl dispatch exit";
-        "text" = "Exit";
-        "keybind" = "e";
+        label = "logout";
+        action = "hyprctl dispatch exit";
+        text = "Exit";
+        keybind = "e";
       }
       {
-        "label" = "suspend";
-        "action" = "systemctl suspend";
-        "text" = "Suspend";
-        "keybind" = "u";
+        label = "suspend";
+        action = "systemctl suspend";
+        text = "Suspend";
+        keybind = "u";
       }
       {
-        "label" = "lock";
-        "action" = "hyprlock";
-        "text" = "Lock";
-        "keybind" = "l";
+        label = "lock";
+        action = "hyprlock";
+        text = "Lock";
+        keybind = "l";
       }
       {
-        "label" = "hibernate";
-        "action" = "systemctl hibernate";
-        "text" = "Hibernate";
-        "keybind" = "h";
+        label = "hibernate";
+        action = "systemctl hibernate";
+        text = "Hibernate";
+        keybind = "h";
       }
     ];
     style = ''
@@ -48,7 +48,7 @@
       	transition: 20ms;
       }
       window {
-      	background-color: rgba(12, 12, 12, 0.1);
+      	background-color: rgba(12, 12, 12, 0.5);
       }
       button {
       	color: #${config.lib.stylix.colors.base05};

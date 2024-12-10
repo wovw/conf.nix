@@ -4,7 +4,6 @@
     lua51Packages.lua
     lua51Packages.luarocks
     nixfmt-rfc-style
-    python312Packages.pylatexenc # for markdown preview
   ];
   programs = {
     neovim = {
@@ -18,6 +17,8 @@
       '';
       extraPackages = with pkgs; [
         lua-language-server
+        python312Packages.pylatexenc # for markdown preview
+        lua51Packages.jsregexp
       ];
     };
   };

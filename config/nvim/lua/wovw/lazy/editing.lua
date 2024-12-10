@@ -78,6 +78,7 @@ return {
     },
     {
         "L3MON4D3/LuaSnip",
+        build = "make install_jsregexp",
         keys = function()
             -- Disable default tab keybinding in LuaSnip
             return {}

@@ -67,9 +67,9 @@ in
     image = wallpaper;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
     polarity = "dark";
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 24;
+    cursor = {
+      size = 24;
+    };
     fonts = {
       monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
@@ -158,7 +158,6 @@ in
     git
     cmatrix
     lolcat
-    htop
     libvirt
     lxqt.lxqt-policykit
     lm_sensors
@@ -175,6 +174,7 @@ in
     socat
     cowsay
     ripgrep
+    fd
     lshw
     bat
     pkg-config

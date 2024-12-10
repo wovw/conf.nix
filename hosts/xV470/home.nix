@@ -6,6 +6,8 @@
 }@args:
 let
   inherit (import ./variables.nix) gitUsername gitEmail wallpaper;
+  INTERNAL = "eDP-1";
+  EXTERNAL = "HDMI-A-4";
 in
 {
   # Home Manager Settings
@@ -16,13 +18,13 @@ in
   # Import Program Configurations
   imports = [
     ../../config/emoji.nix
-    (import ../../config/hyprland/hyprland.nix (args // { inherit wallpaper; }))
+    (import ../../config/hyprland/hyprland.nix (args // { inherit wallpaper INTERNAL EXTERNAL; }))
     ../../config/nvim/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
     ../../config/swaync/swaync.nix
-    ../../config/waybar.nix
+    (import ../../config/waybar.nix (args // { inherit INTERNAL EXTERNAL; }))
     ../../config/wlogout/wlogout.nix
     ../../config/ssh/ssh.nix
     ../../config/starship.nix
@@ -179,9 +181,6 @@ in
         active_tab_font_style   bold
         inactive_tab_font_style bold
       '';
-      keybindings = {
-        "ctrl+f" = "send_text all tmux-sessionizer\\x0d";
-      };
     };
     zsh = {
       enable = true;
@@ -239,6 +238,15 @@ in
             fi
             rm -f -- "$tmp"
         }
+
+        function session-widget() {
+            # Preserve terminal context by using zsh's BUFFER
+            BUFFER="tmux-sessionizer"
+            # Execute the command
+            zle accept-line
+        }
+        zle -N session-widget
+        bindkey '^f' session-widget
       '';
       shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos#";
@@ -250,7 +258,6 @@ in
         ll = "eza -lh --icons --group-directories-first";
         la = "eza -lah --icons --group-directories-first";
         ".." = "cd ..";
-        tms = "tmux-sessionizer";
       };
     };
     tmux = {
