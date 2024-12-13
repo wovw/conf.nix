@@ -57,6 +57,14 @@ return {
         require('lualine').setup({
             options = {
                 theme = transparent,
+            },
+            sections = {
+                lualine_c = {
+                    {
+                        'filename',
+                        path = 1
+                    }
+                }
             }
         })
     end
