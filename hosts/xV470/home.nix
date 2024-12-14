@@ -249,7 +249,7 @@ in
         bindkey '^f' session-widget
       '';
       shellAliases = {
-        rebuild = "sudo nixos-rebuild switch --flake ~/nixos#";
+        rebuild = "sudo nixos-rebuild switch --flake '.?submodules=1#'";
         v = "nvim";
         sv = "sudo nvim";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
