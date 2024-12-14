@@ -15,7 +15,7 @@ pkgs.writeShellApplication {
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(fd . ~/ ~/projects ~/work \
+        selected=$(fd . ~/ ~/projects ~/projects/rust ~/work \
         --min-depth 1 \
         --max-depth 1 \
         --type d | fzf)

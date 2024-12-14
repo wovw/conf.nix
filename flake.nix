@@ -53,7 +53,12 @@
                 ];
                 environment.systemPackages = [
                   pkgs.spotify
-                  pkgs.rust-bin.stable.latest.default
+                  (pkgs.rust-bin.stable.latest.default.override {
+                    extensions = [
+                      "rust-src"
+                      "rust-analyzer"
+                    ];
+                  })
                 ];
               }
             )

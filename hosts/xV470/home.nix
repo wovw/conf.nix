@@ -19,7 +19,7 @@ in
   imports = [
     ../../config/emoji.nix
     (import ../../config/hyprland/hyprland.nix (args // { inherit wallpaper INTERNAL EXTERNAL; }))
-    ../../config/nvim/neovim.nix
+    ../../config/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix

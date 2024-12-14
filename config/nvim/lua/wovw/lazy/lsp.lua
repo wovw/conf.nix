@@ -19,18 +19,6 @@ return {
 			local bufnr = vim.api.nvim_get_current_buf()
 			vim.keymap.set("n", "K", function() vim.cmd.RustLsp({ 'hover', 'actions' }) end,
 				{ silent = true, buffer = bufnr })
-
-			vim.g.rustaceanvim = {
-				server = {
-					default_settings = {
-						["rust-analyzer"] = {
-							cargo = {
-								allFeatures = true,
-							},
-						}
-					}
-				}
-			}
 		end
 	},
 	{
@@ -100,23 +88,11 @@ return {
 					"prismals",
 					"marksman",
 					"clangd",
-					"rust_analyzer"
 				},
 				automatic_installation = true,
 				handlers = {
 					function(server_name)
-						local exclude_servers = {
-							"rust_analyzer", -- using rustaceanvim instead of nvim-lspconfig
-						}
-						if not vim.tbl_contains(exclude_servers, server_name) then
-							require("lspconfig")[server_name].setup({
-								capabilities = capabilities,
-							})
-						end
-					end,
-					marksman = function()
-						local lspconfig = require("lspconfig")
-						lspconfig.marksman.setup({
+						require("lspconfig")[server_name].setup({
 							capabilities = capabilities,
 						})
 					end,
@@ -208,7 +184,6 @@ return {
 			})
 
 			local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
 					["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),

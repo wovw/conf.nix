@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = with pkgs; [
     lua51Packages.lua
@@ -12,9 +12,6 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      extraLuaConfig = ''
-        ${builtins.readFile ./init.lua}
-      '';
       extraPackages = with pkgs; [
         lua-language-server
         python312Packages.pylatexenc # for markdown preview
@@ -23,8 +20,5 @@
     };
   };
 
-  xdg.configFile = {
-    # Ensure the Lua modules are copied to the appropriate location
-    "nvim/lua".source = ./lua;
-  };
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/config/nvim";
 }
