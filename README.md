@@ -7,5 +7,4 @@
 >
 > - [ ] fix rofi-wayland clipboard manager keybinds
 > - [ ] fix screenkey / find alternatives
-> - [ ] refactor folder structure someday
-> - [ ] add WSL host
+> - [ ] refactor/cleanup folder structure someday
