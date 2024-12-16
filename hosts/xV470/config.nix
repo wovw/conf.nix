@@ -126,7 +126,13 @@ in
   };
 
   programs = {
-    nix-ld.enable = true;
+    nix-ld = {
+      enable = true;
+      # https://www.reddit.com/r/nixos/comments/1d7zvgu/nvim_cant_find_standard_library_headers/
+      libraries = with pkgs; [
+        stdenv.cc.cc
+      ];
+    };
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;

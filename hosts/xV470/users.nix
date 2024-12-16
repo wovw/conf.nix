@@ -42,6 +42,8 @@ in
         tokei
         screenkey
         yazi
+        clang
+        clang-tools
       ];
       openssh.authorizedKeys.keys = [ ];
     };
