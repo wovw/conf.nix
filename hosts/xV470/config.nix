@@ -219,6 +219,8 @@ in
     mpv
     gimp
     pavucontrol
+    pulseaudio
+    alsa-utils
     tree
     greetd.tuigreet
     glib
