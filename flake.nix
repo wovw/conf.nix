@@ -17,6 +17,7 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
   outputs =
@@ -25,21 +26,25 @@
       home-manager,
       oskars-dotfiles,
       rust-overlay,
+      nixos-wsl,
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
-      host = "xV470";
-      username = "wovw";
-    in
-    {
-      nixosConfigurations = {
-        "${host}" = nixpkgs.lib.nixosSystem {
+      mkHostConfig =
+        {
+          host,
+          system,
+          username,
+          modules ? [ ],
+        }:
+        nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit system;
-            inherit inputs;
-            inherit username;
-            inherit host;
+            inherit
+              system
+              inputs
+              username
+              host
+              ;
           };
           modules = [
             ./hosts/${host}/config.nix
@@ -52,7 +57,6 @@
                   rust-overlay.overlays.default
                 ];
                 environment.systemPackages = [
-                  pkgs.spotify
                   (pkgs.rust-bin.stable.latest.default.override {
                     extensions = [
                       "rust-src"
@@ -65,14 +69,33 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = {
-                inherit username;
-                inherit inputs;
-                inherit host;
+                inherit username inputs host;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
               home-manager.users.${username} = import ./hosts/${host}/home.nix;
+            }
+          ] ++ modules;
+        };
+    in
+    {
+      nixosConfigurations = {
+        xV470 = mkHostConfig {
+          host = "xV470";
+          system = "x86_64-linux";
+          username = "wovw";
+        };
+        W470 = mkHostConfig {
+          host = "W470";
+          system = "x86_64-linux";
+          username = "wovw";
+          modules = [
+            nixos-wsl.nixosModules.default
+            {
+              system.stateVersion = "24.05";
+              wsl.enable = true;
+              wsl.defaultUser = "wovw";
             }
           ];
         };
