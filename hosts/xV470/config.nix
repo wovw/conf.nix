@@ -337,8 +337,6 @@ in
       pulse.enable = true;
       jack.enable = true;
     };
-    rpcbind.enable = false;
-    nfs.server.enable = false;
     upower.enable = true;
     kanata = {
       enable = true;
@@ -378,9 +376,6 @@ in
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
 
   # Security / Polkit
   security.rtkit.enable = true;
