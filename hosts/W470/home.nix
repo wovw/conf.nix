@@ -173,7 +173,6 @@ in
       # Plugin management
       plugins = with pkgs.tmuxPlugins; [
         sensible
-        vim-tmux-navigator
         catppuccin
         yank
       ];
