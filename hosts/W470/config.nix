@@ -86,8 +86,8 @@ in
 
   environment.systemPackages = with pkgs; [
     whois
+    file
     gnumake
-    gcc
     vim
     wget
     killall

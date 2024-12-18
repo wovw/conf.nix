@@ -16,7 +16,6 @@ in
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
-    ../../modules/local-hardware-clock.nix
   ];
 
   boot = {
@@ -62,7 +61,6 @@ in
       mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
-    plymouth.enable = true;
   };
 
   # Styling Options
@@ -99,7 +97,6 @@ in
   drivers.intel.enable = true;
   drivers.nvidia.enable = true;
   drivers.nvidia-prime.enable = true;
-  local.hardware-clock.enable = false;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -166,7 +163,7 @@ in
   environment.systemPackages = with pkgs; [
     whois
     gnumake
-    gcc
+    file
     vim
     wget
     killall
@@ -248,6 +245,7 @@ in
     # nvim marksman
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
 
+    MANPAGER = "nvim +Man!";
   };
 
   fonts = {
@@ -296,10 +294,6 @@ in
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
         };
       };
-    };
-    smartd = {
-      enable = false;
-      autodetect = true;
     };
     # to make hyprland / hypridle work
     logind = {

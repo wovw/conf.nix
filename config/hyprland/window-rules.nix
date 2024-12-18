@@ -46,6 +46,7 @@
   windowrulev2 = float, title:^(Picture-in-Picture)$
 
   # windowrule v2 - size
+  windowrulev2 = size 70% 70%, class:^(mpv)$
   windowrulev2 = size 70% 70%, class:^(pavucontrol|org.pulseaudio.pavucontrol|com.saivert.pwvucontrol)$
   windowrulev2 = size 70% 70%, class:^(gnome-system-monitor|org.gnome.SystemMonitor|io.missioncenter.MissionCenter)$
   windowrulev2 = size 70% 70%, class:^(xdg-desktop-portal-gtk)$

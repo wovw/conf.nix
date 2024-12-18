@@ -2,6 +2,7 @@
   pkgs,
   lib,
   username,
+  host,
   ...
 }@args:
 let
@@ -26,7 +27,7 @@ in
     ../../config/swaync/swaync.nix
     (import ../../config/waybar.nix (args // { inherit INTERNAL EXTERNAL; }))
     ../../config/wlogout/wlogout.nix
-    ../../config/ssh/ssh.nix
+    ../../config/ssh.nix
     ../../config/starship.nix
   ];
 
@@ -113,11 +114,14 @@ in
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      # browser
       "text/html" = "zen.desktop";
       "x-scheme-handler/http" = "zen.desktop";
       "x-scheme-handler/https" = "zen.desktop";
       "x-scheme-handler/about" = "zen.desktop";
       "x-scheme-handler/unknown" = "zen.desktop";
+
+      # text
     };
   };
 
@@ -130,15 +134,14 @@ in
       enable = true;
       settings = {
         general = {
-          lock_cmd = "pidof hyprlock || hyprlock";
+          lock_cmd = "pidof hyprlock || hyprlock -q";
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch dpms on";
-          ignore_dbus_inhibit = false;
         };
         listener = [
           {
             timeout = 900;
-            on-timeout = "hyprlock";
+            on-timeout = "hyprlock -q";
           }
           {
             timeout = 1200;
@@ -244,7 +247,7 @@ in
         bindkey '^f' session-widget
       '';
       shellAliases = {
-        rebuild = "sudo nixos-rebuild switch --flake '.?submodules=1#'";
+        rebuild = "sudo nixos-rebuild switch --flake '/home/${username}/conf.nix?submodules=1#${host}'";
         v = "nvim";
         sv = "sudo nvim";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
@@ -301,7 +304,6 @@ in
           hide_cursor = true;
           no_fade_in = false;
           ignore_empty_input = false;
-          immediate_timeout = false;
         };
         background = [
           {

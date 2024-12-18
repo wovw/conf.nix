@@ -18,6 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    zig.url = "github:mitchellh/zig-overlay";
   };
 
   outputs =
@@ -55,6 +56,7 @@
                 nixpkgs.overlays = [
                   oskars-dotfiles.overlays.spotx
                   rust-overlay.overlays.default
+                  inputs.zig.overlays.default
                 ];
                 environment.systemPackages = [
                   (pkgs.rust-bin.stable.latest.default.override {
@@ -63,6 +65,7 @@
                       "rust-analyzer"
                     ];
                   })
+                  pkgs.zigpkgs.default
                 ];
               }
             )

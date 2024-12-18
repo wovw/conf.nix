@@ -14,7 +14,7 @@ in
   monitor=${EXTERNAL},preferred,auto-right,1
 
   # https://wiki.hyprland.org/Configuring/Binds/#switches
-  bindl = , switch:Lid Switch, exec, pidof hyprlock || hyprlock
+  bindl = , switch:Lid Switch, exec, pidof hyprlock || hyprlock -q
   bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor "${INTERNAL}, disable"
   bindl = , switch:off:Lid Switch,exec,hyprctl keyword monitor "${INTERNAL},preferred,0x0,1.25"
 

@@ -16,7 +16,7 @@ in
   # Import Program Configurations
   imports = [
     ../../config/neovim.nix
-    ../../config/ssh/ssh.nix
+    ../../config/ssh.nix
     ../../config/starship.nix
   ];
 

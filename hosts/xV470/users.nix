@@ -27,6 +27,8 @@ in
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
+        clang-tools
+        clang
         sccache
         pnpm
         nodejs_22
@@ -42,8 +44,6 @@ in
         tokei
         screenkey
         yazi
-        clang
-        clang-tools
         spotify
       ];
       openssh.authorizedKeys.keys = [ ];
