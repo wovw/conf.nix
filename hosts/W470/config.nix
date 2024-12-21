@@ -80,9 +80,6 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
-  users = {
-    mutableUsers = true;
-  };
 
   environment.systemPackages = with pkgs; [
     whois

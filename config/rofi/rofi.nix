@@ -6,7 +6,7 @@
       enable = true;
       package = pkgs.rofi-wayland;
       extraConfig = {
-        modi = "drun,recursivebrowser,run";
+        modi = "drun,run";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
@@ -30,16 +30,6 @@
         kb-remove-char-back = "BackSpace";
         kb-move-char-forward = "Control+f";
         kb-mode-complete = "Control+o";
-
-        "// lol" = config.lib.formats.rasi.mkLiteral ''
-
-              recursivebrowser {
-                  directory: "~/";
-                  filter-regex: "(?:\.(?:local|cache|cargo|rustup|npm|git|go|next|xmcl|zen|config|vim)|(?:node_modules|target|dist))";
-                  command: "xdg-open";
-                  cancel-returns-1: true;
-              }
-          // '';
       };
 
       theme =

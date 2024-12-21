@@ -19,6 +19,15 @@
     };
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     zig.url = "github:mitchellh/zig-overlay";
+    nil.url = "github:oxalica/nil";
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -28,6 +37,10 @@
       oskars-dotfiles,
       rust-overlay,
       nixos-wsl,
+      zig,
+      stylix,
+      winapps,
+      nix-index-database,
       ...
     }@inputs:
     let
@@ -49,14 +62,14 @@
           };
           modules = [
             ./hosts/${host}/config.nix
-            inputs.stylix.nixosModules.stylix
+            stylix.nixosModules.stylix
             (
               { pkgs, ... }:
               {
                 nixpkgs.overlays = [
                   oskars-dotfiles.overlays.spotx
                   rust-overlay.overlays.default
-                  inputs.zig.overlays.default
+                  zig.overlays.default
                 ];
                 environment.systemPackages = [
                   (pkgs.rust-bin.stable.latest.default.override {
@@ -84,11 +97,27 @@
     in
     {
       nixosConfigurations = {
-        xV470 = mkHostConfig {
-          host = "xV470";
-          system = "x86_64-linux";
-          username = "wovw";
-        };
+        xV470 =
+          let
+            system = "x86_64-linux";
+          in
+          mkHostConfig {
+            host = "xV470";
+            inherit system;
+            username = "wovw";
+            modules = [
+              nix-index-database.nixosModules.nix-index
+              (
+                { pkgs, ... }:
+                {
+                  environment.systemPackages = [
+                    winapps.packages.${system}.winapps
+                    winapps.packages.${system}.winapps-launcher
+                  ];
+                }
+              )
+            ];
+          };
         W470 = mkHostConfig {
           host = "W470";
           system = "x86_64-linux";

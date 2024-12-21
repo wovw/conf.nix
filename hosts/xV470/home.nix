@@ -171,7 +171,7 @@ in
       settings = {
         background_opacity = "0.60";
         background_blur = 1;
-        font_size = 14;
+        font_size = 12;
         font_family = "JetBrainsMono Nerd Font Mono";
         scrollback_lines = 2000;
         wheel_scroll_min_lines = 1;

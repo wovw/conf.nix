@@ -8,3 +8,9 @@
 > - [ ] fix rofi-wayland clipboard manager keybinds
 > - [ ] fix screenkey / find alternatives
 > - [ ] refactor/cleanup folder structure someday
+
+## useful commands
+
+```sh
+nix repl ~/conf.nix#nixosConfigurations.{hostname}.config
+```

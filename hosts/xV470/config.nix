@@ -21,6 +21,15 @@ in
   boot = {
     # Kernel
     kernelPackages = pkgs.linuxPackages_zen;
+    kernelPatches = [
+      {
+        name = "Rust Support";
+        patch = null;
+        features = {
+          rust = true;
+        };
+      }
+    ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     kernelModules = [
       "v4l2loopback"
@@ -99,9 +108,16 @@ in
   drivers.nvidia-prime.enable = true;
 
   # Enable networking
-  networking.networkmanager.enable = true;
-  networking.hostName = host;
-  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+  networking = {
+    networkmanager.enable = true;
+    hostName = host;
+    timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+
+    # Open ports in the firewall.
+    firewall.enable = true;
+    # firewall.allowedTCPPorts = [ ... ];
+    # firewall.allowedUDPPorts = [ ... ];
+  };
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -155,10 +171,6 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  users = {
-    mutableUsers = true;
-  };
 
   environment.systemPackages = with pkgs; [
     whois
@@ -229,6 +241,9 @@ in
     normcap
     jq
     curl
+    podman-compose
+    clinfo
+    vulkan-tools
   ];
 
   environment.sessionVariables = {
@@ -274,13 +289,6 @@ in
 
   # Services to start
   services = {
-    xserver = {
-      enable = false;
-      xkb = {
-        layout = "${keyboardLayout}";
-        variant = "";
-      };
-    };
     greetd = {
       enable = true;
       vt = 3;
@@ -425,12 +433,6 @@ in
   };
 
   console.keyMap = "${keyboardLayout}";
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

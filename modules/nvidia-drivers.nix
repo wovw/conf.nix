@@ -14,11 +14,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.xserver.videoDrivers = [ "nvidia" ];
-
     # OpenGL
     hardware.graphics = {
-      enable = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
         egl-wayland

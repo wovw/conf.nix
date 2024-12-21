@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 {
   home.packages = with pkgs; [
     lua51Packages.lua
@@ -16,6 +21,7 @@
         lua-language-server
         python312Packages.pylatexenc # for markdown preview
         lua51Packages.jsregexp
+        inputs.nil.packages.${system}.default
       ];
     };
   };
