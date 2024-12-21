@@ -169,8 +169,7 @@ in
       enable = true;
       package = pkgs.kitty;
       settings = {
-        background_opacity = "0.60";
-        background_blur = 1;
+        background_opacity = "0.50";
         font_size = 12;
         font_family = "JetBrainsMono Nerd Font Mono";
         scrollback_lines = 2000;

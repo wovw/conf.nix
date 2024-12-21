@@ -20,7 +20,7 @@ in
 
   boot = {
     # Kernel
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelPatches = [
       {
         name = "Rust Support";
@@ -285,6 +285,7 @@ in
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
     ];
+    config.common.default = "gtk";
   };
 
   # Services to start
@@ -312,7 +313,7 @@ in
     libinput.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
-    flatpak.enable = false;
+    flatpak.enable = true;
     printing = {
       enable = true;
       drivers = [
@@ -359,6 +360,7 @@ in
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      flatpak update
     '';
   };
   hardware.sane = {
