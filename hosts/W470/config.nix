@@ -92,7 +92,6 @@ in
     git
     cmatrix
     lolcat
-    libvirt
     lxqt.lxqt-policykit
     lm_sensors
     unzip
@@ -115,7 +114,6 @@ in
     meson
     hyprpicker
     ninja
-    i2c-tools
     nh
     nixfmt-rfc-style
     tree

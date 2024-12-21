@@ -28,13 +28,6 @@ in
     };
   };
 
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
-    };
-  };
-
   stylix.targets.tmux.enable = false;
   stylix.targets.neovim.enable = false;
   gtk = {

@@ -42,6 +42,7 @@ in
     ];
     extraModprobeConfig = ''
       options nvidia_drm modeset=1 fbdev=1
+      options kvm_intel nested=1
     '';
     # Needed For Some Steam Games
     kernel.sysctl = {
@@ -355,6 +356,7 @@ in
       };
       openFirewall = true;
     };
+    qemuGuest.enable = true;
   };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];

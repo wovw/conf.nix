@@ -21,7 +21,8 @@ in
         extraGroups = [
           "networkmanager"
           "wheel"
-          "libvirtd"
+          "libvirt"
+          "kvm"
           "scanner"
           "lp"
           "input"

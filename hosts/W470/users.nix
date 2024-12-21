@@ -17,14 +17,11 @@ in
         isNormalUser = true;
         description = gitUsername;
         extraGroups = [
-          "networkmanager"
           "wheel"
-          "libvirtd"
           "scanner"
           "lp"
           "input"
           "uinput"
-          "i2c"
         ];
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
