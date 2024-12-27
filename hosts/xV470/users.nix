@@ -44,10 +44,9 @@ in
           webcord
           cliphist
           rclone
-          inputs.zen-browser.packages."${system}".specific
+          inputs.zen-browser.packages."${system}".default
           qbittorrent
           tokei
-          screenkey
           yazi
           spotify
           (callPackage ../../modules/xmcl.nix { })

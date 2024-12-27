@@ -13,7 +13,7 @@
   workspace = 5, monitor:${INTERNAL}
 
   # windowrule v2 move to workspace
-  windowrulev2 = workspace 1, class:^([Tt]hunderbird|kitty)$
+  windowrulev2 = workspace 1, class:^([Tt]hunderbird|com.mitchellh.ghostty)$
   windowrulev2 = workspace 2, class:^(zen-beta)$
   windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord|[Vv]esktop|[Ss]potify)$
   windowrulev2 = workspace 4, class:^(com.obsproject.Studio)$

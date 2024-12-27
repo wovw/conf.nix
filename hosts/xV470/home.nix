@@ -56,6 +56,7 @@ in
     fill_shape=false
   '';
   home.file.".config/easyeffects/input/masc_voice_noise_reduction.json".text = ''${builtins.readFile ../../config/masc_voice_noise_reduction.json}'';
+  home.file.".config/ghostty/config".text = ''${builtins.readFile ../../config/ghostty/config}'';
 
   # Create XDG Dirs
   xdg = {
@@ -75,7 +76,6 @@ in
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
   stylix.targets.hyprland.enable = false;
-  stylix.targets.kitty.enable = false;
   stylix.targets.tmux.enable = false;
   stylix.targets.neovim.enable = false;
   gtk = {
@@ -164,25 +164,6 @@ in
         show_battery = false;
         presets = "cpu:0:default,mem:0:default,net:0:default";
       };
-    };
-    kitty = {
-      enable = true;
-      package = pkgs.kitty;
-      settings = {
-        background_opacity = "0.50";
-        font_size = 12;
-        font_family = "JetBrainsMono Nerd Font Mono";
-        scrollback_lines = 2000;
-        wheel_scroll_min_lines = 1;
-        window_padding_width = 4;
-        confirm_os_window_close = 0;
-      };
-      extraConfig = ''
-        tab_bar_style fade
-        tab_fade 1
-        active_tab_font_style   bold
-        inactive_tab_font_style bold
-      '';
     };
     zsh = {
       enable = true;
@@ -276,7 +257,6 @@ in
       extraConfig = ''
         # Terminal overrides
         set -g default-terminal "tmux-256color"
-        set -ag terminal-overrides ",xterm-kitty:RGB"
 
         # Shift Alt vim keys to switch windows
         bind -n M-H previous-window

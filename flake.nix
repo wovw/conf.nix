@@ -24,6 +24,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+      inputs.zig.follows = "zig";
+    };
   };
 
   outputs =
@@ -36,6 +40,7 @@
       zig,
       stylix,
       nix-index-database,
+      ghostty,
       ...
     }@inputs:
     let
@@ -92,12 +97,17 @@
     in
     {
       nixosConfigurations = {
-        xV470 = mkHostConfig {
+        xV470 = mkHostConfig rec {
           host = "xV470";
           system = "x86_64-linux";
           username = "wovw";
           modules = [
             nix-index-database.nixosModules.nix-index
+            {
+              environment.systemPackages = [
+                ghostty.packages."${system}".default
+              ];
+            }
           ];
         };
         W470 = mkHostConfig {

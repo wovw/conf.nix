@@ -52,8 +52,6 @@ in
     };
   };
 
-  # Set your time zone.
-  time.timeZone = "America/Chicago";
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -147,6 +145,7 @@ in
   };
 
   services = {
+    tzupdate.enable = true;
     upower.enable = true;
     openssh = {
       enable = true;

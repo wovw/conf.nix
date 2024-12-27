@@ -114,14 +114,11 @@ in
     hostName = host;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
-    # Open ports in the firewall.
     firewall.enable = true;
+    # Open ports in the firewall.
     # firewall.allowedTCPPorts = [ ... ];
     # firewall.allowedUDPPorts = [ ... ];
   };
-
-  # Set your time zone.
-  time.timeZone = "America/Chicago";
 
   # Select internationalisation properties.
   i18n = {
@@ -291,6 +288,7 @@ in
 
   # Services to start
   services = {
+    tzupdate.enable = true;
     greetd = {
       enable = true;
       vt = 3;
