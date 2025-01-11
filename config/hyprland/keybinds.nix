@@ -8,7 +8,6 @@ let
   rofiLauncher = pkgs.callPackage ../../scripts/rofi-launcher.nix { };
   swaync = pkgs.callPackage ../../scripts/task-waybar.nix { };
   wlogout = pkgs.callPackage ../../scripts/wlogout-launcher.nix { };
-  emoji = pkgs.callPackage ../../scripts/emopicker9000.nix { };
   clipboard = pkgs.callPackage ../../scripts/clip-manager.nix { };
   screenshot = pkgs.callPackage ../../scripts/screenshootin.nix { };
 in
@@ -29,7 +28,7 @@ in
   bind = ${modifier}ALT,L, exec, pidof hyprlock || hyprlock -q
   bind = CTRL ALT, P, exec, ${wlogout}/bin/wlogout-launcher
 
-  bind = ${modifier},E,exec,${emoji}/bin/emopicker9000
+  bind = ${modifier},E,exec,rofi -show emoji -modi emoji
   bind = ${modifier},V,exec,${clipboard}/bin/clip-manager
   bind = ${modifier}SHIFT,C,exec,hyprpicker -a
 

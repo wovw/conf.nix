@@ -84,7 +84,7 @@ in
     };
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
@@ -142,6 +142,10 @@ in
       # https://www.reddit.com/r/nixos/comments/1d7zvgu/nvim_cant_find_standard_library_headers/
       libraries = with pkgs; [
         stdenv.cc.cc
+        libplist
+        libimobiledevice
+        libadwaita
+        harfbuzz
       ];
     };
     dconf.enable = true;
@@ -288,6 +292,7 @@ in
 
   # Services to start
   services = {
+    usbmuxd.enable = true;
     tzupdate.enable = true;
     greetd = {
       enable = true;
@@ -340,12 +345,6 @@ in
       jack.enable = true;
     };
     upower.enable = true;
-    kanata = {
-      enable = true;
-      keyboards."home-row" = {
-        configFile = ../../config/kanata/home-row.kbd;
-      };
-    };
     openssh = {
       enable = true;
       settings = {

@@ -50,6 +50,8 @@ in
           yazi
           spotify
           (callPackage ../../modules/xmcl.nix { })
+          libimobiledevice
+          yt-dlp
         ];
         openssh.authorizedKeys.keys = [ ];
       };

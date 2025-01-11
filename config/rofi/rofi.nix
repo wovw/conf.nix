@@ -5,17 +5,24 @@
     rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
+      plugins = with pkgs; [
+        rofi-emoji-wayland
+        (rofi-calc.override {
+          rofi-unwrapped = rofi-wayland-unwrapped;
+        })
+      ];
       extraConfig = {
-        modi = "drun,run";
+        modi = "drun,run,emoji,calc";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
         font = "JetBrainsMono Nerd Font Mono 12";
         drun-display-format = "{icon} {name}";
         display-combi = " 🖥️ ";
-        display-drun = " ";
-        display-run = " ";
-        display-recursivebrowser = " ";
+        display-drun = "";
+        display-run = "";
+        display-emoji = "👀";
+        display-calc = "➕";
 
         # vim keybindings
         kb-row-up = "Up,Control+p";
@@ -66,6 +73,7 @@
             children = map mkLiteral [
               "inputbar"
               "listbox"
+              "message"
             ];
             background-color = mkLiteral "transparent";
           };
@@ -102,7 +110,6 @@
             background-color = mkLiteral "transparent";
             orientation = mkLiteral "vertical";
             children = map mkLiteral [
-              "message"
               "listview"
             ];
           };

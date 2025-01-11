@@ -4,7 +4,6 @@ pkgs.writeShellApplication {
   name = "rofi-launcher";
 
   runtimeInputs = with pkgs; [
-    rofi-wayland
     procps # for pgrep and pkill
   ];
 
@@ -13,6 +12,6 @@ pkgs.writeShellApplication {
       pkill -x rofi
       exit 0
     fi
-    rofi -show drun -modi drun,run
+    rofi -show drun -modi drun,run,emoji,calc
   '';
 }

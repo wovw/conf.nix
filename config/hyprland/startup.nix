@@ -2,7 +2,8 @@
 ''
   exec-once = dbus-update-activation-environment --systemd --all
   exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-  exec-once = swww init && swww img ${toString wallpaper}
+  exec-once = systemctl start tzupdate
+  exec-once = swww-daemon && swww img ${toString wallpaper}
   exec-once = nm-applet --indicator
   exec-once = swaync
   exec-once = waybar

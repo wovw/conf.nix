@@ -14,7 +14,7 @@
 
   # windowrule v2 move to workspace
   windowrulev2 = workspace 1, class:^([Tt]hunderbird|com.mitchellh.ghostty)$
-  windowrulev2 = workspace 2, class:^(zen-beta)$
+  windowrulev2 = workspace 2, class:^(zen)$
   windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord|[Vv]esktop|[Ss]potify)$
   windowrulev2 = workspace 4, class:^(com.obsproject.Studio)$
   windowrulev2 = workspace 5, class:^([Ll]utris)$
@@ -34,7 +34,7 @@
   windowrulev2 = float, class:^(pavucontrol|org.pulseaudio.pavucontrol|com.saivert.pwvucontrol)$
   windowrulev2 = float, class:^(nwg-look|qt5ct|qt6ct)$
   windowrulev2 = float, class:^(mpv|com.github.rafostar.Clapper)$
-  windowrulev2 = float, class:^(nm-applet|nm-connection-editor|blueman-manager)$
+  windowrulev2 = float, class:^(nm-applet|nm-connection-editor|.blueman-manager-wrapped)$
   windowrulev2 = float, class:^(gnome-system-monitor|org.gnome.SystemMonitor|io.missioncenter.MissionCenter)$ # system monitor
   windowrulev2 = float, class:^([Yy]ad)$
   windowrulev2 = float, class:^(wihotspot(-gui)?)$ # wifi hotspot
@@ -48,6 +48,7 @@
   # windowrule v2 - size
   windowrulev2 = size 70% 70%, class:^(mpv)$
   windowrulev2 = size 70% 70%, class:^(pavucontrol|org.pulseaudio.pavucontrol|com.saivert.pwvucontrol)$
+  windowrulev2 = size 70% 70%, class:^(nm-applet|nm-connection-editor|.blueman-manager-wrapped)$
   windowrulev2 = size 70% 70%, class:^(gnome-system-monitor|org.gnome.SystemMonitor|io.missioncenter.MissionCenter)$
   windowrulev2 = size 70% 70%, class:^(xdg-desktop-portal-gtk)$
   windowrulev2 = size 60% 70%, title:(Kvantum Manager)

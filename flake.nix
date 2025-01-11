@@ -110,7 +110,7 @@
             }
           ];
         };
-        W470 = mkHostConfig {
+        W470 = mkHostConfig rec {
           host = "W470";
           system = "x86_64-linux";
           username = "wovw";
@@ -119,7 +119,7 @@
             {
               system.stateVersion = "24.05";
               wsl.enable = true;
-              wsl.defaultUser = "wovw";
+              wsl.defaultUser = username;
             }
           ];
         };

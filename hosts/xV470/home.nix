@@ -18,14 +18,11 @@ in
 
   # Import Program Configurations
   imports = [
-    ../../config/emoji.nix
-    (import ../../config/hyprland/hyprland.nix (args // { inherit wallpaper INTERNAL EXTERNAL; }))
     ../../config/neovim.nix
     ../../config/rofi/rofi.nix
-    ../../config/rofi/config-emoji.nix
-    ../../config/rofi/config-long.nix
-    ../../config/swaync/swaync.nix
+    (import ../../config/hyprland/hyprland.nix (args // { inherit wallpaper INTERNAL EXTERNAL; }))
     (import ../../config/waybar.nix (args // { inherit INTERNAL EXTERNAL; }))
+    ../../config/swaync/swaync.nix
     ../../config/wlogout/wlogout.nix
     ../../config/ssh.nix
     ../../config/starship.nix
@@ -257,6 +254,7 @@ in
       extraConfig = ''
         # Terminal overrides
         set -g default-terminal "tmux-256color"
+        set -g terminal-overrides ",xterm-ghostty:RGB"
 
         # Shift Alt vim keys to switch windows
         bind -n M-H previous-window
