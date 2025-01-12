@@ -14,6 +14,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    services.xserver.videoDrivers = [ "nvidia" ];
+
     # OpenGL
     hardware.graphics = {
       extraPackages = with pkgs; [

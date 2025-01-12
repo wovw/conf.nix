@@ -31,10 +31,10 @@
         display-calc = "➕";
 
         # vim keybindings
-        kb-row-up = "Up,Control+p";
+        kb-row-up = "Up,Control+k";
         kb-row-left = "Left,Control+h";
         kb-row-right = "Right,Control+l";
-        kb-row-down = "Down,Control+n";
+        kb-row-down = "Down,Control+j";
         kb-accept-entry = "Control+z,Control+y,Return,KP_Enter";
 
         # fixing up
