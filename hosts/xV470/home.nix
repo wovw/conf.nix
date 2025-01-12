@@ -88,6 +88,9 @@ in
   home.file.".config/easyeffects/input/masc_voice_noise_reduction.json".text =
     ''${builtins.readFile ../../config/masc_voice_noise_reduction.json}'';
   home.file.".config/ghostty/config".text = ''${builtins.readFile ../../config/ghostty/config}'';
+  home.file.".config/xdg-desktop-portal-termfilechooser/config".text = ''${
+    (import ../../config/termfilechooser/config.nix { inherit pkgs; })
+  }'';
 
   # Create XDG Dirs
   xdg = {
@@ -130,7 +133,7 @@ in
       "x-scheme-handler/about" = "zen.desktop";
       "x-scheme-handler/unknown" = "zen.desktop";
 
-      # text
+      "inode/directory" = "yazi.desktop";
     };
   };
 

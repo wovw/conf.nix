@@ -17,6 +17,7 @@ in
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/virtualization.nix
+    ../../config/termfilechooser/default.nix
   ];
 
   boot = {
