@@ -96,7 +96,7 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "hyperupcall";
             repo = "autoenv";
-            rev = "90241f182d6a7c96e9de8a25c1eccaf2a2d1b43a";
+            rev = "master";
             sha256 = "sha256-vZrsMPhuu+xPVAww04nKyoOl7k0upvpIaxeMrCikDio=";
           };
         }

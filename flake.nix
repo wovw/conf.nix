@@ -84,13 +84,15 @@
             )
             home-manager.nixosModules.home-manager
             {
-              home-manager.extraSpecialArgs = {
-                inherit username inputs host;
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit username inputs host;
+                };
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "backup";
+                users.${username} = import ./hosts/${host}/home.nix;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.users.${username} = import ./hosts/${host}/home.nix;
             }
           ] ++ modules;
         };

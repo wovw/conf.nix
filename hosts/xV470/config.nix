@@ -16,6 +16,7 @@ in
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
+    ../../modules/virtualization.nix
   ];
 
   boot = {
@@ -142,13 +143,12 @@ in
       # https://www.reddit.com/r/nixos/comments/1d7zvgu/nvim_cant_find_standard_library_headers/
       libraries = with pkgs; [
         stdenv.cc.cc
+
+        # iphone
         libplist
         libimobiledevice
-        libadwaita
-        harfbuzz
       ];
     };
-    dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
@@ -156,19 +156,11 @@ in
       enable = true;
       enableSSHSupport = true;
     };
-    virt-manager.enable = true;
     steam = {
       enable = true;
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-    };
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
     };
   };
 
@@ -185,7 +177,6 @@ in
     git
     cmatrix
     lolcat
-    libvirt
     lxqt.lxqt-policykit
     lm_sensors
     unzip
@@ -211,7 +202,6 @@ in
     brightnessctl
     i2c-tools
     ddcutil
-    virt-viewer
     swappy
     appimage-run
     networkmanagerapplet
@@ -220,7 +210,6 @@ in
     playerctl
     nh
     nixfmt-rfc-style
-    libvirt
     swww
     grim
     slurp
@@ -246,23 +235,13 @@ in
     podman-compose
     clinfo
     vulkan-tools
+    libimobiledevice
+    ifuse
   ];
 
   environment.sessionVariables = {
     # Rust
     RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
-
-    # Go
-    GOPATH = "$HOME/go";
-    GOBIN = "$HOME/go/bin";
-
-    # for pavucontrol
-    GDK_DISABLE = "vulkan";
-
-    # nvim marksman
-    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
-
-    MANPAGER = "nvim +Man!";
   };
 
   fonts = {
@@ -292,7 +271,10 @@ in
 
   # Services to start
   services = {
-    usbmuxd.enable = true;
+    usbmuxd = {
+      enable = true;
+      package = pkgs.usbmuxd2;
+    };
     tzupdate.enable = true;
     greetd = {
       enable = true;
@@ -353,7 +335,6 @@ in
       };
       openFirewall = true;
     };
-    qemuGuest.enable = true;
   };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
@@ -418,14 +399,6 @@ in
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-  };
-
-  # Virtualization / Containers
-  virtualisation.libvirtd.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
   };
 
   # OpenGL

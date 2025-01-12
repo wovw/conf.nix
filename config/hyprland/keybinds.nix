@@ -16,7 +16,7 @@ in
 
   bind = ${modifier}SHIFT,Return,exec,${rofiLauncher}/bin/rofi-launcher
   bind = ${modifier},Return,exec,${terminal}
-  bind = ${modifier},T,exec,thunar
+  bind = ${modifier},T,exec,y
   bind = ${modifier}, B, exec, pkill -SIGUSR1 waybar
   bind = ${modifier}SHIFT,N,exec, ${swaync}/bin/task-waybar
 

@@ -6,7 +6,12 @@
   ...
 }@args:
 let
-  inherit (import ./variables.nix) gitUsername gitEmail wallpaper;
+  inherit (import ./variables.nix)
+    gitUsername
+    gitEmail
+    wallpaper
+    terminal
+    ;
   INTERNAL = "eDP-1";
   EXTERNAL = "HDMI-A-4";
 in
@@ -16,10 +21,39 @@ in
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "23.11";
 
+  home.sessionVariables = {
+    MANPAGER = "nvim +Man!";
+    TERMINAL = "${terminal}";
+    TERMCMD = "${terminal}";
+    DEFAULT_BROWSER = "zen";
+    BROWSER = "zen";
+
+    # Go
+    GOPATH = "$HOME/go";
+    GOBIN = "$HOME/go/bin";
+
+    # for pavucontrol
+    GDK_DISABLE = "vulkan";
+
+    # nvim marksman
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
+  };
+
+  # Scripts
+  home.packages = [
+    (import ../../scripts/task-waybar.nix { inherit pkgs; })
+    (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
+    (import ../../scripts/wlogout-launcher.nix { inherit pkgs; })
+    (import ../../scripts/tmux-sessionizer.nix { inherit pkgs; })
+    (import ../../scripts/screenshootin.nix { inherit pkgs; })
+    (import ../../scripts/clip-manager.nix { inherit pkgs; })
+  ];
+
   # Import Program Configurations
   imports = [
     ../../config/neovim.nix
-    ../../config/rofi/rofi.nix
+    ../../config/yazi/yazi.nix
+    (import ../../config/rofi/rofi.nix (args // { inherit terminal; }))
     (import ../../config/hyprland/hyprland.nix (args // { inherit wallpaper INTERNAL EXTERNAL; }))
     (import ../../config/waybar.nix (args // { inherit INTERNAL EXTERNAL; }))
     ../../config/swaync/swaync.nix
@@ -28,7 +62,6 @@ in
     ../../config/starship.nix
   ];
 
-  # Place Files Inside Home Directory
   home.file."Pictures/wallpapers" = {
     source = ../../config/wallpapers;
     recursive = true;
@@ -52,7 +85,8 @@ in
     early_exit=false
     fill_shape=false
   '';
-  home.file.".config/easyeffects/input/masc_voice_noise_reduction.json".text = ''${builtins.readFile ../../config/masc_voice_noise_reduction.json}'';
+  home.file.".config/easyeffects/input/masc_voice_noise_reduction.json".text =
+    ''${builtins.readFile ../../config/masc_voice_noise_reduction.json}'';
   home.file.".config/ghostty/config".text = ''${builtins.readFile ../../config/ghostty/config}'';
 
   # Create XDG Dirs
@@ -60,13 +94,6 @@ in
     userDirs = {
       enable = true;
       createDirectories = true;
-    };
-  };
-
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
     };
   };
 
@@ -91,21 +118,6 @@ in
     enable = true;
     style.name = "adwaita-dark";
     platformTheme.name = "gtk3";
-  };
-
-  # Scripts
-  home.packages = [
-    (import ../../scripts/task-waybar.nix { inherit pkgs; })
-    (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
-    (import ../../scripts/wlogout-launcher.nix { inherit pkgs; })
-    (import ../../scripts/tmux-sessionizer.nix { inherit pkgs; })
-    (import ../../scripts/screenshootin.nix { inherit pkgs; })
-    (import ../../scripts/clip-manager.nix { inherit pkgs; })
-  ];
-
-  home.sessionVariables = {
-    DEFAULT_BROWSER = "zen";
-    BROWSER = "zen";
   };
 
   xdg.mimeApps = {
@@ -177,7 +189,7 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "hyperupcall";
             repo = "autoenv";
-            rev = "90241f182d6a7c96e9de8a25c1eccaf2a2d1b43a";
+            rev = "master";
             sha256 = "sha256-vZrsMPhuu+xPVAww04nKyoOl7k0upvpIaxeMrCikDio=";
           };
         }
@@ -255,6 +267,11 @@ in
         # Terminal overrides
         set -g default-terminal "tmux-256color"
         set -g terminal-overrides ",xterm-ghostty:RGB"
+
+        # yazi
+        set -g allow-passthrough on
+        set -ga update-environment TERM
+        set -ga update-environment TERM_PROGRAM
 
         # Shift Alt vim keys to switch windows
         bind -n M-H previous-window

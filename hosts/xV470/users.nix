@@ -47,10 +47,8 @@ in
           inputs.zen-browser.packages."${system}".default
           qbittorrent
           tokei
-          yazi
           spotify
           (callPackage ../../modules/xmcl.nix { })
-          libimobiledevice
           yt-dlp
         ];
         openssh.authorizedKeys.keys = [ ];

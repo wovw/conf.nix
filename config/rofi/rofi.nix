@@ -1,10 +1,16 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  terminal ? "rofi-sensible-terminal",
+  ...
+}:
 
 {
   programs = {
     rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
+      terminal = "${terminal}";
       plugins = with pkgs; [
         rofi-emoji-wayland
         (rofi-calc.override {
