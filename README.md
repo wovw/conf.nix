@@ -17,3 +17,9 @@ nix repl ~/conf.nix#nixosConfigurations.{hostname}.config
 ```sh
 journalctl -b --user -u {service-name} -f
 ```
+
+## manual things
+
+- github repos
+- rclone
+- winapps

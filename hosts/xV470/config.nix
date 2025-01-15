@@ -17,7 +17,7 @@ in
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/virtualization.nix
-    ../../config/termfilechooser/default.nix
+    ../../config/yazi/termfilechooser/default.nix
   ];
 
   boot = {
@@ -182,6 +182,7 @@ in
     libnotify
     wl-clipboard
     pciutils
+    usbutils
     ffmpeg
     cowsay
     ripgrep
@@ -224,6 +225,7 @@ in
     vulkan-tools
     libimobiledevice
     ifuse
+    exiftool
   ];
 
   environment.sessionVariables = {

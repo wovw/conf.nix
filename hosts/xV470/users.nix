@@ -28,6 +28,7 @@ in
           "input"
           "uinput"
           "i2c"
+          "dialout"
         ];
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
@@ -45,6 +46,7 @@ in
           cliphist
           rclone
           inputs.zen-browser.packages."${system}".default
+          google-chrome
           qbittorrent
           tokei
           spotify

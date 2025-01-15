@@ -3,6 +3,7 @@
   lib,
   username,
   host,
+  config,
   ...
 }@args:
 let
@@ -89,7 +90,14 @@ in
     ''${builtins.readFile ../../config/masc_voice_noise_reduction.json}'';
   home.file.".config/ghostty/config".text = ''${builtins.readFile ../../config/ghostty/config}'';
   home.file.".config/xdg-desktop-portal-termfilechooser/config".text = ''${
-    (import ../../config/termfilechooser/config.nix { inherit pkgs; })
+    (import ../../config/yazi/termfilechooser/config.nix { inherit pkgs; })
+  }'';
+  home.file.".config/winapps/winapps.conf".text =
+    ''${builtins.readFile ../../config/winapps/config}'';
+  home.file.".config/winapps/compose.yaml".text = ''${
+    (import ../../config/winapps/compose.nix {
+      homeDirectory = builtins.getEnv "HOME";
+    })
   }'';
 
   # Create XDG Dirs
@@ -132,8 +140,6 @@ in
       "x-scheme-handler/https" = "zen.desktop";
       "x-scheme-handler/about" = "zen.desktop";
       "x-scheme-handler/unknown" = "zen.desktop";
-
-      "inode/directory" = "yazi.desktop";
     };
   };
 
