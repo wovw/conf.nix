@@ -313,11 +313,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736455421,
-        "narHash": "sha256-TsDbQIHOi84hTjb0SSLSyX27P1MA1DVLagX8uik+WGk=",
+        "lastModified": 1737606723,
+        "narHash": "sha256-imzoApuVpFNyQbBBjTfbFBeo/elX0moFgXrxJEWFCDo=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "6ef757a8f85db7a124d370378850339a899c9e65",
+        "rev": "eb21a58aa4dc59dd2a0fbd026cf7cd842f0f07ed",
         "type": "github"
       },
       "original": {
@@ -1102,11 +1102,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736973474,
-        "narHash": "sha256-Jy9icTZ3f75zEAy7tjw3HGsBpb5rSFir1xzQeeW9RC4=",
+        "lastModified": 1737286134,
+        "narHash": "sha256-aE31v2j5dWka5XdhBRwmnMGciOBP7yoK+hP2f4CIMTg=",
         "owner": "winapps-org",
         "repo": "winapps",
-        "rev": "6103770f0b1fe221955734477f1471b99f0fe8fe",
+        "rev": "8c4a695a9f10d9055cc6b699d4c58612348d4db4",
         "type": "github"
       },
       "original": {
@@ -1141,11 +1141,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1736520301,
-        "narHash": "sha256-yfbnywGJyx1n+xRet1P5T+6gOUVSbR0p9XasU/q7XjY=",
+        "lastModified": 1737767621,
+        "narHash": "sha256-1HAG9VIWsScSmIRKb1OvQv7YQVCAtNm9ckITAEcmpps=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "0c7995b493e72c642766fa7668651a5351299eb8",
+        "rev": "113bba61ed2267ce436b6825cd6d5fe67dff767c",
         "type": "github"
       },
       "original": {

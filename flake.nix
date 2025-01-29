@@ -109,8 +109,8 @@
     in
     {
       nixosConfigurations = {
-        xV470 = mkHostConfig rec {
-          host = "xV470";
+        gram = mkHostConfig rec {
+          host = "gram";
           system = "x86_64-linux";
           username = "wovw";
           modules = [
@@ -132,8 +132,8 @@
             )
           ];
         };
-        W470 = mkHostConfig rec {
-          host = "W470";
+        harpe = mkHostConfig rec {
+          host = "harpe";
           system = "x86_64-linux";
           username = "wovw";
           modules = [

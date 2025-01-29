@@ -13,11 +13,11 @@
   workspace = 5, monitor:${INTERNAL}
 
   # windowrule v2 move to workspace
-  windowrulev2 = workspace 1, class:^([Tt]hunderbird|com.mitchellh.ghostty)$
+  windowrulev2 = workspace 1, class:^(com.mitchellh.ghostty)$
   windowrulev2 = workspace 2, class:^(zen)$
-  windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord|[Vv]esktop|[Ss]potify)$
-  windowrulev2 = workspace 4, class:^(com.obsproject.Studio|(chrome.*))$
-  windowrulev2 = workspace 5, class:^([Ll]utris)$
+  windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord)$
+  windowrulev2 = workspace 4, class:^(com.obsproject.Studio|((google\-)?chrome.*)|xmcl|steam|net.lutris.Lutris)$
+  windowrulev2 = workspace 5, class:^([Ss]potify)$
 
   # windowrule v2 move to workspace (silent)
   windowrulev2 = workspace 6 silent, class:^(virt-manager)$

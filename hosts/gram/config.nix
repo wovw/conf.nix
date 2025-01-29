@@ -17,7 +17,7 @@ in
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/virtualization.nix
-    ../../config/yazi/termfilechooser/default.nix
+    # ../../config/yazi/termfilechooser/default.nix
   ];
 
   boot = {
@@ -118,8 +118,12 @@ in
 
     firewall.enable = true;
     # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [ ... ];
-    # firewall.allowedUDPPorts = [ ... ];
+    firewall.allowedTCPPorts = [
+      25565 # mc lan
+    ];
+    firewall.allowedUDPPorts = [
+      25565 # mc lan
+    ];
   };
 
   # Select internationalisation properties.
@@ -163,6 +167,14 @@ in
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
+    xfconf.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -196,6 +208,7 @@ in
     swappy
     appimage-run
     networkmanagerapplet
+    nmap
     playerctl
     nh
     nixfmt-rfc-style
@@ -226,6 +239,7 @@ in
     libimobiledevice
     ifuse
     exiftool
+    lutris
   ];
 
   environment.sessionVariables = {
@@ -288,6 +302,7 @@ in
     libinput.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
+    tumbler.enable = true;
     flatpak.enable = true;
     printing = {
       enable = true;
@@ -324,13 +339,17 @@ in
       };
       openFirewall = true;
     };
+    tailscale.enable = false;
   };
-  systemd.services.flatpak-repo = {
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      flatpak update
-    '';
+  systemd = {
+    services.flatpak-repo = {
+      path = [ pkgs.flatpak ];
+      script = ''
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        flatpak update
+      '';
+    };
+    extraConfig = "DefaultLimitNOFILE=524288"; # https://wiki.nixos.org/wiki/Lutris
   };
   hardware.sane = {
     enable = true;
@@ -369,8 +388,21 @@ in
       }
     })
   '';
-  security.pam.services.hyprlock = { };
-  security.pam.services.login.enableGnomeKeyring = true;
+  security.pam = {
+    services = {
+      hyprlock = { };
+      login.enableGnomeKeyring = true;
+    };
+    loginLimits = [
+      {
+        # https://wiki.nixos.org/wiki/Lutris
+        domain = "wovw";
+        type = "hard";
+        item = "nofile";
+        value = "524288";
+      }
+    ];
+  };
 
   # Optimization settings and garbage collection automation
   nix = {

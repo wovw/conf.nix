@@ -4,19 +4,19 @@
 }:
 with pkgs;
 let
-  pname = "xmcl";
-  version = "0.48.5";
+  pname = "lm-studio";
+  version = "0.3.8-4";
   src = fetchurl {
-    url = "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v${version}/${pname}-${version}-x86_64.AppImage";
-    hash = "sha256-+nOpgln5MTDr+0QPjbxzv0gPIUbW82Ow3GirK3CO5oE=";
+    url = "https://installers.lmstudio.ai/linux/x64/${version}/LM-Studio-${version}-x64.AppImage";
+    hash = "sha256-JnuEYU+vitBGS0WZdcleVW1DfZ+MonXz6U+ObUlsePM=";
   };
   appimageContents = appimageTools.extractType2 { inherit pname src version; };
 
   meta = with lib; {
-    mainProgram = "xmcl";
-    description = "X Minecraft Launcher";
-    homepage = "https://github.com/Voxelum/x-minecraft-launcher";
-    license = licenses.mit;
+    mainProgram = "lm-studio";
+    description = "Desktop application for running local LLMs";
+    homepage = "https://lmstudio.ai/";
+    license = licenses.unfree; # Assuming proprietary license
     platforms = platforms.linux;
   };
 in

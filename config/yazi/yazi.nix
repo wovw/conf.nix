@@ -31,6 +31,7 @@
         rev = "master";
         sha256 = "sha256-jlZgN93HjfK+7H27Ifk7fs0jJaIdnOyY1wKxHz1wX2c=";
       };
+      folder-rules = ./plugins/folder-rules.yazi;
     };
     flavors = {
       tokyo-night = ./flavors/tokyo-night.yazi;
@@ -86,6 +87,15 @@
         {
           on = [ "<C-y>" ];
           run = "plugin wl-clipboard";
+        }
+        {
+          on = [ "!" ];
+          run = "shell '$SHELL --block'";
+          desc = "Open shell here";
+        }
+        {
+          on = [ "<C-n>" ];
+          run = "shell 'dragon -x -i -T \"%1\"'";
         }
       ];
     };

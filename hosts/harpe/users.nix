@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   username,
   ...
 }:
@@ -9,7 +8,6 @@ let
   inherit (import ./variables.nix) gitUsername;
 in
 {
-  services.userborn.enable = true;
   users = {
     mutableUsers = false;
     users = {
@@ -19,16 +17,11 @@ in
         isNormalUser = true;
         description = gitUsername;
         extraGroups = [
-          "networkmanager"
           "wheel"
-          "libvirt"
-          "kvm"
           "scanner"
           "lp"
           "input"
           "uinput"
-          "i2c"
-          "dialout"
         ];
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
@@ -42,16 +35,10 @@ in
           python313
           uv
           tree-sitter
-          webcord
           cliphist
-          rclone
-          inputs.zen-browser.packages."${system}".default
-          google-chrome
-          qbittorrent
           tokei
-          spotify
-          (callPackage ../../modules/xmcl.nix { })
-          yt-dlp
+          yazi
+          repomix
         ];
         openssh.authorizedKeys.keys = [ ];
       };

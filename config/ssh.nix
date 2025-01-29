@@ -7,7 +7,13 @@
         host = "github.com";
         hostname = "github.com";
         user = "git";
-        identityFile = "~/.ssh/git_ed25519";
+        identityFile = "~/.ssh/gram_ed25519";
+      };
+      "raspberrypi" = {
+        host = "raspberrypi";
+        hostname = "raspberrypi.local";
+        user = "pants";
+        identityFile = "~/.ssh/gram_ed25519";
       };
     };
   };
