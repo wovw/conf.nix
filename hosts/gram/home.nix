@@ -140,6 +140,9 @@ in
       "x-scheme-handler/https" = "zen.desktop";
       "x-scheme-handler/about" = "zen.desktop";
       "x-scheme-handler/unknown" = "zen.desktop";
+
+      # pdf
+      "application/pdf" = "zen.desktop";
     };
   };
 
@@ -281,6 +284,9 @@ in
         set -g allow-passthrough on
         set -ga update-environment TERM
         set -ga update-environment TERM_PROGRAM
+
+        # image.nvim
+        set -g visual-activity off
 
         # Shift Alt vim keys to switch windows
         bind -n M-H previous-window
