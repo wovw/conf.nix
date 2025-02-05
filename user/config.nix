@@ -1,4 +1,8 @@
-{ pkgs, username, ... }:
+{
+  pkgs,
+  username,
+  ...
+}:
 {
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
@@ -31,7 +35,5 @@
   };
   qt = {
     enable = true;
-    style.name = "adwaita-dark";
-    platformTheme.name = "gtk3";
   };
 }
