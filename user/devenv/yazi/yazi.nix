@@ -25,7 +25,7 @@
         owner = "Rolv-Apneseth";
         repo = "starship.yazi";
         rev = "master";
-        sha256 = "sha256-KTN3gf3VFGlBxgsQFMa/fdhoovapXo0X65IJjXcl98A=";
+        sha256 = "sha256-L7MkZZqJ+t+A61ceC4Q1joLF6ytoWdgx9BwZWAGAoCA=";
       };
       smart-paste = ./plugins/smart-paste.yazi;
       arrow = ./plugins/arrow.yazi;
