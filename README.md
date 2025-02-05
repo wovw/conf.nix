@@ -18,6 +18,7 @@ journalctl -b --user -u {service-name} -f
 
 ## manual things
 
+- `ssh-keygen -t ed25519` with `{host}_ed25519` as the filename
 - github repos
 - rclone
 - winapps
