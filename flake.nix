@@ -44,8 +44,6 @@
       zig,
       stylix,
       nix-index-database,
-      ghostty,
-      winapps,
       ...
     }@inputs:
     let
@@ -72,7 +70,6 @@
               { pkgs, ... }:
               {
                 nixpkgs.overlays = [
-                  oskars-dotfiles.overlays.spotx
                   rust-overlay.overlays.default
                   zig.overlays.default
                 ];
@@ -109,7 +106,7 @@
     in
     {
       nixosConfigurations = {
-        gram = mkHostConfig rec {
+        gram = mkHostConfig {
           host = "gram";
           system = "x86_64-linux";
           username = "wovw";
@@ -118,15 +115,8 @@
             (
               { ... }:
               {
-                # set up binary cache (optional)
-                nix.settings = {
-                  substituters = [ "https://winapps.cachix.org/" ];
-                  trusted-public-keys = [ "winapps.cachix.org-1:HI82jWrXZsQRar/PChgIx1unmuEsiQMQq+zt05CD36g=" ];
-                };
-
-                environment.systemPackages = [
-                  winapps.packages.${system}.winapps
-                  ghostty.packages."${system}".default
+                nixpkgs.overlays = [
+                  oskars-dotfiles.overlays.spotx
                 ];
               }
             )

@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   username,
   ...
 }:
@@ -11,10 +10,9 @@ in
 {
   services.userborn.enable = true;
   users = {
-    mutableUsers = false;
+    mutableUsers = true;
     users = {
       "${username}" = {
-        hashedPassword = "$y$j9T$jlVa6U34B8YQ1dtZloUJ9.$Q5b/o1PsykSpFGrg39h3O.VNcxPBYL/nXZE6K7A5tM.";
         homeMode = "755";
         isNormalUser = true;
         description = gitUsername;
@@ -33,29 +31,14 @@ in
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
         packages = with pkgs; [
-          clang-tools
-          clang
-          sccache
-          pnpm
-          nodejs_22
-          go
-          python313
-          uv
-          tree-sitter
           webcord
-          cliphist
           rclone
-          inputs.zen-browser.packages."${system}".default
           google-chrome
           qbittorrent
-          tokei
           spotify
-          (callPackage ../../modules/xmcl.nix { })
-          (callPackage ../../modules/lm-studio.nix { })
+          (callPackage ../../user/apps/xmcl.nix { })
+          (callPackage ../../user/apps/lm-studio.nix { })
           yt-dlp
-          xdragon
-          repomix
-          jdk23
         ];
         openssh.authorizedKeys.keys = [ ];
       };
