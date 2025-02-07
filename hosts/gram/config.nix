@@ -74,7 +74,6 @@ in
   # Enable networking
   networking = {
     networkmanager.enable = true;
-    hostName = host;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
     firewall.enable = true;
