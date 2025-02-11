@@ -10,8 +10,15 @@ in
 {
   services.userborn.enable = true;
   users = {
+    groups.greeter = { };
     mutableUsers = true;
     users = {
+      # user for greetd
+      "greeter" = {
+        isSystemUser = true;
+        group = "greeter"; # Dedicated group for isolated login manager
+        shell = "${pkgs.shadow}/bin/nologin"; # Prevent interactive login
+      };
       "${username}" = {
         homeMode = "755";
         isNormalUser = true;
@@ -31,7 +38,6 @@ in
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
         packages = with pkgs; [
-          webcord
           rclone
           google-chrome
           qbittorrent

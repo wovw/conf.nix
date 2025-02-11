@@ -7,14 +7,6 @@
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
-  # Create XDG Dirs
-  xdg = {
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-    };
-  };
-
   # theme
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
