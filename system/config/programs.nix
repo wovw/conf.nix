@@ -47,14 +47,5 @@
   services = {
     tzupdate.enable = true;
     upower.enable = true;
-    openssh = {
-      enable = true;
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = false;
-      };
-      openFirewall = true;
-    };
   };
-
 }

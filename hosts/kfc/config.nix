@@ -15,6 +15,7 @@ in
     (import ../../system/config/theme.nix (args // { inherit wallpaper; }))
     ../../system/config/nix.nix
     ../../system/config/programs.nix
+    ../../system/config/ssh.nix
     ../../system/config/de.nix
   ];
 
@@ -36,11 +37,11 @@ in
     ];
     # Bootloader
     loader = {
-	grub = {
-	  enable = true;
-device = "/dev/sdb";
-useOSProber = true;
-}; 
+      grub = {
+        enable = true;
+        device = "/dev/sdb";
+        useOSProber = true;
+      };
     };
     # Make /tmp a tmpfs
     tmp = {
