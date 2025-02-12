@@ -18,12 +18,12 @@ in
     services.xserver.videoDrivers = [ "amdgpu" ];
 
     hardware.graphics = {
-      extraPackages = [
+      extraPackages = with pkgs; [
         rocmPackages.clr.icd # OpenCL support
-        pkgs.amdvlk # Vulkan support
+        amdvlk # Vulkan support
       ];
-      extraPackages32 = [
-        pkgs.driversi686Linux.amdvlk
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
       ];
     };
 

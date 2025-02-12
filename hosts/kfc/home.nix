@@ -10,11 +10,11 @@ let
     terminal
     keyboardLayout
     ;
-  INTERNAL = "eDP-1";
+  INTERNAL = "HDMI-1";
   EXTERNAL = "HDMI-A-4";
 in
 {
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   # Import Program Configurations
   imports = [
