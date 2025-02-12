@@ -16,7 +16,8 @@ in
     ../../system/config/nix.nix
     ../../system/config/programs.nix
     ../../system/config/ssh.nix
-    ../../system/config/de.nix
+    ../../system/config/de/default.nix
+    ../../system/config/de/greetd-direct.nix
   ];
 
   boot = {
@@ -81,12 +82,16 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    gnumake
     networkmanagerapplet
     playerctl
     imv
     mpv
     clinfo
     vulkan-tools
+    ffmpeg
+    gimp
+    podman-compose
   ];
 
   # Services to start

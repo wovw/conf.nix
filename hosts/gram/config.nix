@@ -19,7 +19,9 @@ in
     (import ../../system/config/theme.nix (args // { inherit wallpaper; }))
     ../../system/config/nix.nix
     ../../system/config/programs.nix
-    ../../system/config/de.nix
+    ../../system/config/de/default.nix
+    ../../system/config/de/greetd-login.nix
+    ../../system/config/hyprlock.nix
     ../../system/apps/steam.nix
     ../../system/apps/obs.nix
   ];

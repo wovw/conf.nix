@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }@args:
+{ pkgs, ... }@args:
 {
   # Create XDG Dirs
   xdg = {

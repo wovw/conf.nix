@@ -32,6 +32,7 @@ in
           ;
       }
     ))
+    ../../user/de/lock.nix
     ../../user/apps/winapps/config.nix
     ../../user/apps/easyeffects/config.nix
     ../../user/apps/browser/zen.nix
