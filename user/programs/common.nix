@@ -1,5 +1,4 @@
 {
-  pkgs,
   gitUsername,
   gitEmail,
   ...
@@ -9,12 +8,11 @@
     home-manager.enable = true;
     btop = {
       enable = true;
-      package = pkgs.btop.override { cudaSupport = true; };
       settings = {
         vim_keys = true;
         clock_format = "";
         show_battery = false;
-        presets = "cpu:0:default,mem:0:default,net:0:default";
+        presets = "cpu:0:default,gpu0:0:default,mem:0:default,net:0:default";
       };
     };
     git = {

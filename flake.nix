@@ -127,12 +127,21 @@
           system = "x86_64-linux";
           username = "wovw";
           modules = [
+            nix-index-database.nixosModules.nix-index
             nixos-wsl.nixosModules.default
             {
               system.stateVersion = "24.05";
               wsl.enable = true;
               wsl.defaultUser = username;
             }
+          ];
+        };
+        kfc = mkHostConfig {
+          host = "kfc";
+          system = "x86_64-linux";
+          username = "krispy";
+          modules = [
+            nix-index-database.nixosModules.nix-index
           ];
         };
       };
