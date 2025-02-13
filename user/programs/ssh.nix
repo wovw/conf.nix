@@ -18,12 +18,8 @@
       "kfc" = {
         host = "kfc";
         hostname = "kfc";
+        user = "krispy";
         identityFile = "~/.ssh/${host}_ed25519";
-        extraOptions = {
-          RequestTTY = "yes";
-          Match = "user krispy";
-          RemoteCommand = "tmux new -A -s main";
-        };
       };
     };
   };

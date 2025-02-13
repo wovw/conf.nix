@@ -15,7 +15,7 @@ in
     (import ../../system/config/theme.nix (args // { inherit wallpaper; }))
     ../../system/config/nix.nix
     ../../system/config/programs.nix
-    ../../system/config/ssh.nix
+    ../../system/config/openssh.nix
     ../../system/config/de/default.nix
     ../../system/config/de/greetd-direct.nix
   ];

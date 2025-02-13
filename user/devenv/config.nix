@@ -20,6 +20,7 @@
     jdk23
     code-cursor
     (import ./bin/tmux-sessionizer.nix { inherit pkgs; })
+    (import ./bin/rebuild.nix { inherit pkgs username host; })
   ];
 
   imports = [
@@ -107,7 +108,6 @@
         bindkey '^f' session-widget
       '';
       shellAliases = {
-        rebuild = "sudo nixos-rebuild switch --flake '/home/${username}/conf.nix?submodules=1#${host}'";
         v = "nvim";
         sv = "sudo nvim";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
