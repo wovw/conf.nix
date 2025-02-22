@@ -22,12 +22,15 @@
         lua-language-server
         python312Packages.pylatexenc # for markdown preview
         python312Packages.jupytext
-        lua51Packages.jsregexp
+        lua51Packages.jsregexp # luasnip
         inputs.nil.packages.${system}.default
-        imagemagick
+        imagemagick # jupyter image rendering
       ];
-      extraLuaPackages = ps: [ ps.magick ];
+      extraLuaPackages = ps: [
+        ps.magick # jupyter image rendering
+      ];
       extraPython3Packages =
+        # for jupyter
         ps: with ps; [
           pynvim
           jupyter-client

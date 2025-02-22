@@ -69,18 +69,6 @@ in
     ];
   };
 
-  programs = {
-    # thunar settings
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
-    xfconf.enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
     gnumake
     networkmanagerapplet
@@ -98,7 +86,6 @@ in
   services = {
     libinput.enable = true;
     fstrim.enable = true;
-    gvfs.enable = true;
     printing = {
       enable = true;
       drivers = [

@@ -3,6 +3,7 @@
   programs.starship = {
     enable = true;
     settings = {
+      command_timeout = 10000;
       aws = {
         format = "\\[[$symbol($profile)(\\($region\\))(\\[$duration\\])]($style)\\]";
       };

@@ -17,7 +17,7 @@
       };
       "kfc" = {
         host = "kfc";
-        hostname = "kfc";
+        hostname = "kfc.local";
         user = "krispy";
         identityFile = "~/.ssh/${host}_ed25519";
       };

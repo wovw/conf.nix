@@ -5,7 +5,7 @@
   ...
 }@args:
 let
-  inherit (import ./variables.nix) keyboardLayout wallpaper;
+  inherit (import ./variables.nix) keyboardLayout wallpaper terminal;
 in
 {
   imports = [
@@ -24,6 +24,7 @@ in
     ../../system/config/hyprlock.nix
     ../../system/apps/steam.nix
     ../../system/apps/obs.nix
+    (import ../../system/apps/nautilus.nix (args // { inherit terminal; }))
   ];
 
   boot = {
@@ -95,15 +96,6 @@ in
       ];
     };
 
-    # thunar settings
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
-    xfconf.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -121,7 +113,6 @@ in
   services = {
     libinput.enable = true;
     fstrim.enable = true;
-    gvfs.enable = true;
     flatpak.enable = true;
     printing = {
       enable = true;

@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+
   environment.systemPackages = with pkgs; [
     libnotify
     wl-clipboard
@@ -35,7 +36,15 @@
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
     ];
-    config.common.default = "gtk";
+    config = {
+      common.default = "gtk";
+      hyprland = {
+        default = [
+          "gtk"
+          "hyprland"
+        ];
+      };
+    };
   };
 
   # Services to start
@@ -50,7 +59,6 @@
       powerKey = "suspend";
       lidSwitch = "ignore";
     };
-    tumbler.enable = true;
     gnome.gnome-keyring.enable = true;
     pipewire = {
       enable = true;

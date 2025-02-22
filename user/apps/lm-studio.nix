@@ -16,7 +16,7 @@ let
     mainProgram = "lm-studio";
     description = "Desktop application for running local LLMs";
     homepage = "https://lmstudio.ai/";
-    license = licenses.unfree; # Assuming proprietary license
+    license = licenses.unfree;
     platforms = platforms.linux;
   };
 in

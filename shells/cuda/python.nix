@@ -27,6 +27,13 @@
     in
     {
       devShells."${system}".default = pkgs.mkShell {
+        NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+          pkgs.stdenv.cc.cc.lib
+          pkgs.linuxPackages.nvidia_x11
+          pkgs.ncurses5
+        ];
+        NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+
         packages = with pkgs; [
           cudaPackages.cudatoolkit
           cudaPackages.cudnn
@@ -42,7 +49,7 @@
         shellHook = ''
           # CUDA setup
           export CUDA_PATH=${pkgs.cudaPackages.cudatoolkit}
-          export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib
+          export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
           export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
           export EXTRA_CCFLAGS="-I/usr/include"
 
