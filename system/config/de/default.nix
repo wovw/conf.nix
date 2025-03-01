@@ -59,7 +59,6 @@
       powerKey = "suspend";
       lidSwitch = "ignore";
     };
-    gnome.gnome-keyring.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;

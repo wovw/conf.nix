@@ -77,8 +77,6 @@ in
     mpv
     clinfo
     vulkan-tools
-    ffmpeg
-    gimp
     podman-compose
   ];
 

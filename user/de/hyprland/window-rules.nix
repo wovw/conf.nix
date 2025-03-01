@@ -15,8 +15,8 @@
   # windowrule v2 move to workspace
   windowrulev2 = workspace 1, class:^(com.mitchellh.ghostty)$
   windowrulev2 = workspace 2, class:^(zen)$
-  windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord)$
-  windowrulev2 = workspace 4, class:^(com.obsproject.Studio|((google\-)?chrome.*)|xmcl|steam|net.lutris.Lutris)$
+  windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord|input-remapper-gtk)$
+  windowrulev2 = workspace 4, class:^(com.obsproject.Studio|((google\-)?chrome.*)|xmcl|steam|net.lutris.Lutris|lunarclient|Lunar\s+Client.*)$
   windowrulev2 = workspace 5, class:^([Ss]potify)$
 
   # windowrule v2 move to workspace (silent)
@@ -31,6 +31,7 @@
   windowrulev2 = float, class:(org.gnome.Calculator), title:(Calculator)
   windowrulev2 = float, class:^([Rr]ofi)$
   windowrulev2 = float, class:^(eog|org.gnome.Loupe)$ # image viewer
+  windowrulev2 = float, class:^(org.gnome.Nautilus)$ 
   windowrulev2 = float, class:^(pavucontrol|org.pulseaudio.pavucontrol|com.saivert.pwvucontrol)$
   windowrulev2 = float, class:^(nwg-look|qt5ct|qt6ct)$
   windowrulev2 = float, class:^(mpv|com.github.rafostar.Clapper)$
@@ -44,6 +45,7 @@
   windowrulev2 = float, class:^([Qq]alculate-gtk)$
   windowrulev2 = float, class:^([Ff]erdium)$
   windowrulev2 = float, title:^(Picture-in-Picture)$
+  windowrulev2 = float, title:^(Authentication Required)$
 
   # windowrule v2 - size
   windowrulev2 = size 70% 70%, class:^(mpv)$

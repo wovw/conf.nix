@@ -45,6 +45,7 @@ in
           (callPackage ../../user/apps/xmcl.nix { })
           (callPackage ../../user/apps/lm-studio.nix { })
           yt-dlp
+          lunar-client
         ];
         openssh.authorizedKeys.keys = [ ];
       };

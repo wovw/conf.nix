@@ -53,7 +53,7 @@ in
 
   # Cycle windows if floating bring to top
   bind = ALT, tab, cyclenext
-  bind = ALT, tab, bringactivetotop
+  bind = ALT, tab, alterzorder, top
 
   # fn keys
   bind = ,XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+

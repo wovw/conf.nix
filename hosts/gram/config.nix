@@ -24,7 +24,7 @@ in
     ../../system/config/hyprlock.nix
     ../../system/apps/steam.nix
     ../../system/apps/obs.nix
-    (import ../../system/apps/nautilus.nix (args // { inherit terminal; }))
+    (import ../../system/apps/gnome/default.nix (args // { inherit terminal; }))
   ];
 
   boot = {
@@ -98,20 +98,34 @@ in
 
   };
 
-  environment.systemPackages = with pkgs; [
-    appimage-run
-    networkmanagerapplet
-    playerctl
-    imv
-    mpv
-    clinfo
-    vulkan-tools
-    lutris
-  ];
+  environment = {
+    etc = {
+      "libinput/local-overrides.quirks".text = ''
+        [Never Debounce]
+        MatchUdevType=mouse
+        ModelBouncingKeys=1
+      '';
+    };
+    shells = [
+      pkgs.zsh # add to /etc/shells
+    ];
+    systemPackages = with pkgs; [
+      appimage-run
+      networkmanagerapplet
+      playerctl
+      imv
+      mpv
+      clinfo
+      vulkan-tools
+      lutris
+      input-remapper
+    ];
+  };
 
   # Services to start
   services = {
     libinput.enable = true;
+    input-remapper.enable = true;
     fstrim.enable = true;
     flatpak.enable = true;
     printing = {

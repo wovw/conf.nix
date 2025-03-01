@@ -17,7 +17,6 @@ in
   imports = [
     ../../user/config.nix
     (import ../../user/devenv/config.nix (args // { inherit terminal pkgs; }))
-    ../../user/apps/browser/zen.nix
     ../../user/programs/ssh.nix
     (import ../../user/programs/common.nix (args // { inherit gitUsername gitEmail; }))
   ];

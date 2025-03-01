@@ -39,11 +39,6 @@
       }
     })
   '';
-  security.pam = {
-    services = {
-      login.enableGnomeKeyring = true;
-    };
-  };
 
   console.keyMap = "${keyboardLayout}";
 }

@@ -36,6 +36,8 @@ in
     ../../user/apps/winapps/config.nix
     ../../user/apps/easyeffects/config.nix
     ../../user/apps/browser/zen.nix
+    ../../user/apps/input-remapper.nix
+    ../../user/apps/gimp.nix
     ../../user/programs/ssh.nix
     (import ../../user/programs/common.nix (args // { inherit gitUsername gitEmail; }))
   ];
