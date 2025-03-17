@@ -1,9 +1,7 @@
 {
   keyboardLayout,
-  colors,
   host,
 }:
-with colors;
 ''
   cursor {
       no_hardware_cursors = true
@@ -12,12 +10,9 @@ with colors;
   general {
       gaps_in = 6
       gaps_out = 8
-      border_size = 2
+      border_size = 0
 
       resize_on_border = true
-
-      col.active_border = rgb(${base08}) rgb(${base0C}) 45deg
-      col.inactive_border = rgb(${base01})
 
       layout = dwindle
   }

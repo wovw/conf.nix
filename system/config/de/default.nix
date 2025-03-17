@@ -17,7 +17,7 @@
     slurp
     swaynotificationcenter
     wev
-    xwaylandvideobridge
+    kdePackages.xwaylandvideobridge
     normcap
     ifuse
     libimobiledevice

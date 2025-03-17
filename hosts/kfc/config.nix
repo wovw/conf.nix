@@ -77,7 +77,6 @@ in
     mpv
     clinfo
     vulkan-tools
-    podman-compose
   ];
 
   # Services to start

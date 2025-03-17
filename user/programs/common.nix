@@ -23,7 +23,8 @@
         user.name = gitUsername;
         user.email = gitEmail;
 
-        # better defaults #
+        # https://blog.gitbutler.com/how-git-core-devs-configure-git/
+
         column.ui = "auto";
         branch.sort = "-committerdate";
         tag.sort = "version:refname";
@@ -44,7 +45,6 @@
           all = "true";
         };
 
-        # why not #
         help.autocorrect = "prompt";
         commit.verbose = "true";
         rerere = {

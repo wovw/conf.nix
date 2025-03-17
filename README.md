@@ -38,4 +38,3 @@ journalctl -b --user -u {service-name} -f
 - change variables in `hosts/{hostname}/variables.nix`
 - ensure all changes are tracked in git (e.g. `git add .`)
 - `cd ~/conf.nix && sudo nixos-rebuild boot --flake .#{insert_hostname}` and follow the above link to restart NixOS
-- make this + nvim (at `user/devenv/nvim`) your own git repo

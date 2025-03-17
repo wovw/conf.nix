@@ -6,7 +6,9 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
     polarity = "dark";
     cursor = {
-      size = 24;
+      name = "catppuccin-mocha-dark-cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      size = 16;
     };
     fonts = {
       monospace = {

@@ -10,7 +10,6 @@
     clang-tools
     clang
     sccache
-    pnpm
     nodejs_22
     python312
     uv
@@ -19,6 +18,7 @@
     repomix
     jdk23
     code-cursor
+    yaak
     (import ./bin/tmux-sessionizer.nix { inherit pkgs; })
     (import ./bin/rebuild.nix { inherit pkgs username host; })
   ];
@@ -132,11 +132,11 @@
         sensible
         catppuccin
         yank
+        pain-control
       ];
 
       extraConfig = ''
         # Terminal overrides
-        set -g default-terminal "tmux-256color"
         set -g terminal-overrides ",xterm-ghostty:RGB"
 
         # yazi
@@ -160,6 +160,12 @@
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
         bind-key -r f run-shell "tmux neww tmux-sessionizer"
+
+        # catppuccin plugin
+        set -g @catppuccin_flavor "mocha"
+        set -g status-left ""
+        set -g status-right "#{E:@catppuccin_status_application}"
+        set -ag status-right "#{E:@catppuccin_status_session}"
       '';
     };
   };

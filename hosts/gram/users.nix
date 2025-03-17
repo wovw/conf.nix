@@ -34,6 +34,7 @@ in
           "uinput"
           "i2c"
           "dialout"
+          "podman"
         ];
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
@@ -44,8 +45,8 @@ in
           spotify
           (callPackage ../../user/apps/xmcl.nix { })
           (callPackage ../../user/apps/lm-studio.nix { })
+          (callPackage ../../user/apps/lunar.nix { })
           yt-dlp
-          lunar-client
         ];
         openssh.authorizedKeys.keys = [ ];
       };

@@ -82,11 +82,11 @@
         }
         {
           on = [ "k" ];
-          run = "plugin arrow --args=-1";
+          run = "plugin arrow -1";
         }
         {
           on = [ "j" ];
-          run = "plugin arrow --args=1";
+          run = "plugin arrow 1";
         }
         {
           on = [ "<C-y>" ];

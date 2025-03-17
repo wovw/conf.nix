@@ -1,7 +1,6 @@
 {
   lib,
   host,
-  config,
   pkgs,
   wallpaper,
   INTERNAL,
@@ -52,7 +51,6 @@ with lib;
           }
           ${
             (import ./settings.nix {
-              colors = config.lib.stylix.colors;
               inherit host keyboardLayout;
             })
           }
