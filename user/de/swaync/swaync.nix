@@ -1,11 +1,11 @@
 { config, ... }:
 
 {
-  home.file.".config/swaync/icons" = {
+  xdg.configFile."swaync/icons" = {
     source = ./icons;
     recursive = true;
   };
-  home.file.".config/swaync/config.json".text = ''
+  xdg.configFile."swaync/config.json".text = ''
     {
       "$schema": "/etc/xdg/swaync/configSchema.json",
       "positionX": "right",
@@ -64,7 +64,7 @@
       }
     }
   '';
-  home.file.".config/swaync/style.css".text = ''
+  xdg.configFile."swaync/style.css".text = ''
     * {
       font-family: JetBrainsMono Nerd Font Mono;
       font-weight: bold;

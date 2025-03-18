@@ -9,10 +9,10 @@
   home.packages = [
     inputs.winapps.packages."${system}".winapps
   ];
-  home.file.".config/winapps/compose.yaml".text = ''${
+  xdg.configFile."winapps/compose.yaml".text = ''${
     (import ./compose.nix { inherit config username; })
   }'';
-  home.file.".config/winapps/winapps.conf".text = ''
+  xdg.configFile."winapps/winapps.conf".text = ''
     ##################################
     #   WINAPPS CONFIGURATION FILE   #
     ##################################

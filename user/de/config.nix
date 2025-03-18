@@ -1,4 +1,4 @@
-{ pkgs, ... }@args:
+{ ... }@args:
 {
   # Create XDG Dirs
   xdg = {
@@ -13,17 +13,12 @@
     GDK_DISABLE = "vulkan";
   };
 
-  home.packages = with pkgs; [
-    cliphist
-  ];
-
   imports = [
-    (import ./rofi/rofi.nix (args))
-    (import ./hyprland/hyprland.nix (args))
+    (import ./rofi/config.nix (args))
+    (import ./hyprland/config.nix (args))
     (import ./waybar.nix (args))
     ./swaync/swaync.nix
     ./wlogout/config.nix
-    ./screenshot/config.nix
   ];
 
   home.file."Pictures/wallpapers" = {

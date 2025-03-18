@@ -14,56 +14,51 @@ pkgs.writeShellApplication {
     # CTRL Del to delete an entry
     # ALT Del to wipe clipboard contents
 
-    handle_selection() {
-        local result="$1"
-        if [ -n "$result" ]; then
-            cliphist decode <<<"$result" | wl-copy
-            exit 0
-        fi
-    }
+    msg='👀 **note**  CTRL DEL = cliphist del (entry)   or   ALT DEL - cliphist wipe (all)'
 
-    handle_delete() {
-        local result="$1"
-        if [ -n "$result" ]; then
-            cliphist delete <<<"$result"
-        fi
-    }
+    # Check if rofi is already running
+    if pidof rofi > /dev/null; then
+      pkill rofi
+    fi
 
-    handle_wipe() {
-        cliphist wipe
-    }
+    while true; do
+        result=$(
+            rofi -i -dmenu \
+                -kb-custom-1 "Control-Delete" \
+                -kb-custom-2 "Alt-Delete" \
+                < <(cliphist list) \
+                -mesg "$msg" 
+        )
 
-    # Use process substitution to avoid subshell issues
-    result=$(rofi \
-        -i \
-        -dmenu \
-        -kb-custom-1 "Control+Delete" \
-        -kb-custom-2 "Alt+Delete" \
-        -kb-accept-entry "Return" \
-        -kb-cancel "Escape" \
-        < <(cliphist list))
-
-    exit_code=$?
-    echo "Exit code: $exit_code" >&2
-
-    case $exit_code in
-        0)  # Normal selection
-            handle_selection "$result"
-            ;;
-        1)  # User cancelled
-            exit 0
-            ;;
-        10) # Ctrl+Delete pressed
-            handle_delete "$result"
-            exec "$0"  # Restart the script to show updated list
-            ;;
-        11) # Alt+Delete pressed
-            handle_wipe
-            exec "$0"  # Restart the script to show updated list
-            ;;
-        *)  # Unknown exit code
-            exit 1
-            ;;
-    esac
+        case "$?" in
+            1)
+                notify-send "1";
+                exit
+                ;;
+            0)
+                notify-send "0";
+                case "$result" in
+                    "")
+                        continue
+                        ;;
+                    *)
+                        cliphist decode <<<"$result" | wl-copy
+                        exit
+                        ;;
+                esac
+                ;;
+            10)
+                notify-send "10";
+                cliphist delete <<<"$result"
+                ;;
+            11)
+                notify-send "11";
+                cliphist wipe
+                ;;
+            *)
+                notify-send "other";
+                ;;
+        esac
+    done
   '';
 }

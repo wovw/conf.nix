@@ -34,6 +34,7 @@
     fastfetch
     jq
     curl
+    wget
     exiftool
   ];
 

@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.file.".config/input-remapper-2/presets/Logitech M705/scroll-click.json".text = ''
+  xdg.configFile."input-remapper-2/presets/Logitech M705/scroll-click.json".text = ''
     [
         {
             "input_combination": [

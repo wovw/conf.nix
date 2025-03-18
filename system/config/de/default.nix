@@ -3,25 +3,26 @@
 
   environment.systemPackages = with pkgs; [
     libnotify
-    wl-clipboard
-    hyprpicker
     brightnessctl
     i2c-tools
     ddcutil
     pavucontrol
     pulseaudio
     alsa-utils
-    swappy
-    swww
-    grim
-    slurp
     swaynotificationcenter
     wev
     kdePackages.xwaylandvideobridge
     normcap
     ifuse
     libimobiledevice
+    cliphist
+    hyprpicker
+    hyprshot
+    wl-mirror
+    wl-clipboard
   ];
+
+  programs.hyprland.enable = true;
 
   # Extra Portal Configuration
   xdg.portal = {
@@ -33,18 +34,9 @@
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
     ];
-    config = {
-      common.default = "gtk";
-      hyprland = {
-        default = [
-          "gtk"
-          "hyprland"
-        ];
-      };
-    };
+    config.common.default = "gtk";
   };
 
   # Services to start

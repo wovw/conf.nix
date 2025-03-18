@@ -5,20 +5,19 @@
   terminal,
 }:
 let
-  rofi = pkgs.callPackage ../rofi/launcher.nix { };
-  swaync = pkgs.callPackage ../swaync/launcher.nix { };
-  wlogout = pkgs.callPackage ../wlogout/launcher.nix { };
-  clipboard = pkgs.callPackage ../rofi/clipboard.nix { };
-  screenshot = pkgs.callPackage ../screenshot/script.nix { };
+  rofi = "${pkgs.callPackage ../rofi/launcher.nix { }}/bin/rofi-launcher";
+  swaync = "${pkgs.callPackage ../swaync/launcher.nix { }}/bin/swaync-launcher";
+  wlogout = "${pkgs.callPackage ../wlogout/launcher.nix { }}/bin/wlogout-launcher";
+  clipboard = "${pkgs.callPackage ../rofi/clipboard.nix { }}/bin/clip-manager";
 in
 ''
   $mainMod=${modifier}
 
-  bind = ${modifier}SHIFT,Return,exec,${rofi}/bin/rofi-launcher
+  bind = ${modifier}SHIFT,Return,exec,${rofi}
   bind = ${modifier},Return,exec,${terminal}
   bind = ${modifier},T,exec,${terminal} -e yazi
   bind = ${modifier}, B, exec, pkill -SIGUSR1 waybar
-  bind = ${modifier}SHIFT,N,exec, ${swaync}/bin/swaync-launcher
+  bind = ${modifier}SHIFT,N,exec, ${swaync}
 
   bind = CTRL ALT, Delete, exec, hyprctl dispatch exit 0
   bind = ${modifier},Q,killactive,
@@ -26,10 +25,10 @@ in
   bind = ${modifier},F,fullscreen,
   bind = ${modifier}SHIFT,F,togglefloating,
   bind = ${modifier}ALT,L, exec, pidof hyprlock || hyprlock -q
-  bind = CTRL ALT, P, exec, ${wlogout}/bin/wlogout-launcher
+  bind = CTRL ALT, P, exec, ${wlogout}
 
   bind = ${modifier},E,exec,rofi -show emoji -modi emoji
-  bind = ${modifier},V,exec,${clipboard}/bin/clip-manager
+  bind = ${modifier},V,exec,${clipboard}
   bind = ${modifier}SHIFT,C,exec,hyprpicker -a
 
   # move windows
@@ -69,13 +68,10 @@ in
   bind = ,XF86AudioStop, exec, playerctl stop
 
   # screenshot bindings
-  bind = ${modifier}, Print,exec,${screenshot}/bin/screenshootin --now
-  bind =${modifier} SHIFT, Print, exec,${screenshot}/bin/screenshootin --area
-  bind = ${modifier} CTRL, Print, exec,  ${screenshot}/bin/screenshootin --in5 #screenshot in 5 secs
-  bind = ${modifier} CTRL SHIFT, Print, exec, ${screenshot}/bin/screenshootin --in10 #screenshot in 10 secs
-  bind = ALT, Print, exec, ${screenshot}/bin/screenshootin --active #take screenshot of active window
+  bind = ${modifier}, S, exec, hyprshot -m window
+  bind =${modifier} SHIFT, S, exec, hyprshot -m region --clipboard-only
+  bind = , Print, exec, hyprshot -m output
   bind = ${modifier} SHIFT, T, exec, normcap # text extract
-  bind = ${modifier} SHIFT, S, exec, ${screenshot}/bin/screenshootin --swappy # another screenshot tool
 
   bind = SUPER ALT, S, exec, speech-to-text
 

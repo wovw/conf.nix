@@ -12,10 +12,19 @@
 
 with lib;
 {
+  imports = [
+    (import ./hyprpaper.nix {
+      inherit pkgs wallpaper;
+    })
+    ./lock.nix
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      variables = [ "--all" ];
+    };
     extraConfig =
       let
         modifier = "SUPER";
@@ -33,11 +42,7 @@ with lib;
                 ;
             })
           }
-          ${
-            (import ./startup.nix {
-              inherit wallpaper;
-            })
-          }
+          ${(import ./startup.nix { })}
           ${builtins.readFile ./decor.conf}
           ${
             (import ./keybinds.nix {

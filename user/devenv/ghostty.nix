@@ -3,7 +3,7 @@
   home.packages = [
     inputs.ghostty.packages."${system}".default
   ];
-  home.file.".config/ghostty/config".text = ''
+  xdg.configFile."ghostty/config".text = ''
     background = 000000
     background-opacity = 0.50
     font-size = 12
