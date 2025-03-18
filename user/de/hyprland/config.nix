@@ -7,6 +7,7 @@
   EXTERNAL,
   terminal,
   keyboardLayout,
+  config,
   ...
 }:
 
@@ -31,7 +32,7 @@ with lib;
       in
       concatStrings [
         ''
-          ${builtins.readFile ./env.conf}
+          ${import ./env.nix { inherit config; }}
           ${
             (import ./laptop.nix {
               inherit
