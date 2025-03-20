@@ -4,8 +4,8 @@
   environment.systemPackages = with pkgs; [
     libnotify
     brightnessctl
-    i2c-tools
     ddcutil
+    i2c-tools
     pavucontrol
     pulseaudio
     alsa-utils

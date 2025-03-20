@@ -17,6 +17,7 @@ pkgs.writeShellApplication {
     iDIR="$HOME/.config/swaync/icons"
     step=10  # INCREASE/DECREASE BY THIS VALUE
     EXTERNAL_MONITOR_BUS="8"  # From `ddcutil detect` output
+    EXTERNAL_MONITOR_BUS_2="11"  # From `ddcutil detect` output
 
     # Get laptop brightness
     get_laptop_backlight() {
@@ -76,7 +77,12 @@ pkgs.writeShellApplication {
         # Use || true to prevent script failure if monitor is disconnected
         ddcutil setvcp 10 "$new_brightness" \
           --bus "$EXTERNAL_MONITOR_BUS" \
-          --noverify || true
+          --noverify || true \
+          --sleep-multiplier .1
+        ddcutil setvcp 10 "$new_brightness" \
+          --bus "$EXTERNAL_MONITOR_BUS_2" \
+          --noverify || true \
+          --sleep-multiplier .1
 
         get_icon "$new_brightness"
         notify_user "$new_brightness"

@@ -1,4 +1,4 @@
-{ ... }@args:
+{ pkgs, ... }@args:
 {
   # Create XDG Dirs
   xdg = {
@@ -24,5 +24,28 @@
   home.file."Pictures/wallpapers" = {
     source = ./wallpapers;
     recursive = true;
+  };
+
+  # theme
+  stylix = {
+    targets = {
+      waybar.enable = false;
+      rofi.enable = false;
+      hyprland.enable = false;
+      tmux.enable = false;
+      neovim.enable = false;
+    };
+    iconTheme = {
+      enable = true;
+      package = pkgs.papirus-icon-theme;
+      dark = "Papirus-Dark";
+    };
+  };
+  gtk = {
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+  };
+  qt = {
+    enable = true;
   };
 }
