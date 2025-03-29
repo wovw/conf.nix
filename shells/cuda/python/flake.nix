@@ -1,6 +1,6 @@
 {
   # cuda setup from https://gist.github.com/r3rer3/de4be0ad6be012264c641222eecb359a
-  description = "Python Jupyter + CUDA for python flake";
+  description = "Python Jupyter + CUDA";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -53,22 +53,15 @@
           export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
           export EXTRA_CCFLAGS="-I/usr/include"
 
-          # Jupyter Notebook setup
-          PROJECT_NAME=$(basename $(readlink -f .))
-          KERNEL_PATH="$HOME/.local/share/jupyter/kernels/$PROJECT_NAME"
-
           uv sync
           source .venv/bin/activate
-          if [ ! -d "$KERNEL_PATH" ]; then
-            uv add ipykernel
-            python -m ipykernel install --user --name $PROJECT_NAME
 
-            # just in case
-            mkdir -p $HOME/.local/share/jupyter/runtime
-          fi
+          # jupyter setup
+          uv add --dev ipykernel
 
           exec zsh
         '';
       };
     };
 }
+

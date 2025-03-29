@@ -5,7 +5,7 @@
   ];
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = ${toString wallpaper}
-    wallpaper = , ${toString wallpaper}
+    preload = ${wallpaper}
+    wallpaper = , ${wallpaper}
   '';
 }

@@ -39,6 +39,10 @@
             zsh
           ];
 
+          buildInputs = with pkgs; [
+            openssl # for prisma
+          ];
+
           shellHook = ''
             ${prisma.shellHook}
             export VERCEL_ENV=development
