@@ -7,8 +7,6 @@
 }:
 {
   home.packages = with pkgs; [
-    clang-tools
-    clang
     sccache
     nodejs_22
     python312

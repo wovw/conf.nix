@@ -93,6 +93,8 @@ in
       libraries = with pkgs; [
         libplist
         libimobiledevice
+
+        stdenv.cc.cc # stdenv source for clang
       ];
     };
 

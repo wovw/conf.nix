@@ -6,11 +6,17 @@
 }:
 {
   home.packages = with pkgs; [
+    tree-sitter
+
     lua51Packages.lua
     lua51Packages.luarocks
+
     nixfmt-rfc-style
-    tree-sitter
+
+    clang
+    clang-tools
   ];
+
   programs = {
     neovim = {
       enable = true;
