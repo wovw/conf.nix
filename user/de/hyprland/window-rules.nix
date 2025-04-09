@@ -28,7 +28,6 @@
   windowrulev2 = float, class:([Tt]hunar), title:(File Operation Progress)
   windowrulev2 = float, class:([Tt]hunar), title:(Confirm to replace files)
   windowrulev2 = float, class:(xdg-desktop-portal-gtk)
-  windowrulev2 = float, class:(org.gnome.Calculator), title:(Calculator)
   windowrulev2 = float, class:^([Rr]ofi)$
   windowrulev2 = float, class:^(eog|org.gnome.Loupe)$ # image viewer
   windowrulev2 = float, class:^(org.gnome.Nautilus)$ 

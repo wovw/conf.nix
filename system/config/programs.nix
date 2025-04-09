@@ -36,6 +36,7 @@
     curl
     wget
     exiftool
+    libqalculate
   ];
 
   services = {

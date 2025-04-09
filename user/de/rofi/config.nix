@@ -13,12 +13,9 @@
       terminal = "${terminal}";
       plugins = with pkgs; [
         rofi-emoji-wayland
-        (rofi-calc.override {
-          rofi-unwrapped = rofi-wayland-unwrapped;
-        })
       ];
       extraConfig = {
-        modi = "drun,run,emoji,calc";
+        modi = "drun,run,emoji";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
@@ -28,7 +25,6 @@
         display-drun = "";
         display-run = "";
         display-emoji = "👀";
-        display-calc = "➕";
 
         # vim keybindings
         kb-row-up = "Up,Control+k";
