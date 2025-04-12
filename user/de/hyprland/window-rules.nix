@@ -14,7 +14,7 @@
 
   # windowrule v2 move to workspace
   windowrulev2 = workspace 1, class:^(com.mitchellh.ghostty)$
-  windowrulev2 = workspace 2, class:^(zen)$
+  windowrulev2 = workspace 2, class:^(zen.*)$
   windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord|input-remapper-gtk)$
   windowrulev2 = workspace 4, class:^(com.obsproject.Studio|((google\-)?chrome.*)|xmcl|steam|net.lutris.Lutris|lunarclient|Lunar\s+Client.*)$
   windowrulev2 = workspace 5, class:^([Ss]potify)$

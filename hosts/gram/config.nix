@@ -21,7 +21,7 @@ in
     ../../system/config/programs.nix
     ../../system/config/de/default.nix
     ../../system/config/de/greetd-login.nix
-    ../../system/config/hyprlock.nix
+    ../../system/config/de/hyprlock.nix
     ../../system/apps/gaming.nix
     ../../system/apps/obs.nix
     (import ../../system/apps/gnome/default.nix (args // { inherit terminal; }))

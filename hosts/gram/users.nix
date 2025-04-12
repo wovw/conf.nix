@@ -44,7 +44,6 @@ in
           qbittorrent
           spotify
           (callPackage ../../user/apps/xmcl.nix { })
-          (callPackage ../../user/apps/lm-studio.nix { })
           (callPackage ../../user/apps/lunar.nix { })
           yt-dlp
           qalculate-gtk
