@@ -22,7 +22,7 @@ in
     ../../system/config/de/default.nix
     ../../system/config/de/greetd-login.nix
     ../../system/config/hyprlock.nix
-    ../../system/apps/steam.nix
+    ../../system/apps/gaming.nix
     ../../system/apps/obs.nix
     (import ../../system/apps/gnome/default.nix (args // { inherit terminal; }))
   ];
@@ -93,8 +93,6 @@ in
       libraries = with pkgs; [
         libplist
         libimobiledevice
-
-        stdenv.cc.cc # stdenv source for clang
       ];
     };
 
@@ -119,7 +117,6 @@ in
       mpv
       clinfo
       vulkan-tools
-      lutris
       input-remapper
     ];
   };
@@ -160,25 +157,11 @@ in
         '';
       };
     };
-    extraConfig = "DefaultLimitNOFILE=524288"; # https://wiki.nixos.org/wiki/Lutris
   };
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.sane-airscan ];
     disabledDefaultBackends = [ "escl" ];
-  };
-
-  # Security
-  security.pam = {
-    loginLimits = [
-      {
-        # https://wiki.nixos.org/wiki/Lutris
-        domain = "${username}";
-        type = "hard";
-        item = "nofile";
-        value = "524288";
-      }
-    ];
   };
 
   # This value determines the NixOS release from which the default

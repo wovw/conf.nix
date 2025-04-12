@@ -17,6 +17,8 @@
     jdk23
     code-cursor
     yaak
+    mysql-workbench
+    pgadmin4
     (import ./bin/tmux-sessionizer.nix { inherit pkgs; })
     (import ./bin/rebuild.nix { inherit pkgs username host; })
   ];

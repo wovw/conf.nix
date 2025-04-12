@@ -21,7 +21,6 @@ in
   binde = , xf86MonBrightnessDown, exec, ${brightness}/bin/brightness-control --dec
   binde = , xf86MonBrightnessUp, exec, ${brightness}/bin/brightness-control --inc
 
-  # TODO: no waybar when extending
   bind = ${modifier}, P, exec, ${toggleMirror}/bin/toggle-mirror
 
   # `hyprctl devices`

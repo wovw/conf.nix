@@ -1,12 +1,5 @@
 # NixOS flake
 
-- nixos config init'd from <https://gitlab.com/Zaney/zaneyos> and <https://gitlab.com/librephoenix/nixos-config>
-- nvim config init'd from <https://github.com/ThePrimeagen/init.lua> and <https://github.com/nvim-lua/kickstart.nvim>
-
-> [!CAUTION]
->
-> - [ ] fix rofi-wayland clipboard manager keybinds
-
 ## useful commands
 
 ```sh
@@ -38,3 +31,14 @@ journalctl -b --user -u {service-name} -f
 - change variables in `hosts/{hostname}/variables.nix`
 - ensure all changes are tracked in git (e.g. `git add .`)
 - `cd ~/conf.nix && sudo nixos-rebuild boot --flake .#{insert_hostname}` and follow the above link to restart NixOS
+
+## References
+
+- nixos config
+  - <https://github.com/Zaney/zaneyos>
+  - <https://github.com/librephoenix/nixos-config>
+
+- nvim config
+  - <https://github.com/ThePrimeagen/init.lua>
+  - <https://github.com/nvim-lua/kickstart.nvim>
+  - <https://www.lazyvim.org>

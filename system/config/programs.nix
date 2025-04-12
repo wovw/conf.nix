@@ -1,7 +1,12 @@
 { pkgs, ... }:
 {
   programs = {
-    nix-ld.enable = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        stdenv.cc.cc # std unix libs for clang
+      ];
+    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
