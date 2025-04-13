@@ -13,10 +13,6 @@
 
     # nix formatting
     nixfmt-rfc-style
-
-    # c++ development and lsp
-    clang
-    clang-tools
   ];
 
   programs = {
