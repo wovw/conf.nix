@@ -2,7 +2,6 @@
   lib,
   host,
   pkgs,
-  wallpaper,
   INTERNAL,
   EXTERNAL,
   terminal,
@@ -14,11 +13,12 @@
 with lib;
 {
   imports = [
-    (import ./hyprpaper.nix {
-      inherit pkgs wallpaper;
-    })
     ./lock.nix
   ];
+  services = {
+    hyprpaper.enable = true; # config in stylix
+    hyprpolkitagent.enable = true;
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

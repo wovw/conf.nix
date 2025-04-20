@@ -5,8 +5,6 @@
   exec-once = nm-applet --indicator
   exec-once = swaync
   exec-once = waybar
-  exec-once = hyprpaper
-  exec-once = lxqt-policykit-agent
 
   # clipboard manager
   exec-once = wl-paste --type text --watch cliphist store

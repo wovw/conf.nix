@@ -18,7 +18,6 @@
     killall
     eza
     git
-    lxqt.lxqt-policykit
     unzip
     unrar
     pciutils

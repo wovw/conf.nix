@@ -36,7 +36,7 @@
         };
         background = [
           {
-            path = "~/Pictures/wallpapers/Rainnight.jpg";
+            path = toString ../wallpapers/Rainnight.jpg;
           }
         ];
         input-field = [

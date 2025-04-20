@@ -6,7 +6,6 @@ let
   inherit (import ./variables.nix)
     gitUsername
     gitEmail
-    wallpaper
     terminal
     keyboardLayout
     ;
@@ -26,7 +25,6 @@ in
         inherit
           terminal
           keyboardLayout
-          wallpaper
           INTERNAL
           EXTERNAL
           ;
