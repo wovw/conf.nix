@@ -1,22 +1,66 @@
+# https://github.com/luisnquin/nixos-config/blob/main/home/modules/browser.nix
 { inputs, system, ... }:
 {
-  home.packages = [
-    inputs.zen-browser.packages."${system}".default
+  imports = [
+    inputs.zen-browser.homeModules.twilight
   ];
+  programs.zen-browser = {
+    enable = true;
+    policies = {
+      AutofillAddressEnabled = true;
+      AutofillCreditCardEnabled = false;
+      DisableAppUpdate = true;
+      DisableFeedbackCommands = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = false; # save webs for later reading
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+    };
+  };
+
   home.sessionVariables = {
     DEFAULT_BROWSER = "zen";
     BROWSER = "zen";
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "text/html" = "zen-beta.desktop";
-      "x-scheme-handler/http" = "zen-beta.desktop";
-      "x-scheme-handler/https" = "zen-beta.desktop";
-      "x-scheme-handler/about" = "zen-beta.desktop";
-      "x-scheme-handler/unknown" = "zen-beta.desktop";
-      "application/pdf" = "zen-beta.desktop";
+  xdg.mimeApps =
+    let
+      associations = builtins.listToAttrs (
+        map
+          (name: {
+            inherit name;
+            value =
+              let
+                zen-browser = inputs.zen-browser.packages.${system}.twilight;
+              in
+              zen-browser.meta.desktopFile;
+          })
+          [
+            "application/x-extension-shtml"
+            "application/x-extension-xhtml"
+            "application/x-extension-html"
+            "application/x-extension-xht"
+            "application/x-extension-htm"
+            "x-scheme-handler/unknown"
+            "x-scheme-handler/mailto"
+            "x-scheme-handler/chrome"
+            "x-scheme-handler/about"
+            "x-scheme-handler/https"
+            "x-scheme-handler/http"
+            "application/xhtml+xml"
+            "application/json"
+            "application/pdf"
+            "text/plain"
+            "text/html"
+            "image/*"
+          ]
+      );
+    in
+    {
+      associations.added = associations;
+      defaultApplications = associations;
     };
-  };
+
 }

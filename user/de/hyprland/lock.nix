@@ -28,15 +28,14 @@
       enable = true;
       settings = lib.mkForce {
         general = {
-          disable_loading_bar = true;
           grace = 0;
           hide_cursor = true;
-          no_fade_in = false;
-          ignore_empty_input = false;
+          ignore_empty_input = true;
         };
+        animations.enabled = false;
         background = [
           {
-            path = toString ../wallpapers/Rainnight.jpg;
+            color = "rgba(0, 0, 0, 1.0)";
           }
         ];
         input-field = [
@@ -50,7 +49,7 @@
             inner_color = "rgb(657DC2)";
             outer_color = "rgb(0D0E15)";
             outline_thickness = 5;
-            placeholder_text = "Password...";
+            placeholder_text = "...";
             shadow_passes = 2;
           }
         ];

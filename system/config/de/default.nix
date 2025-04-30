@@ -18,6 +18,7 @@
     cliphist
     hyprpicker
     hyprshot
+    hyprland-qtutils
     wl-mirror
     wl-clipboard
   ];
@@ -39,7 +40,6 @@
     config.common.default = "gtk";
   };
 
-  # Services to start
   services = {
     usbmuxd = {
       enable = true;

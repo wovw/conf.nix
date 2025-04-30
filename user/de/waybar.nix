@@ -213,7 +213,6 @@ in
           border: 0px;
         }
         #workspaces button {
-          font-weight: bold;
           padding: 0px 4px;
           margin: 4px 3px;
           border-radius: 16px;
@@ -241,7 +240,6 @@ in
         #window, #pulseaudio, #cpu, #memory, #idle_inhibitor,
         #custom-hyprbindings, #network, #battery,
         #custom-notification, #tray, #custom-exit {
-          font-weight: bold;
           margin: 4px;
           padding: 2px 16px;
           background: #${config.lib.stylix.colors.base01};
@@ -260,7 +258,6 @@ in
         }
         #clock {
           margin: 0px;
-          font-weight: bold;
           background: #${config.lib.stylix.colors.base01};
           color: #${config.lib.stylix.colors.base08};
           padding: 0px 15px 0px 30px;
