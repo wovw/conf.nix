@@ -8,11 +8,14 @@
   home.packages = with pkgs; [
     tree-sitter
 
+    # build avante
+    gnumake
+    gcc
+
     lua51Packages.lua
     lua51Packages.luarocks
 
-    # nix formatting
-    nixfmt-rfc-style
+    nixfmt-rfc-style # nix formatting
   ];
 
   programs = {
@@ -24,26 +27,11 @@
       vimdiffAlias = true;
       extraPackages = with pkgs; [
         lua-language-server
-        python312Packages.pylatexenc # for markdown preview
-        python312Packages.jupytext
+        python312Packages.pylatexenc # markdown preview
         lua51Packages.jsregexp # luasnip
         inputs.nil.packages.${system}.default
-        imagemagick # jupyter image rendering
+        imagemagick # snacks.image
       ];
-      extraLuaPackages = ps: [
-        ps.magick # jupyter image rendering
-      ];
-      extraPython3Packages =
-        # for jupyter
-        ps: with ps; [
-          pynvim
-          jupyter-client
-          cairosvg # for image rendering
-          pnglatex # for image rendering
-          plotly # for image rendering
-          pyperclip
-          nbformat
-        ];
     };
   };
 
