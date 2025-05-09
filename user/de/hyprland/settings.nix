@@ -1,15 +1,12 @@
-{
-  keyboardLayout,
-  host,
-}:
+{ }:
 ''
   cursor {
       no_hardware_cursors = true
   }
 
   general {
-      gaps_in = 6
-      gaps_out = 8
+      gaps_in = 4
+      gaps_out = 4
       border_size = 0
 
       resize_on_border = true
@@ -18,7 +15,6 @@
   }
 
   input {
-      kb_layout = ${keyboardLayout}
       repeat_rate = 50
       repeat_delay = 300
 

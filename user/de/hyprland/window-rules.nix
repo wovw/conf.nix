@@ -7,7 +7,7 @@
 
   # workspace rules
   workspace = 1, monitor:${EXTERNAL}
-  workspace = 2, monitor:${INTERNAL}
+  workspace = 2, monitor:${EXTERNAL}
   workspace = 3, monitor:${INTERNAL}
   workspace = 4, monitor:${INTERNAL}
   workspace = 5, monitor:${INTERNAL}
@@ -15,7 +15,7 @@
   # windowrule v2 move to workspace
   windowrulev2 = workspace 1, class:^(com.mitchellh.ghostty)$
   windowrulev2 = workspace 2, class:^(zen.*)$
-  windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord|input-remapper-gtk)$
+  windowrulev2 = workspace 3, class:^([Dd]iscord|[Ww]ebCord|input-remapper-gtk|Cursor)$
   windowrulev2 = workspace 4, class:^(com.obsproject.Studio|((google\-)?chrome.*)|xmcl|steam|net.lutris.Lutris|lunarclient|Lunar\s+Client.*)$
   windowrulev2 = workspace 5, class:^([Ss]potify)$
 
@@ -30,7 +30,7 @@
   windowrulev2 = float, class:(xdg-desktop-portal-gtk)
   windowrulev2 = float, class:^([Rr]ofi)$
   windowrulev2 = float, class:^(eog|org.gnome.Loupe)$ # image viewer
-  windowrulev2 = float, class:^(org.gnome.Nautilus)$ 
+  windowrulev2 = float, class:^(org.gnome.Nautilus)$
   windowrulev2 = float, class:^(pavucontrol|org.pulseaudio.pavucontrol|com.saivert.pwvucontrol)$
   windowrulev2 = float, class:^(nwg-look|qt5ct|qt6ct)$
   windowrulev2 = float, class:^(mpv|com.github.rafostar.Clapper)$
@@ -70,7 +70,7 @@
   windowrulev2 = noblur, class:^(xwaylandvideobridge)$
 
   # steam
-  windowrule = center,^(steam)$
+  windowrule = center, title:^()$,class:^(steam)$
   windowrulev2 = stayfocused, title:^()$,class:^(steam)$
   windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
   windowrulev2 = float, class:^([Ss]team)$,title:^((?![Ss]team).*|[Ss]team [Ss]ettings)$

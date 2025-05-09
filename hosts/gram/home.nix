@@ -7,7 +7,6 @@ let
     gitUsername
     gitEmail
     terminal
-    keyboardLayout
     ;
   INTERNAL = "eDP-1";
   EXTERNAL = "HDMI-A-4";
@@ -24,7 +23,6 @@ in
       // {
         inherit
           terminal
-          keyboardLayout
           INTERNAL
           EXTERNAL
           ;

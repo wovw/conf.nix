@@ -4,14 +4,14 @@
   ...
 }@args:
 let
-  inherit (import ./variables.nix) keyboardLayout wallpaper;
+  inherit (import ./variables.nix) wallpaper;
 in
 {
   imports = [
     ./hardware.nix
     ./users.nix
     ../../system/hardware/amd-drivers.nix
-    (import ../../system/config/common.nix (args // { inherit keyboardLayout; }))
+    ../../system/config/common.nix
     (import ../../system/config/theme.nix (args // { inherit wallpaper; }))
     ../../system/config/nix.nix
     ../../system/config/programs.nix

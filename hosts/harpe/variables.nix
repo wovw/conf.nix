@@ -5,7 +5,4 @@
   gitEmail = "anthonypasala12@gmail.com";
 
   terminal = "ghostty";
-
-  # Program Options
-  keyboardLayout = "us";
 }

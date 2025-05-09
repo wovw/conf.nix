@@ -19,6 +19,7 @@
     yaak
     mysql-workbench
     pgadmin4
+    pscale
     (import ./bin/tmux-sessionizer.nix { inherit pkgs; })
     (import ./bin/rebuild.nix { inherit pkgs username host; })
   ];

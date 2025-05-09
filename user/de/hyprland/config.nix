@@ -1,13 +1,12 @@
 {
-  lib,
-  host,
-  pkgs,
-  INTERNAL,
-  EXTERNAL,
-  terminal,
-  keyboardLayout,
-  config,
-  ...
+lib,
+host,
+pkgs,
+INTERNAL,
+EXTERNAL,
+terminal,
+config,
+...
 }:
 
 with lib;
@@ -30,42 +29,38 @@ with lib;
       let
         modifier = "SUPER";
       in
-      concatStrings [
-        ''
-          ${import ./env.nix { inherit config; }}
-          ${
+        concatStrings [
+          ''
+            ${import ./env.nix { inherit config; }}
+            ${
             (import ./laptop.nix {
               inherit
-                pkgs
-                modifier
-                EXTERNAL
-                INTERNAL
-                ;
+              pkgs
+              modifier
+              EXTERNAL
+              INTERNAL
+              ;
             })
-          }
-          ${(import ./startup.nix { })}
-          ${builtins.readFile ./decor.conf}
-          ${
+            }
+            ${(import ./startup.nix { })}
+            ${builtins.readFile ./decor.conf}
+            ${
             (import ./keybinds.nix {
               inherit
-                pkgs
-                modifier
-                host
-                terminal
-                ;
+              pkgs
+              modifier
+              host
+              terminal
+              ;
             })
-          }
-          ${
-            (import ./settings.nix {
-              inherit host keyboardLayout;
-            })
-          }
-          ${
+            }
+            ${ (import ./settings.nix {}) }
+            ${
             (import ./window-rules.nix {
               inherit EXTERNAL INTERNAL;
             })
-          }
-        ''
-      ];
+            }
+          ''
+        ];
   };
 }

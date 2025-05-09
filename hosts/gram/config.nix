@@ -5,7 +5,7 @@
   ...
 }@args:
 let
-  inherit (import ./variables.nix) keyboardLayout wallpaper terminal;
+  inherit (import ./variables.nix) wallpaper terminal;
 in
 {
   imports = [
@@ -15,7 +15,7 @@ in
     ../../system/hardware/nvidia-prime-drivers.nix
     ../../system/hardware/intel-drivers.nix
     ../../system/config/virtualization.nix
-    (import ../../system/config/common.nix (args // { inherit keyboardLayout; }))
+    ../../system/config/common.nix
     (import ../../system/config/theme.nix (args // { inherit wallpaper; }))
     ../../system/config/nix.nix
     ../../system/config/programs.nix

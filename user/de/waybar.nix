@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   INTERNAL,
   EXTERNAL,
   ...
@@ -24,23 +23,23 @@ in
         ];
         layer = "top";
         position = "top";
-        modules-center = [ "hyprland/workspaces" ];
-        modules-left = [
-          "custom/startmenu"
+        modules-left= ["custom/startmenu" "hyprland/workspaces"];
+        modules-center= ["clock"];
+        modules-right= [
+          "idle_inhibitor"
           "pulseaudio"
+          "battery"
           "cpu"
           "memory"
-          "idle_inhibitor"
-        ];
-        modules-right = [
-          "custom/hyprbindings"
+          "tray"
           "custom/notification"
           "custom/exit"
-          "battery"
-          "tray"
-          "clock"
         ];
-
+        "custom/startmenu" = {
+          tooltip = false;
+          format = "";
+          on-click = "${rofi}/bin/rofi-launcher";
+        };
         "hyprland/workspaces" = {
           format = "{icon}";
           format-icons = {
@@ -48,8 +47,6 @@ in
             active = "󰮯";
             empty = "";
           };
-          on-scroll-up = "hyprctl dispatch workspace e+1";
-          on-scroll-down = "hyprctl dispatch workspace e-1";
           persistent-workspaces = {
             "1" = [ ];
             "2" = [ ];
@@ -60,7 +57,7 @@ in
         };
         "clock" = {
           interval = 1;
-          format = '' {:L%I:%M:%S %p}'';
+          format = " {:L%I:%M:%S %p}";
           format-alt = " {:%H:%M:%S   %Y, %d %B, %A}";
           tooltip = true;
           tooltip-format = "<tt><small>{calendar}</small></tt>";
@@ -80,16 +77,12 @@ in
         };
         "memory" = {
           interval = 5;
-          format = " {}%";
+          format = " {}%";
           tooltip = true;
         };
         "cpu" = {
           interval = 5;
           format = " {usage:2}%";
-          tooltip = true;
-        };
-        "disk" = {
-          format = " {free}";
           tooltip = true;
         };
         "network" = {
@@ -106,7 +99,7 @@ in
           tooltip = false;
         };
         "tray" = {
-          spacing = 12;
+          spacing = 10;
         };
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";
@@ -135,11 +128,6 @@ in
           format = "";
           on-click = "${wlogout}/bin/wlogout-launcher";
         };
-        "custom/startmenu" = {
-          tooltip = false;
-          format = "";
-          on-click = "${rofi}/bin/rofi-launcher";
-        };
         "idle_inhibitor" = {
           format = "{icon}";
           format-icons = {
@@ -152,13 +140,13 @@ in
           tooltip = false;
           format = "{icon} {}";
           format-icons = {
-            notification = "<span foreground='red'><sup></sup></span>";
+            notification = " <span foreground='red'><sup></sup></span>";
             none = "";
-            dnd-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-notification = " <span foreground='red'><sup></sup></span>";
             dnd-none = "";
-            inhibited-notification = "<span foreground='red'><sup></sup></span>";
+            inhibited-notification = " <span foreground='red'><sup></sup></span>";
             inhibited-none = "";
-            dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-inhibited-notification = " <span foreground='red'><sup></sup></span>";
             dnd-inhibited-none = "";
           };
           return-type = "json";
@@ -194,76 +182,83 @@ in
     ];
     style = concatStrings [
       ''
-        * {
-          font-family: JetBrainsMono Nerd Font Mono;
-          font-size: 16px;
-          border-radius: 0px;
-          border: none;
-          min-height: 0px;
-        }
-        window#waybar {
-          background-color: transparent;
-        }
-        #workspaces {
-          color: #${config.lib.stylix.colors.base00};
-          background: #${config.lib.stylix.colors.base01};
-          margin: 4px;
-          padding: 0px 1px;
-          border-radius: 16px;
-          border: 0px;
-        }
-        #workspaces button {
-          padding: 0px 4px;
-          margin: 4px 3px;
-          border-radius: 16px;
-          border: 0px;
-          color: #${config.lib.stylix.colors.base00};
-          background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
-          opacity: 0.5;
-          transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-        }
-        #workspaces button.active {
-          opacity: 1.0;
-          min-width: 40px;
-        }
-        #workspaces button:hover {
-          opacity: 0.8;
-        }
-        tooltip {
-          background: #${config.lib.stylix.colors.base00};
-          border: 1px solid #${config.lib.stylix.colors.base08};
-          border-radius: 12px;
-        }
-        tooltip label {
-          color: #${config.lib.stylix.colors.base08};
-        }
-        #window, #pulseaudio, #cpu, #memory, #idle_inhibitor,
-        #custom-hyprbindings, #network, #battery,
-        #custom-notification, #tray, #custom-exit {
-          margin: 4px;
-          padding: 2px 16px;
-          background: #${config.lib.stylix.colors.base01};
-          color: #${config.lib.stylix.colors.base08};
-          border-radius: 50px 50px;
-          border-bottom: 2px solid #${config.lib.stylix.colors.base0D};
-        }
-        #custom-startmenu {
-          margin: 0px;
-          color: #${config.lib.stylix.colors.base0D};
-          background: #${config.lib.stylix.colors.base01};
-          font-size: 28px;
-          padding: 0px 30px 0px 15px;
-          border-radius: 0px 0px 40px 0px;
-          border-bottom: 2px solid #${config.lib.stylix.colors.base0D};
-        }
-        #clock {
-          margin: 0px;
-          background: #${config.lib.stylix.colors.base01};
-          color: #${config.lib.stylix.colors.base08};
-          padding: 0px 15px 0px 30px;
-          border-radius: 0px 0px 0px 40px;
-          border-bottom: 2px solid #${config.lib.stylix.colors.base0D};
-        }
+      * {
+        font-family: JetbrainsMono Nerd Font;
+        font-size: 14px;
+        min-height: 0;
+      }
+
+      #waybar {
+        background-color: transparent;
+      }
+
+      #workspaces button {
+        color: #babbf1;
+        padding: 0.3rem;
+      }
+      #workspaces button.active {
+        color: #99d1db;
+      }
+      #workspaces button:hover {
+        color: #85c1dc;
+      }
+
+      #custom-startmenu,
+      #tray,
+      #clock,
+      #battery,
+      #pulseaudio,
+      #cpu,
+      #memory,
+      #idle_inhibitor,
+      #custom-notification,
+      #custom-exit {
+        background-color: transparent;
+        padding: 0rem 0.75rem;
+      }
+
+      #custom-startmenu {
+        color: #2AC3DE;
+        margin-left: 0.5rem;
+      }
+
+      #clock {
+        color: #8caaee;
+      }
+
+      #battery {
+        color: #a6d189;
+      }
+
+      #battery.charging {
+        color: #a6d189;
+      }
+
+      #battery.warning:not(.charging) {
+        color: #e78284;
+      }
+
+      #battery {
+        border-radius: 0;
+      }
+
+      #pulseaudio {
+        color: #ea999c;
+      }
+
+      #custom-exit {
+        color: #e78284;
+        margin-right: 0.5rem;
+      }
+
+      tooltip {
+        background: #1A1B26;
+        border: 1px solid #C0CAF5;
+        border-radius: 12px;
+      }
+      tooltip label {
+        color: #C0CAF5;
+      }
       ''
     ];
   };

@@ -1,4 +1,4 @@
-{ host, keyboardLayout, ... }:
+{ host, ... }:
 {
   # Select internationalisation properties.
   i18n = {
@@ -39,6 +39,4 @@
       }
     })
   '';
-
-  console.keyMap = "${keyboardLayout}";
 }

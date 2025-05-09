@@ -7,5 +7,4 @@
 
   # Program Options
   terminal = "ghostty";
-  keyboardLayout = "us";
 }

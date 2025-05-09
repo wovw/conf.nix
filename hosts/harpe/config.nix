@@ -12,7 +12,7 @@
   ...
 }@args:
 let
-  inherit (import ./variables.nix { inherit pkgs; }) keyboardLayout wallpaper;
+  inherit (import ./variables.nix { inherit pkgs; }) wallpaper;
 in
 {
   nixpkgs.hostPlatform = lib.mkDefault "${system}";
@@ -22,7 +22,7 @@ in
     ../../system/hardware/nvidia-drivers.nix
     ../../system/hardware/nvidia-prime-drivers.nix
     ../../system/hardware/intel-drivers.nix
-    (import ../../system/config/common.nix (args // { inherit keyboardLayout; }))
+    ../../system/config/common.nix
     (import ../../system/config/theme.nix (args // { inherit wallpaper; }))
     ../../system/config/nix.nix
     ../../system/config/programs.nix
