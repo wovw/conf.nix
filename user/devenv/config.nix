@@ -3,6 +3,7 @@
   terminal,
   username,
   host,
+  lib,
   ...
 }:
 {
@@ -76,12 +77,13 @@
           "autoenv"
         ];
       };
-      initExtraFirst = ''
+      initContent = let
+        zshConfigEarlyInit = lib.mkBefore ''
         # autoenv config
         AUTOENV_ENV_FILENAME=".envrc"
         AUTOENV_ASSUME_YES=true
-      '';
-      initExtra = ''
+        '';
+        zshConfig =''
         # Source personal configurations if they exist
         if [ -f $HOME/.zshrc-personal ]; then
           source $HOME/.zshrc-personal
@@ -107,7 +109,10 @@
         }
         zle -N session-widget
         bindkey '^f' session-widget
-      '';
+        '';
+
+      in
+        lib.mkMerge [ zshConfigEarlyInit zshConfig ];
       shellAliases = {
         v = "nvim";
         sv = "sudo nvim";

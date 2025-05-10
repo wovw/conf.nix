@@ -20,7 +20,7 @@
   env = HYPRCURSOR_SIZE,${toString config.stylix.cursor.size}
 
   # hyprshot
-  env = HYPRSHOT_DIR, $XDG_PICTURES_DIR/Screenshots
+  env = HYPRSHOT_DIR, ~/Pictures/Screenshots
 
   # firefox
   env = MOZ_ENABLE_WAYLAND,1

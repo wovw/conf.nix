@@ -85,19 +85,6 @@ in
           format = " {usage:2}%";
           tooltip = true;
         };
-        "network" = {
-          format-icons = [
-            "󰤯"
-            "󰤟"
-            "󰤢"
-            "󰤥"
-            "󰤨"
-          ];
-          format-ethernet = " {bandwidthDownOctets}";
-          format-wifi = "{icon} {signalStrength}%";
-          format-disconnected = "󰤮";
-          tooltip = false;
-        };
         "tray" = {
           spacing = 10;
         };
@@ -175,7 +162,6 @@ in
             "󰂂"
             "󰁹"
           ];
-          on-click = "";
           tooltip = false;
         };
       }

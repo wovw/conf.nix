@@ -34,6 +34,7 @@
       hyprland.enable = false;
       tmux.enable = false;
       neovim.enable = false;
+      starship.enable = false;
     };
     iconTheme = {
       enable = true;
