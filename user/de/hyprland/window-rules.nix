@@ -74,4 +74,7 @@
   windowrulev2 = stayfocused, title:^()$,class:^(steam)$
   windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
   windowrulev2 = float, class:^([Ss]team)$,title:^((?![Ss]team).*|[Ss]team [Ss]ettings)$
+
+  # center all floating windows
+  windowrulev2 = center, floating:1
 ''
