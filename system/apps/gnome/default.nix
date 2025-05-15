@@ -1,4 +1,4 @@
-{ ... }@args:
+{ pkgs, ... }@args:
 {
   programs.dconf.enable = true;
   imports = [
@@ -7,4 +7,7 @@
 
   security.pam.services.login.enableGnomeKeyring = true;
   services.gnome.gnome-keyring.enable = true;
+  environment.systemPackages = with pkgs; [
+    seahorse
+  ];
 }

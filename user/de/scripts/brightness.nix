@@ -6,7 +6,6 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [
     brightnessctl
     ddcutil
-    libnotify
     coreutils
     gnused
   ];
@@ -14,7 +13,6 @@ pkgs.writeShellApplication {
   text = ''
     # Script for Monitor brightness
 
-    iDIR="$HOME/.config/swaync/icons"
     step=10  # INCREASE/DECREASE BY THIS VALUE
     EXTERNAL_MONITOR_BUS="8"  # From `ddcutil detect` output
     EXTERNAL_MONITOR_BUS_2="11"  # From `ddcutil detect` output
@@ -24,31 +22,11 @@ pkgs.writeShellApplication {
         brightnessctl -m | cut -d, -f4 | sed 's/%//'
     }
 
-    # Get icons
-    get_icon() {
-        local current
-        current=$(get_laptop_backlight)
-        if   [ "$current" -le "20" ]; then
-            icon="$iDIR/brightness-20.png"
-        elif [ "$current" -le "40" ]; then
-            icon="$iDIR/brightness-40.png"
-        elif [ "$current" -le "60" ]; then
-            icon="$iDIR/brightness-60.png"
-        elif [ "$current" -le "80" ]; then
-            icon="$iDIR/brightness-80.png"
-        else
-            icon="$iDIR/brightness-100.png"
-        fi
-    }
-
-    # Notify
-    notify_user() {
-        notify-send -e \
-          -h string:x-canonical-private-synchronous:brightness_notif \
-          -h "int:value:$1" \
-          -u low \
-          -i "$icon" \
-          "Brightness : $1%"
+    # Get brightness as JSON for waybar
+    get_brightness_json() {
+        local brightness
+        brightness=$(get_laptop_backlight)
+        echo "{\"text\": \"$brightness\", \"percentage\": $brightness, \"percent\": $brightness}"
     }
 
     # Change brightness for all displays
@@ -83,15 +61,11 @@ pkgs.writeShellApplication {
           --bus "$EXTERNAL_MONITOR_BUS_2" \
           --noverify || true \
           --sleep-multiplier .1
-
-        get_icon "$new_brightness"
-        notify_user "$new_brightness"
     }
 
-    # Execute accordingly
     case "$1" in
         "--get")
-            get_laptop_backlight
+            get_brightness_json
             ;;
         "--inc")
             change_backlight "+"
@@ -100,7 +74,8 @@ pkgs.writeShellApplication {
             change_backlight "-"
             ;;
         *)
-            get_laptop_backlight
+            echo "Usage: brightness-control [--get|--inc|--dec]"
+            exit 1
             ;;
     esac
   '';

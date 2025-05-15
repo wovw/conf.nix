@@ -10,6 +10,7 @@ let
   wlogout = pkgs.callPackage ./wlogout/launcher.nix { };
   rofi = pkgs.callPackage ./rofi/launcher.nix { };
   swaync = pkgs.callPackage ./swaync/launcher.nix { };
+  backlight = pkgs.callPackage ./scripts/brightness.nix { };
 in
 {
   programs.waybar = {
@@ -27,6 +28,7 @@ in
         modules-center= ["clock"];
         modules-right= [
           "idle_inhibitor"
+          "custom/brightness"
           "pulseaudio"
           "battery"
           "cpu"
@@ -164,6 +166,14 @@ in
           ];
           tooltip = false;
         };
+        "custom/brightness" = {
+          format = "☀ {}%";
+          exec = "${backlight}/bin/brightness-control --get";
+          interval = 60;
+          on-scroll-up = "${backlight}/bin/brightness-control --inc";
+          on-scroll-down = "${backlight}/bin/brightness-control --dec";
+          return-type = "json";
+        };
       }
     ];
     style = concatStrings [
@@ -194,6 +204,7 @@ in
       #clock,
       #battery,
       #pulseaudio,
+      #custom-brightness,
       #cpu,
       #memory,
       #idle_inhibitor,
@@ -230,6 +241,10 @@ in
 
       #pulseaudio {
         color: #ea999c;
+      }
+
+      #custom-brightness {
+        color: #f9e2af;
       }
 
       #custom-exit {

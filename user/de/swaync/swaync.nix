@@ -1,10 +1,6 @@
 { config, ... }:
 
 {
-  xdg.configFile."swaync/icons" = {
-    source = ./icons;
-    recursive = true;
-  };
   xdg.configFile."swaync/config.json".text = ''
     {
       "$schema": "/etc/xdg/swaync/configSchema.json",
