@@ -22,13 +22,6 @@ pkgs.writeShellApplication {
         brightnessctl -m | cut -d, -f4 | sed 's/%//'
     }
 
-    # Get brightness as JSON for waybar
-    get_brightness_json() {
-        local brightness
-        brightness=$(get_laptop_backlight)
-        echo "{\"text\": \"$brightness\", \"percentage\": $brightness, \"percent\": $brightness}"
-    }
-
     # Change brightness for all displays
     change_backlight() {
         current_brightness=$(get_laptop_backlight)
@@ -64,9 +57,6 @@ pkgs.writeShellApplication {
     }
 
     case "$1" in
-        "--get")
-            get_brightness_json
-            ;;
         "--inc")
             change_backlight "+"
             ;;
@@ -74,7 +64,7 @@ pkgs.writeShellApplication {
             change_backlight "-"
             ;;
         *)
-            echo "Usage: brightness-control [--get|--inc|--dec]"
+            echo "Usage: brightness-control [--inc|--dec]"
             exit 1
             ;;
     esac

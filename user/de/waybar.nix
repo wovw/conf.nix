@@ -28,7 +28,7 @@ in
         modules-center= ["clock"];
         modules-right= [
           "idle_inhibitor"
-          "custom/brightness"
+          "backlight"
           "pulseaudio"
           "battery"
           "cpu"
@@ -166,13 +166,10 @@ in
           ];
           tooltip = false;
         };
-        "custom/brightness" = {
+        "backlight" = {
           format = "☀ {}%";
-          exec = "${backlight}/bin/brightness-control --get";
-          interval = 60;
           on-scroll-up = "${backlight}/bin/brightness-control --inc";
           on-scroll-down = "${backlight}/bin/brightness-control --dec";
-          return-type = "json";
         };
       }
     ];
@@ -204,7 +201,7 @@ in
       #clock,
       #battery,
       #pulseaudio,
-      #custom-brightness,
+      #backlight,
       #cpu,
       #memory,
       #idle_inhibitor,
@@ -216,7 +213,6 @@ in
 
       #custom-startmenu {
         color: #2AC3DE;
-        margin-left: 0.5rem;
       }
 
       #clock {
@@ -243,7 +239,7 @@ in
         color: #ea999c;
       }
 
-      #custom-brightness {
+      #backlight {
         color: #f9e2af;
       }
 
