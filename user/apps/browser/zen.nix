@@ -2,7 +2,7 @@
 { inputs, system, ... }:
 {
   imports = [
-    inputs.zen-browser.homeModules.twilight
+    inputs.zen-browser.homeModules.beta
   ];
   programs.zen-browser = {
     enable = true;
@@ -33,7 +33,7 @@
             inherit name;
             value =
               let
-                zen-browser = inputs.zen-browser.packages.${system}.twilight;
+                zen-browser = inputs.zen-browser.packages.${system}.beta;
               in
               zen-browser.meta.desktopFile;
           })

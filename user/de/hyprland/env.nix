@@ -12,7 +12,7 @@
   env = QT_SCALE_FACTOR, 1
   env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
   env = XDG_CURRENT_DESKTOP, Hyprland
-  env = XDG_SESSION_TYPE, Hyprland
+  env = XDG_SESSION_TYPE, wayland
   env = XDG_SESSION_DESKTOP, Hyprland
 
   # hyprcursor
