@@ -75,6 +75,7 @@
           "git"
           "fzf"
           "autoenv"
+          "zoxide"
         ];
       };
       initContent = let
@@ -82,6 +83,9 @@
         # autoenv config
         AUTOENV_ENV_FILENAME=".envrc"
         AUTOENV_ASSUME_YES=true
+
+        # zoxide alias
+        ZOXIDE_CMD_OVERRIDE="cd"
         '';
         zshConfig =''
         # Source personal configurations if they exist
