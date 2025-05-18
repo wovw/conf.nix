@@ -12,7 +12,11 @@
     swaynotificationcenter
     wev
     kdePackages.xwaylandvideobridge
+
     normcap
+    grim # wayland support for normcap
+
+    wl-clipboard
     ifuse
     libimobiledevice
     cliphist
@@ -20,7 +24,6 @@
     hyprshot
     hyprland-qtutils
     wl-mirror
-    wl-clipboard
   ];
 
   programs.hyprland.enable = true;
