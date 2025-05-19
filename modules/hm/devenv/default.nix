@@ -29,7 +29,7 @@
     ./ghostty.nix
     ./neovim.nix
     ./starship.nix
-    ./yazi/yazi.nix
+    ./yazi/default.nix
   ];
 
   home.sessionVariables = {

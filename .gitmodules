@@ -1,3 +1,3 @@
-[submodule "user/devenv/nvim"]
-	path = user/devenv/nvim
-	url = https://github.com/wovw/init.lua.git
+[submodule "modules/hm/devenv/nvim"]
+	path = modules/hm/devenv/nvim
+	url = git@github.com:wovw/init.lua.git

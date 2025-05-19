@@ -1,7 +1,5 @@
 { config, ... }:
 {
-  # OBS installed via home-manager
-
   boot = {
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     kernelModules = [

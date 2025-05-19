@@ -1,9 +1,15 @@
 {
+  username,
   gitUsername,
   gitEmail,
   ...
 }:
 {
+  home = {
+    username = "${username}";
+    homeDirectory = "/home/${username}";
+  };
+
   programs = {
     home-manager.enable = true;
     btop = {

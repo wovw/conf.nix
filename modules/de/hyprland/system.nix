@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./lock/system.nix
+  ];
 
   environment.systemPackages = with pkgs; [
     libnotify

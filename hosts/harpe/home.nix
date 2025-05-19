@@ -15,9 +15,8 @@ in
 
   # Import Program Configurations
   imports = [
-    ../../user/config.nix
-    (import ../../user/devenv/config.nix (args // { inherit terminal pkgs; }))
-    ../../user/programs/ssh.nix
-    (import ../../user/programs/common.nix (args // { inherit gitUsername gitEmail; }))
+    (import ../../modules/hm/config.nix (args // { inherit gitUsername gitEmail; }))
+    (import ../../modules/hm/devenv/default.nix (args // { inherit terminal pkgs; }))
+    ../../modules/ssh/hm.nix
   ];
 }

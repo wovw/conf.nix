@@ -12,7 +12,7 @@ config,
 with lib;
 {
   imports = [
-    ./lock.nix
+    ../lock/hm.nix
   ];
   services = {
     hyprpaper.enable = true; # config in stylix
@@ -42,7 +42,7 @@ with lib;
               ;
             })
             }
-            ${(import ./startup.nix { })}
+            ${builtins.readFile ./startup.conf}
             ${builtins.readFile ./decor.conf}
             ${
             (import ./keybinds.nix {
@@ -54,7 +54,7 @@ with lib;
               ;
             })
             }
-            ${ (import ./settings.nix {}) }
+            ${builtins.readFile ./settings.conf}
             ${
             (import ./window-rules.nix {
               inherit EXTERNAL INTERNAL;

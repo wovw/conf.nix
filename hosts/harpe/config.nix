@@ -19,13 +19,13 @@ in
 
   imports = [
     ./users.nix
-    ../../system/hardware/nvidia-drivers.nix
-    ../../system/hardware/nvidia-prime-drivers.nix
-    ../../system/hardware/intel-drivers.nix
-    ../../system/config/common.nix
-    (import ../../system/config/theme.nix (args // { inherit wallpaper; }))
-    ../../system/config/nix.nix
-    ../../system/config/programs.nix
+    ../../modules/system/hardware/nvidia-drivers.nix
+    ../../modules/system/hardware/nvidia-prime-drivers.nix
+    ../../modules/system/hardware/intel-drivers.nix
+    ../../modules/system/config/common.nix
+    (import ../../modules/system/config/theme.nix (args // { inherit wallpaper; }))
+    ../../modules/system/config/nix.nix
+    ../../modules/system/config/programs.nix
   ];
 
   # This value determines the NixOS release from which the default

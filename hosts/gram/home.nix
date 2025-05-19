@@ -16,9 +16,9 @@ in
 
   # Import Program Configurations
   imports = [
-    ../../user/config.nix
-    (import ../../user/devenv/config.nix (args // { inherit terminal pkgs; }))
-    (import ../../user/de/config.nix (
+    (import ../../modules/hm/config.nix (args // { inherit gitUsername gitEmail; }))
+    (import ../../modules/hm/devenv/default.nix (args // { inherit terminal pkgs; }))
+    (import ../../modules/de/hm.nix (
       args
       // {
         inherit
@@ -28,16 +28,12 @@ in
           ;
       }
     ))
-    ../../user/apps/winapps/config.nix
-    ../../user/apps/easyeffects/config.nix
-    ../../user/apps/browser/zen.nix
-    ../../user/apps/input-remapper.nix
-    ../../user/apps/gimp.nix
-    ../../user/programs/ssh.nix
-    (import ../../user/programs/common.nix (args // { inherit gitUsername gitEmail; }))
+    ../../modules/hm/apps/winapps/default.nix
+    ../../modules/hm/apps/easyeffects/config.nix
+    ../../modules/hm/apps/browser/zen.nix
+    ../../modules/hm/apps/input-remapper.nix
+    ../../modules/hm/apps/gimp.nix
+    ../../modules/ssh/hm.nix
+    ../../modules/obs/hm.nix
   ];
-
-  programs = {
-    obs-studio.enable = true;
-  };
 }

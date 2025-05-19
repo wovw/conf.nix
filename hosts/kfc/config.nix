@@ -10,14 +10,14 @@ in
   imports = [
     ./hardware.nix
     ./users.nix
-    ../../system/hardware/amd-drivers.nix
-    ../../system/config/common.nix
-    (import ../../system/config/theme.nix (args // { inherit wallpaper; }))
-    ../../system/config/nix.nix
-    ../../system/config/programs.nix
-    ../../system/config/openssh.nix
-    ../../system/config/de/default.nix
-    ../../system/config/de/greetd-direct.nix
+    ../../modules/system/hardware/amd-drivers.nix
+    ../../modules/system/config/common.nix
+    (import ../../modules/system/config/theme.nix (args // { inherit wallpaper; }))
+    ../../modules/system/config/nix.nix
+    ../../modules/system/config/programs.nix
+    ../../modules/de/hyprland/system.nix
+    ../../modules/de/greetd/direct.nix
+    ../../modules/ssh/system.nix
   ];
 
   boot = {

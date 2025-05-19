@@ -43,8 +43,8 @@ in
           google-chrome
           qbittorrent
           spotify
-          (callPackage ../../user/apps/xmcl.nix { })
-          (callPackage ../../user/apps/lunar.nix { })
+          (callPackage ../../modules/hm/apps/xmcl.nix { })
+          (callPackage ../../modules/hm/apps/lunar.nix { })
           yt-dlp
           qalculate-gtk
         ];

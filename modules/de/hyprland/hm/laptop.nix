@@ -5,8 +5,8 @@
   EXTERNAL,
 }:
 let
-  brightness = pkgs.callPackage ../scripts/brightness.nix { };
-  toggleMirror = pkgs.callPackage ../scripts/toggle-mirror.nix { inherit INTERNAL EXTERNAL; };
+  brightness = pkgs.callPackage ../../scripts/brightness.nix { };
+  toggleMirror = pkgs.callPackage ../../scripts/toggle-mirror.nix { inherit INTERNAL EXTERNAL; };
 in
 ''
   # https://wiki.hyprland.org/Configuring/Monitors/

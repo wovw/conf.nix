@@ -5,10 +5,10 @@
   terminal,
 }:
 let
-  rofi = "${pkgs.callPackage ../rofi/launcher.nix { }}/bin/rofi-launcher";
-  swaync = "${pkgs.callPackage ../swaync/launcher.nix { }}/bin/swaync-launcher";
-  wlogout = "${pkgs.callPackage ../wlogout/launcher.nix { }}/bin/wlogout-launcher";
-  clipboard = "${pkgs.callPackage ../rofi/clipboard.nix { }}/bin/clip-manager";
+  rofi = "${pkgs.callPackage ../../rofi/launcher.nix { }}/bin/rofi-launcher";
+  swaync = "${pkgs.callPackage ../../swaync/launcher.nix { }}/bin/swaync-launcher";
+  wlogout = "${pkgs.callPackage ../../wlogout/launcher.nix { }}/bin/wlogout-launcher";
+  clipboard = "${pkgs.callPackage ../../rofi/clipboard.nix { }}/bin/clip-manager";
 in
 ''
   $mainMod=${modifier}

@@ -16,9 +16,9 @@ in
 
   # Import Program Configurations
   imports = [
-    ../../user/config.nix
-    (import ../../user/devenv/config.nix (args // { inherit terminal pkgs; }))
-    (import ../../user/de/config.nix (
+    (import ../../modules/hm/config.nix (args // { inherit gitUsername gitEmail; }))
+    (import ../../modules/hm/devenv/default.nix (args // { inherit terminal pkgs; }))
+    (import ../../modules/de/modules/hm.nix (
       args
       // {
         inherit
@@ -28,8 +28,7 @@ in
           ;
       }
     ))
-    ../../user/apps/browser/zen.nix
-    ../../user/programs/ssh.nix
-    (import ../../user/programs/common.nix (args // { inherit gitUsername gitEmail; }))
+    ../../modules/hm/apps/browser/zen.nix
+    ../../modules/ssh/hm.nix
   ];
 }
