@@ -13,7 +13,7 @@ in
 ''
   $mainMod=${modifier}
 
-  bind = ${modifier}SHIFT,Return,exec,${rofi}
+  bind = ${modifier},Space,exec,${rofi}
   bind = ${modifier},Return,exec,${terminal}
   bind = ${modifier},T,exec,${terminal} -e yazi
   bind = ${modifier}, B, exec, pkill -SIGUSR1 waybar
