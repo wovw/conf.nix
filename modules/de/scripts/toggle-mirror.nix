@@ -1,7 +1,6 @@
 {
   pkgs,
   INTERNAL,
-  EXTERNAL,
 }:
 
 pkgs.writeShellApplication {
@@ -15,7 +14,7 @@ pkgs.writeShellApplication {
     if pgrep wl-mirror >/dev/null; then
         pkill wl-mirror
     else
-        wl-present mirror ${INTERNAL} --fullscreen-output ${EXTERNAL} --fullscreen
+        wl-present mirror ${INTERNAL} -F
     fi
   '';
 }

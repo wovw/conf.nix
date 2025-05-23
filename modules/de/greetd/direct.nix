@@ -6,8 +6,13 @@
     settings = {
       default_session = {
         user = username;
-        command = "Hyprland"; # start a wayland session directly without a login manager
+        # start Hyprland without login
+        command = "uwsm start hyprland-uwsm.desktop";
       };
     };
   };
+
+  imports = [
+    ./user.nix
+  ];
 }

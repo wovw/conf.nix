@@ -18,7 +18,7 @@ in
   imports = [
     (import ../../modules/hm/config.nix (args // { inherit gitUsername gitEmail; }))
     (import ../../modules/hm/devenv/default.nix (args // { inherit terminal pkgs; }))
-    (import ../../modules/de/modules/hm.nix (
+    (import ../../modules/de/hm.nix (
       args
       // {
         inherit

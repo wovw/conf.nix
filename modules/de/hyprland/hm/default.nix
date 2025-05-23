@@ -22,8 +22,7 @@ with lib;
     enable = true;
     xwayland.enable = true;
     systemd = {
-      enable = true;
-      variables = [ "--all" ];
+      enable = false; # uwsm
     };
     extraConfig =
       let
@@ -31,15 +30,14 @@ with lib;
       in
         concatStrings [
           ''
+            $EXTERNAL = ${EXTERNAL}
             ${import ./env.nix { inherit config; }}
             ${
             (import ./laptop.nix {
               inherit
               pkgs
               modifier
-              EXTERNAL
-              INTERNAL
-              ;
+              INTERNAL;
             })
             }
             ${builtins.readFile ./startup.conf}
@@ -50,16 +48,11 @@ with lib;
               pkgs
               modifier
               host
-              terminal
-              ;
+              terminal;
             })
             }
             ${builtins.readFile ./settings.conf}
-            ${
-            (import ./window-rules.nix {
-              inherit EXTERNAL INTERNAL;
-            })
-            }
+            ${builtins.readFile ./window-rules.conf}
           ''
         ];
   };

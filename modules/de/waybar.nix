@@ -1,8 +1,6 @@
 {
   pkgs,
   lib,
-  INTERNAL,
-  EXTERNAL,
   ...
 }:
 with lib;
@@ -18,10 +16,6 @@ in
     package = pkgs.waybar;
     settings = [
       {
-        output = [
-          INTERNAL
-          EXTERNAL
-        ];
         layer = "top";
         position = "top";
         modules-left= ["custom/startmenu" "hyprland/workspaces"];

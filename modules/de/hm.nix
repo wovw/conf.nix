@@ -16,7 +16,7 @@
   imports = [
     (import ./rofi/config.nix (args))
     (import ./hyprland/hm/default.nix (args))
-    (import ./waybar.nix (args))
+    ./waybar.nix
     ./swaync/config.nix
     ./wlogout/config.nix
   ];

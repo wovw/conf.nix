@@ -21,8 +21,8 @@
     mysql-workbench
     pgadmin4
     pscale
-    (import ./bin/tmux-sessionizer.nix { inherit pkgs; })
-    (import ./bin/rebuild.nix { inherit pkgs username host; })
+    (import ./scripts/tmux-sessionizer.nix { inherit pkgs; })
+    (import ./scripts/rebuild.nix { inherit pkgs username host; })
   ];
 
   imports = [
