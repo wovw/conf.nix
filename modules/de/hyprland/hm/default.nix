@@ -22,7 +22,7 @@ with lib;
     enable = true;
     xwayland.enable = true;
     systemd = {
-      enable = false; # uwsm
+      enable = false; # using uwsm instead
     };
     extraConfig =
       let

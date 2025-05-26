@@ -1,13 +1,12 @@
-{ pkgs, wallpaper, ... }:
-{
+{ pkgs, wallpaper, ... }: {
   stylix = {
     enable = true;
     image = wallpaper;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
     polarity = "dark";
     cursor = {
-      name = "catppuccin-mocha-dark-cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "Bibata-Original-Classic";
+      package = pkgs.bibata-cursors;
       size = 16;
     };
     fonts = {

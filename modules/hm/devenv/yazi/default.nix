@@ -4,7 +4,7 @@
 }:
 {
   home.packages = with pkgs; [
-    xdragon
+    ripdrag
   ];
 
   programs.yazi = {
@@ -99,7 +99,7 @@
         }
         {
           on = [ "<C-n>" ];
-          run = "shell 'dragon -x -i -T \"%1\"'";
+          run = "shell 'ripdrag \"$@\" -x 2>/dev/null &' --confirm";
         }
       ];
     };
