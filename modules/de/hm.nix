@@ -8,11 +8,6 @@
     };
   };
 
-  home.sessionVariables = {
-    # for pavucontrol in wl
-    GDK_DISABLE = "vulkan";
-  };
-
   imports = [
     (import ./rofi/config.nix (args))
     (import ./hyprland/hm/default.nix (args))

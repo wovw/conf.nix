@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     sccache
     nodejs_22
+    pnpm
     python312
     uv
     go
@@ -33,7 +34,6 @@
   ];
 
   home.sessionVariables = {
-    MANPAGER = "nvim +Man!";
     TERMINAL = "${terminal}";
     TERMCMD = "${terminal}";
 

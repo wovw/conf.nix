@@ -1,14 +1,14 @@
 {
-  lib,
-  pkgs,
-  config,
-  ...
+lib,
+pkgs,
+config,
+...
 }:
 with lib;
 let
   cfg = config.drivers.nvidia;
 in
-{
+  {
   options.drivers.nvidia = {
     enable = mkEnableOption "Enable Nvidia Drivers";
   };
@@ -21,9 +21,6 @@ in
         "nvidia_uvm"
         "nvidia_modeset"
       ];
-      extraModprobeConfig = ''
-        options nvidia_drm modeset=1 fbdev=1
-      '';
     };
 
     services.xserver.videoDrivers = [ "nvidia" ];
@@ -42,11 +39,13 @@ in
     hardware.nvidia = {
       # Modesetting is required.
       modesetting.enable = true;
-      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-      powerManagement.enable = true;
-      # Fine-grained power management. Turns off GPU when not in use.
-      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-      powerManagement.finegrained = true;
+      powerManagement = {
+        # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+        enable = true;
+        # Fine-grained power management. Turns off GPU when not in use.
+        # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+        finegrained = true;
+      };
       # Use the NVidia open source kernel module (not to be confused with the
       # independent third-party "nouveau" open source driver).
       # Support is limited to the Turing and later architectures. Full list of
@@ -54,7 +53,7 @@ in
       # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
       # Only available from driver 515.43.04+
       # Currently alpha-quality/buggy, so false is currently the recommended setting.
-      open = false;
+      open = true;
       # Enable the Nvidia settings menu,
       # accessible via `nvidia-settings`.
       nvidiaSettings = true;

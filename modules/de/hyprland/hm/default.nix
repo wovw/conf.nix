@@ -5,7 +5,6 @@ pkgs,
 INTERNAL,
 EXTERNAL,
 terminal,
-config,
 ...
 }:
 
@@ -13,6 +12,7 @@ with lib;
 {
   imports = [
     ../lock/hm.nix
+    ./env.nix
   ];
   services = {
     hyprpaper.enable = true; # config in stylix
@@ -31,7 +31,6 @@ with lib;
         concatStrings [
           ''
             $EXTERNAL = ${EXTERNAL}
-            ${import ./env.nix { inherit config; }}
             ${
             (import ./laptop.nix {
               inherit

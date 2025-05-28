@@ -20,13 +20,16 @@ in
     };
   };
 
+  # https://wiki.nixos.org/wiki/NVIDIA
   config = mkIf cfg.enable {
     hardware.nvidia = {
       prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
+        # offload = {
+        #   enable = true;
+        #   enableOffloadCmd = true;
+        # };
+        reverseSync.enable = true;
+
         # lspci | grep -e VGA -e 3D
         intelBusId = "${cfg.intelBusID}";
         nvidiaBusId = "${cfg.nvidiaBusID}";

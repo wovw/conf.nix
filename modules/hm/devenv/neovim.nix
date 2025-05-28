@@ -1,22 +1,29 @@
 {
-  pkgs,
-  config,
-  inputs,
-  ...
+pkgs,
+config,
+inputs,
+...
 }:
 {
-  home.packages = with pkgs; [
-    tree-sitter
+  home = {
+    packages = with pkgs; [
+      tree-sitter
 
-    # build avante
-    gnumake
-    gcc
+      # build avante
+      gnumake
+      gcc
 
-    lua51Packages.lua
-    lua51Packages.luarocks
+      lua51Packages.lua
+      lua51Packages.luarocks
 
-    nixfmt-rfc-style # nix formatting
-  ];
+      nixfmt-rfc-style # nix formatting
+    ];
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      MANPAGER = "nvim +Man!";
+    };
+  };
 
   programs = {
     neovim = {
