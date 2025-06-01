@@ -1,4 +1,5 @@
-{ pkgs, wallpaper, ... }: {
+{ pkgs, wallpaper }:
+{
   stylix = {
     enable = true;
     image = wallpaper;

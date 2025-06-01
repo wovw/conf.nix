@@ -5,7 +5,7 @@
 }:
 
 let
-  inherit (import ./variables.nix { inherit pkgs; }) gitUsername;
+  inherit (import ./variables.nix) gitUsername;
 in
 {
   services.userborn.enable = true;

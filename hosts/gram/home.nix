@@ -1,5 +1,4 @@
 {
-  pkgs,
   ...
 }@args:
 let
@@ -22,7 +21,6 @@ in
       args
       // {
         inherit
-          pkgs
           terminal
           INTERNAL
           EXTERNAL

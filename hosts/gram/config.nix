@@ -16,7 +16,7 @@ in
     ../../modules/system/hardware/intel-drivers.nix
     ../../modules/system/config/virtualization.nix
     ../../modules/system/config/common.nix
-    (import ../../modules/system/config/theme.nix (args // { inherit wallpaper; }))
+    (import ../../modules/system/config/theme.nix ({ inherit pkgs wallpaper; }))
     ../../modules/system/config/nix.nix
     ../../modules/system/config/programs.nix
     ../../modules/system/config/resolved.nix

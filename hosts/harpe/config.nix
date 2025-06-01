@@ -10,9 +10,9 @@
   pkgs,
   system,
   ...
-}@args:
+}:
 let
-  inherit (import ./variables.nix { inherit pkgs; }) wallpaper;
+  inherit (import ./variables.nix) wallpaper;
 in
 {
   nixpkgs.hostPlatform = lib.mkDefault "${system}";
@@ -23,7 +23,7 @@ in
     ../../modules/system/hardware/nvidia-prime-drivers.nix
     ../../modules/system/hardware/intel-drivers.nix
     ../../modules/system/config/common.nix
-    (import ../../modules/system/config/theme.nix (args // { inherit wallpaper; }))
+    (import ../../modules/system/config/theme.nix ({ inherit pkgs wallpaper; }))
     ../../modules/system/config/nix.nix
     ../../modules/system/config/programs.nix
   ];

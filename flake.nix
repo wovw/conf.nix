@@ -66,6 +66,7 @@
           modules = [
             ./hosts/${host}/config.nix
             stylix.nixosModules.stylix
+            nix-index-database.nixosModules.nix-index
             (
               { pkgs, ... }:
               {
@@ -83,22 +84,26 @@
               }
             )
             home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                extraSpecialArgs = {
-                  inherit
-                    username
-                    inputs
-                    host
-                    system
-                    ;
+            (
+              { pkgs, ... }:
+              {
+                home-manager = {
+                  extraSpecialArgs = {
+                    inherit
+                      pkgs
+                      username
+                      inputs
+                      host
+                      system
+                      ;
+                  };
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "backup";
+                  users.${username}.imports = [ ./hosts/${host}/home.nix ];
                 };
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                backupFileExtension = "backup";
-                users.${username} = import ./hosts/${host}/home.nix;
-              };
-            }
+              }
+            )
           ] ++ modules;
         };
     in
@@ -109,7 +114,6 @@
           system = "x86_64-linux";
           username = "wovw";
           modules = [
-            nix-index-database.nixosModules.nix-index
             (
               { ... }:
               {
@@ -125,7 +129,6 @@
           system = "x86_64-linux";
           username = "wovw";
           modules = [
-            nix-index-database.nixosModules.nix-index
             nixos-wsl.nixosModules.default
             {
               system.stateVersion = "24.05";
@@ -138,9 +141,6 @@
           host = "kfc";
           system = "x86_64-linux";
           username = "krispy";
-          modules = [
-            nix-index-database.nixosModules.nix-index
-          ];
         };
       };
     };

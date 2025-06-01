@@ -69,45 +69,49 @@
           "zoxide"
         ];
       };
-      initContent = let
-        zshConfigEarlyInit = lib.mkBefore ''
-        # autoenv config
-        AUTOENV_ENV_FILENAME=".envrc"
-        AUTOENV_ASSUME_YES=true
+      initContent =
+        let
+          zshConfigEarlyInit = lib.mkBefore ''
+            # autoenv config
+            AUTOENV_ENV_FILENAME=".envrc"
+            AUTOENV_ASSUME_YES=true
 
-        # zoxide alias
-        ZOXIDE_CMD_OVERRIDE="cd"
-        '';
-        zshConfig =''
-        # Source personal configurations if they exist
-        if [ -f $HOME/.zshrc-personal ]; then
-          source $HOME/.zshrc-personal
-        fi
-
-        eval "$(uv generate-shell-completion zsh)"
-        eval "$(uvx --generate-shell-completion zsh)"
-
-        function y() {
-            local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-            yazi "$@" --cwd-file="$tmp"
-            if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-                builtin cd -- "$cwd"
+            # zoxide alias
+            ZOXIDE_CMD_OVERRIDE="cd"
+          '';
+          zshConfig = ''
+            # Source personal configurations if they exist
+            if [ -f $HOME/.zshrc-personal ]; then
+              source $HOME/.zshrc-personal
             fi
-            rm -f -- "$tmp"
-        }
 
-        function session-widget() {
-            # Preserve terminal context by using zsh's BUFFER
-            BUFFER="tmux-sessionizer"
-            # Execute the command
-            zle accept-line
-        }
-        zle -N session-widget
-        bindkey '^f' session-widget
-        '';
+            eval "$(uv generate-shell-completion zsh)"
+            eval "$(uvx --generate-shell-completion zsh)"
 
-      in
-        lib.mkMerge [ zshConfigEarlyInit zshConfig ];
+            function y() {
+                local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+                yazi "$@" --cwd-file="$tmp"
+                if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+                    builtin cd -- "$cwd"
+                fi
+                rm -f -- "$tmp"
+            }
+
+            function session-widget() {
+                # Preserve terminal context by using zsh's BUFFER
+                BUFFER="tmux-sessionizer"
+                # Execute the command
+                zle accept-line
+            }
+            zle -N session-widget
+            bindkey '^f' session-widget
+          '';
+
+        in
+        lib.mkMerge [
+          zshConfigEarlyInit
+          zshConfig
+        ];
       shellAliases = {
         v = "nvim";
         sv = "sudo nvim";
