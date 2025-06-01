@@ -5,6 +5,7 @@
 ```sh
 nix repl ~/conf.nix#nixosConfigurations.{hostname}.config
 ```
+
 ```sh
 journalctl -b --user -u {service-name} -f
 ```
@@ -26,15 +27,17 @@ journalctl -b --user -u {service-name} -f
   - follow <https://nix-community.github.io/NixOS-WSL/how-to/change-username.html>
 - set NixOS as default distro to prevent startup errors (`wsl -s NixOS`)
 - `git clone --recurse-submodules --remote-submodules https://github.com/wovw/conf.nix.git`
-- set username and hostname in `flake.nix` `outputs`
-  - if changing hostname, change foldername in `hosts` folder
+- set username and hostname in `flake.nix` `nixosConfigurations.{hostname}`
+  - if changing hostname, change folder's name in `hosts` folder
 - change variables in `hosts/{hostname}/variables.nix`
 - ensure all changes are tracked in git (e.g. `git add .`)
-- `cd ~/conf.nix && sudo nixos-rebuild boot --flake .#{insert_hostname}` and follow the above link to restart NixOS
+  - push, replace https remote with ssh remote in git and `.gitmodules`, etc
+- `cd ~/conf.nix && sudo nixos-rebuild boot --flake .#{hostname}` and follow the above install link to restart NixOS
 
 ## References
 
 - nixos config
+
   - <https://github.com/Zaney/zaneyos>
   - <https://github.com/librephoenix/nixos-config>
 
