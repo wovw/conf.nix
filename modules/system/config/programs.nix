@@ -42,6 +42,5 @@
   services = {
     tzupdate.enable = true;
     upower.enable = true;
-    resolved.enable = true;
   };
 }

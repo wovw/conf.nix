@@ -25,7 +25,7 @@ pkgs,
         owner = "Rolv-Apneseth";
         repo = "starship.yazi";
         rev = "master";
-        sha256 = "sha256-XiEsykudwYmwSNDO41b5layP1DqVa89e6Emv9Qf0mz0=";
+        sha256 = "sha256-YkDkMC2SJIfpKrt93W/v5R3wOrYcat7QTbPrWqIKXG8=";
       };
       smart-paste = ./plugins/smart-paste.yazi;
       arrow = ./plugins/arrow.yazi;

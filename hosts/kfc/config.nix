@@ -15,6 +15,7 @@ in
     (import ../../modules/system/config/theme.nix (args // { inherit wallpaper; }))
     ../../modules/system/config/nix.nix
     ../../modules/system/config/programs.nix
+    ../../modules/system/config/resolved.nix
     ../../modules/de/hyprland/system.nix
     ../../modules/de/greetd/direct.nix
     ../../modules/ssh/system.nix

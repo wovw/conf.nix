@@ -19,6 +19,7 @@ in
     (import ../../modules/system/config/theme.nix (args // { inherit wallpaper; }))
     ../../modules/system/config/nix.nix
     ../../modules/system/config/programs.nix
+    ../../modules/system/config/resolved.nix
     ../../modules/system/apps/gaming.nix
     (import ../../modules/system/apps/gnome/default.nix (args // { inherit terminal; }))
     ../../modules/de/hyprland/system.nix

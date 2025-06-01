@@ -17,10 +17,6 @@
     tokei
     repomix
     jdk23
-    code-cursor
-    yaak
-    mysql-workbench
-    pgadmin4
     pscale
     (import ./scripts/tmux-sessionizer.nix { inherit pkgs; })
     (import ./scripts/rebuild.nix { inherit pkgs username host; })

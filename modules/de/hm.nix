@@ -20,21 +20,4 @@
     source = ./wallpapers;
     recursive = true;
   };
-
-  # theme
-  stylix = {
-    targets = {
-      waybar.enable = false;
-      rofi.enable = false;
-      hyprland.enable = false;
-      tmux.enable = false;
-      neovim.enable = false;
-      starship.enable = false;
-    };
-    iconTheme = {
-      enable = true;
-      package = pkgs.papirus-icon-theme;
-      dark = "Papirus-Dark";
-    };
-  };
 }
