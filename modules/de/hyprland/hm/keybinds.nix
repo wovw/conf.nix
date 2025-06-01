@@ -16,7 +16,7 @@ in
   bind = ${modifier},Space,exec,${rofi}
   bind = ${modifier},Return,exec,uwsm app -- ${terminal}
   bind = ${modifier},T,exec,uwsm app -- ${terminal} -e yazi
-  bind = ${modifier}, B, exec, pkill -SIGUSR1 waybar
+  bind = ${modifier}, B, exec, pidof waybar >/dev/null && pkill -SIGUSR1 waybar || waybar &
   bind = ${modifier}SHIFT,N,exec, ${swaync}
 
   bind = CTRL ALT, Delete, exec, hyprctl dispatch exit 0

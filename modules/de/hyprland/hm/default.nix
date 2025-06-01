@@ -21,9 +21,7 @@ with lib;
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    systemd = {
-      enable = false; # using uwsm instead
-    };
+    systemd.enable = false; # using uwsm instead
     extraConfig =
       let
         modifier = "SUPER";
