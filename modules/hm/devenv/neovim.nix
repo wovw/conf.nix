@@ -7,6 +7,7 @@ inputs,
 {
   home = {
     packages = with pkgs; [
+      lazygit
       tree-sitter
 
       # build avante

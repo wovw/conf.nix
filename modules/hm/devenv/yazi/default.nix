@@ -1,6 +1,6 @@
 {
-  pkgs,
-  ...
+pkgs,
+...
 }:
 {
   home.packages = with pkgs; [
@@ -51,6 +51,16 @@
 
     keymap = {
       manager.prepend_keymap = [
+        {
+          on = [ "Q" ];
+          run = "quit";
+          desc = "Quit the process";
+        }
+        {
+          on = [ "q" ];
+          run = "quit --no-cwd-file";
+          desc = "Quit without outputting cwd-file";
+        }
         {
           on = [
             "p"
