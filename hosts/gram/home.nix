@@ -17,17 +17,19 @@ in
   # Import Program Configurations
   imports = [
     (import ../../modules/hm/config.nix (args // { inherit gitUsername gitEmail; }))
-    (import ../../modules/hm/devenv/default.nix (args // { inherit terminal pkgs; }))
+    ../../modules/hm/devenv/default.nix
     (import ../../modules/de/hm.nix (
       args
       // {
         inherit
+          pkgs
           terminal
           INTERNAL
           EXTERNAL
           ;
       }
     ))
+    ../../modules/hm/apps/ghostty.nix
     ../../modules/hm/apps/winapps/default.nix
     ../../modules/hm/apps/easyeffects/config.nix
     ../../modules/hm/apps/browser/zen.nix

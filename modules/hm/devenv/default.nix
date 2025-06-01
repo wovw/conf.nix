@@ -1,6 +1,5 @@
 {
   pkgs,
-  terminal,
   username,
   host,
   lib,
@@ -23,16 +22,12 @@
   ];
 
   imports = [
-    ./ghostty.nix
     ./neovim.nix
     ./starship.nix
     ./yazi/default.nix
   ];
 
   home.sessionVariables = {
-    TERMINAL = "${terminal}";
-    TERMCMD = "${terminal}";
-
     RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
 
     # Go
