@@ -95,6 +95,7 @@ in
         libimobiledevice
       ];
     };
+    kdeconnect.enable = true;
   };
 
   environment = {

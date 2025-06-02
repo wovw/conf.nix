@@ -40,10 +40,10 @@ in
           (callPackage ../../modules/hm/apps/lunar.nix { })
           yt-dlp
           qalculate-gtk
-	  code-cursor
-	  yaak
-	  mysql-workbench
-	  pgadmin4
+          code-cursor
+          yaak
+          mysql-workbench
+          pgadmin4
         ];
         openssh.authorizedKeys.keys = [ ];
       };

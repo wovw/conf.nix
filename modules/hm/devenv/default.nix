@@ -39,6 +39,13 @@
   };
 
   programs = {
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+      options = [
+        "--cmd cd"
+      ];
+    };
     zsh = {
       enable = true;
       autosuggestion.enable = true;
@@ -66,7 +73,6 @@
           "git"
           "fzf"
           "autoenv"
-          "zoxide"
         ];
       };
       initContent =
@@ -75,9 +81,6 @@
             # autoenv config
             AUTOENV_ENV_FILENAME=".envrc"
             AUTOENV_ASSUME_YES=true
-
-            # zoxide alias
-            ZOXIDE_CMD_OVERRIDE="cd"
           '';
           zshConfig = ''
             # Source personal configurations if they exist

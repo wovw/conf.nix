@@ -29,7 +29,6 @@
     tree
     glib
     fzf
-    zoxide
     zip
     fastfetch
     jq
