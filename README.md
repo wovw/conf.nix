@@ -16,7 +16,6 @@ journalctl -b --user -u {service-name} -f
 - `sudo passwd {username}` to change password
 - github repos
 - rclone
-- winapps
 
 ## wsl setup
 

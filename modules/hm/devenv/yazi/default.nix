@@ -1,6 +1,6 @@
 {
-pkgs,
-...
+  pkgs,
+  ...
 }:
 {
   home.packages = with pkgs; [
@@ -11,7 +11,7 @@ pkgs,
     enable = true;
 
     settings = {
-      manager = {
+      mgr = {
         show_hidden = true;
       };
       preview = {
@@ -50,7 +50,7 @@ pkgs,
     initLua = ./init.lua;
 
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           on = [ "Q" ];
           run = "quit";
