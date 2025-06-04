@@ -64,6 +64,9 @@
           updateRefs = "true";
         };
         pull.rebase = "true";
+
+        submodule.recurse = "true";
+        push.recurseSubmodules = "on-demand";
       };
     };
   };
