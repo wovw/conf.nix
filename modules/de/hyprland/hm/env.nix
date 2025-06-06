@@ -38,6 +38,6 @@
     export HYPRCURSOR_SIZE=${toString config.stylix.cursor.size}
 
     # hyprshot
-    export HYPRSHOT_DIR=~/Pictures/Screenshots
+    export HYPRSHOT_DIR=Pictures/Screenshots
   '';
 }
