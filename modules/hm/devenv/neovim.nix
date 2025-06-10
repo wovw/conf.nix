@@ -1,8 +1,8 @@
 {
-pkgs,
-config,
-inputs,
-...
+  pkgs,
+  config,
+  inputs,
+  ...
 }:
 {
   home = {
@@ -10,14 +10,10 @@ inputs,
       lazygit
       tree-sitter
 
-      # build avante
-      gnumake
-      gcc
-
       lua51Packages.lua
       lua51Packages.luarocks
 
-      nixfmt-rfc-style # nix formatting
+      nixfmt-rfc-style
     ];
 
     sessionVariables = {

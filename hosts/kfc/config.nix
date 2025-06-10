@@ -71,7 +71,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    gnumake
     networkmanagerapplet
     playerctl
     imv

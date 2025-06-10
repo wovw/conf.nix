@@ -1,11 +1,11 @@
 {
-lib,
-host,
-pkgs,
-INTERNAL,
-EXTERNAL,
-terminal,
-...
+  lib,
+  host,
+  pkgs,
+  INTERNAL,
+  EXTERNAL,
+  terminal,
+  ...
 }:
 
 with lib;
@@ -26,31 +26,33 @@ with lib;
       let
         modifier = "SUPER";
       in
-        concatStrings [
-          ''
-            $EXTERNAL = ${EXTERNAL}
-            ${
+      concatStrings [
+        ''
+          $EXTERNAL = ${EXTERNAL}
+          ${
             (import ./laptop.nix {
               inherit
-              pkgs
-              modifier
-              INTERNAL;
+                pkgs
+                modifier
+                INTERNAL
+                ;
             })
-            }
-            ${builtins.readFile ./startup.conf}
-            ${builtins.readFile ./decor.conf}
-            ${
+          }
+          ${builtins.readFile ./startup.conf}
+          ${builtins.readFile ./decor.conf}
+          ${
             (import ./keybinds.nix {
               inherit
-              pkgs
-              modifier
-              host
-              terminal;
+                pkgs
+                modifier
+                host
+                terminal
+                ;
             })
-            }
-            ${builtins.readFile ./settings.conf}
-            ${builtins.readFile ./window-rules.conf}
-          ''
-        ];
+          }
+          ${builtins.readFile ./settings.conf}
+          ${builtins.readFile ./window-rules.conf}
+        ''
+      ];
   };
 }

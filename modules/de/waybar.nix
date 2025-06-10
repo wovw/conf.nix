@@ -18,9 +18,12 @@ in
       {
         layer = "top";
         position = "top";
-        modules-left= ["custom/startmenu" "hyprland/workspaces"];
-        modules-center= ["clock"];
-        modules-right= [
+        modules-left = [
+          "custom/startmenu"
+          "hyprland/workspaces"
+        ];
+        modules-center = [ "clock" ];
+        modules-right = [
           "idle_inhibitor"
           "backlight"
           "pulseaudio"
@@ -169,87 +172,87 @@ in
     ];
     style = concatStrings [
       ''
-      * {
-        font-family: JetbrainsMono Nerd Font;
-        font-size: 14px;
-        min-height: 0;
-      }
+        * {
+          font-family: JetbrainsMono Nerd Font;
+          font-size: 14px;
+          min-height: 0;
+        }
 
-      #waybar {
-        background-color: transparent;
-      }
+        #waybar {
+          background-color: transparent;
+        }
 
-      #workspaces button {
-        color: #babbf1;
-        padding: 0.3rem;
-      }
-      #workspaces button.active {
-        color: #99d1db;
-      }
-      #workspaces button:hover {
-        color: #85c1dc;
-      }
+        #workspaces button {
+          color: #babbf1;
+          padding: 0.3rem;
+        }
+        #workspaces button.active {
+          color: #99d1db;
+        }
+        #workspaces button:hover {
+          color: #85c1dc;
+        }
 
-      #custom-startmenu,
-      #tray,
-      #clock,
-      #battery,
-      #pulseaudio,
-      #backlight,
-      #cpu,
-      #memory,
-      #idle_inhibitor,
-      #custom-notification,
-      #custom-exit {
-        background-color: transparent;
-        padding: 0rem 0.75rem;
-      }
+        #custom-startmenu,
+        #tray,
+        #clock,
+        #battery,
+        #pulseaudio,
+        #backlight,
+        #cpu,
+        #memory,
+        #idle_inhibitor,
+        #custom-notification,
+        #custom-exit {
+          background-color: transparent;
+          padding: 0rem 0.75rem;
+        }
 
-      #custom-startmenu {
-        color: #2AC3DE;
-      }
+        #custom-startmenu {
+          color: #2AC3DE;
+        }
 
-      #clock {
-        color: #8caaee;
-      }
+        #clock {
+          color: #8caaee;
+        }
 
-      #battery {
-        color: #a6d189;
-      }
+        #battery {
+          color: #a6d189;
+        }
 
-      #battery.charging {
-        color: #a6d189;
-      }
+        #battery.charging {
+          color: #a6d189;
+        }
 
-      #battery.warning:not(.charging) {
-        color: #e78284;
-      }
+        #battery.warning:not(.charging) {
+          color: #e78284;
+        }
 
-      #battery {
-        border-radius: 0;
-      }
+        #battery {
+          border-radius: 0;
+        }
 
-      #pulseaudio {
-        color: #ea999c;
-      }
+        #pulseaudio {
+          color: #ea999c;
+        }
 
-      #backlight {
-        color: #f9e2af;
-      }
+        #backlight {
+          color: #f9e2af;
+        }
 
-      #custom-exit {
-        color: #e78284;
-        margin-right: 0.5rem;
-      }
+        #custom-exit {
+          color: #e78284;
+          margin-right: 0.5rem;
+        }
 
-      tooltip {
-        background: #1A1B26;
-        border: 1px solid #C0CAF5;
-        border-radius: 12px;
-      }
-      tooltip label {
-        color: #C0CAF5;
-      }
+        tooltip {
+          background: #1A1B26;
+          border: 1px solid #C0CAF5;
+          border-radius: 12px;
+        }
+        tooltip label {
+          color: #C0CAF5;
+        }
       ''
     ];
   };

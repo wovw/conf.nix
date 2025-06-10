@@ -78,7 +78,11 @@
       rofi.enable = false;
       hyprland.enable = false;
       tmux.enable = false;
-      neovim.enable = false; # https://github.com/nix-community/home-manager/issues/5175#issuecomment-2227203880
+
+      # https://github.com/nix-community/home-manager/issues/5175#issuecomment-2227203880
+      neovim.enable = false;
+      neovide.enable = false;
+
       starship.enable = false;
     };
     iconTheme = {

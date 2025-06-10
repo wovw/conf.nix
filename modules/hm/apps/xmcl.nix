@@ -5,10 +5,10 @@
 with pkgs;
 let
   pname = "xmcl";
-  version = "0.48.5";
+  version = "0.51.1";
   src = fetchurl {
     url = "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v${version}/${pname}-${version}-x86_64.AppImage";
-    hash = "sha256-+nOpgln5MTDr+0QPjbxzv0gPIUbW82Ow3GirK3CO5oE=";
+    hash = "sha256-dhptGQNKjeCHBkuSCbkcrYJ/F/rx2HicRfAES5VWaxM=";
   };
   appimageContents = appimageTools.extractType2 { inherit pname src version; };
 

@@ -20,8 +20,8 @@
         name = "Montserrat";
       };
       serif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.noto-fonts-cjk-serif;
+        name = "Noto Serif";
       };
       sizes = {
         applications = 12;

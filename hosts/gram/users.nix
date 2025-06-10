@@ -38,7 +38,6 @@ in
           spotify
           (callPackage ../../modules/hm/apps/xmcl.nix { })
           (callPackage ../../modules/hm/apps/lunar.nix { })
-          yt-dlp
           qalculate-gtk
           code-cursor
           yaak
