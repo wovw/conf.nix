@@ -38,7 +38,7 @@ with lib;
                 ;
             })
           }
-          ${builtins.readFile ./startup.conf}
+          ${import ./startup.nix { inherit pkgs; }}
           ${builtins.readFile ./decor.conf}
           ${
             (import ./keybinds.nix {
