@@ -29,6 +29,7 @@ in
 
     nixpkgs.config.packageOverrides = pkgs: {
       btop = pkgs.btop.override { rocmSupport = true; };
+      obs-studio = pkgs.obs-studio.override { rocmSupport = true; };
     };
 
     # Force radv

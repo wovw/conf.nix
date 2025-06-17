@@ -14,15 +14,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    boot = {
-      kernelModules = [
-        "nvidia"
-        "nvidia_drm"
-        "nvidia_uvm"
-        "nvidia_modeset"
-      ];
-    };
-
     services.xserver.videoDrivers = [ "nvidia" ];
 
     # OpenGL
@@ -63,6 +54,7 @@ in
 
     nixpkgs.config.packageOverrides = pkgs: {
       btop = pkgs.btop.override { cudaSupport = true; };
+      obs-studio = pkgs.obs-studio.override { cudaSupport = true; };
     };
   };
 }

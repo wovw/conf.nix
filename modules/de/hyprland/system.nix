@@ -69,6 +69,7 @@
         TimeoutStopSec = 5;
         KillMode = "mixed";
       };
+      "NetworkManager-wait-online".enable = false; # don't wait for network on startup
     };
   };
 

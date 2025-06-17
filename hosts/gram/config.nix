@@ -20,11 +20,11 @@ in
     ../../modules/system/config/nix.nix
     ../../modules/system/config/programs.nix
     ../../modules/system/config/resolved.nix
+    ../../modules/system/apps/obs.nix
     ../../modules/system/apps/gaming.nix
     (import ../../modules/system/apps/gnome/default.nix (args // { inherit terminal; }))
     ../../modules/de/hyprland/system.nix
     ../../modules/de/greetd/login.nix
-    ../../modules/obs/system.nix
   ];
 
   boot = {
@@ -41,7 +41,6 @@ in
     ];
     kernelModules = [
       "uinput"
-      "i2c-dev"
     ];
     # Bootloader
     loader = {
@@ -50,6 +49,7 @@ in
         editor = false;
         configurationLimit = 10;
       };
+      timeout = 1;
       efi.canTouchEfiVariables = true;
     };
     # Make /tmp a tmpfs
@@ -117,14 +117,12 @@ in
       mpv
       clinfo
       vulkan-tools
-      input-remapper
     ];
   };
 
   # Services to start
   services = {
     libinput.enable = true;
-    input-remapper.enable = true;
     fstrim.enable = true;
     flatpak.enable = true;
     printing = {

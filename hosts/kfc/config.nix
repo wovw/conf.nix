@@ -35,7 +35,6 @@ in
     ];
     kernelModules = [
       "uinput"
-      "i2c-dev"
     ];
     # Bootloader
     loader = {

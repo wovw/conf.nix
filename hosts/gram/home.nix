@@ -29,9 +29,7 @@ in
     ))
     ../../modules/hm/apps/ghostty.nix
     ../../modules/hm/apps/browser/zen.nix
-    ../../modules/hm/apps/input-remapper.nix
     ../../modules/hm/apps/gimp.nix
     ../../modules/ssh/hm.nix
-    ../../modules/obs/hm.nix
   ];
 }
