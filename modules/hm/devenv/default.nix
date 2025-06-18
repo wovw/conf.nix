@@ -39,6 +39,11 @@
   };
 
   programs = {
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
     zoxide = {
       enable = true;
       enableZshIntegration = true;
@@ -55,33 +60,16 @@
         ignoreAllDups = true;
         expireDuplicatesFirst = true;
       };
-      plugins = [
-        {
-          name = "autoenv";
-          src = pkgs.fetchFromGitHub {
-            owner = "hyperupcall";
-            repo = "autoenv";
-            rev = "master";
-            sha256 = "sha256-vZrsMPhuu+xPVAww04nKyoOl7k0upvpIaxeMrCikDio=";
-          };
-        }
-      ];
       oh-my-zsh = {
         enable = true;
         theme = "robbyrussell";
         plugins = [
           "git"
           "fzf"
-          "autoenv"
         ];
       };
       initContent =
         let
-          zshConfigEarlyInit = lib.mkBefore ''
-            # autoenv config
-            AUTOENV_ENV_FILENAME=".envrc"
-            AUTOENV_ASSUME_YES=true
-          '';
           zshConfig = ''
             # Source personal configurations if they exist
             if [ -f $HOME/.zshrc-personal ]; then
@@ -112,7 +100,6 @@
 
         in
         lib.mkMerge [
-          zshConfigEarlyInit
           zshConfig
         ];
       shellAliases = {
