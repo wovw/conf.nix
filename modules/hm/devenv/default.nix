@@ -11,6 +11,7 @@
     nodejs_22
     pnpm
     python312
+    zig
     uv
     go
     tokei

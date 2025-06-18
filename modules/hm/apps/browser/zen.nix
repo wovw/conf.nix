@@ -17,6 +17,11 @@
       DontCheckDefaultBrowser = true;
       NoDefaultBookmarks = true;
       OfferToSaveLogins = false;
+      Preferences = {
+        "browser.cache.disk.enable".Value = false;
+        "browser.cache.memory.enable".Value = true;
+        "browser.cache.memory.capacity".Value = 1000000; # 1 MB
+      };
     };
   };
 

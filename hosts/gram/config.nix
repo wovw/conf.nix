@@ -39,6 +39,13 @@ in
         };
       }
     ];
+    # https://wiki.nixos.org/wiki/Swap#Zswap_swap_cache
+    kernelParams = [
+      "zswap.enabled=1" # enables zswap
+      "zswap.compressor=lz4" # compression algorithm
+      "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
+    ];
+    initrd.systemd.enable = true; # required for `lz4` compression
     kernelModules = [
       "uinput"
     ];
@@ -50,7 +57,6 @@ in
         configurationLimit = 10;
       };
       timeout = 1;
-      efi.canTouchEfiVariables = true;
     };
     # Make /tmp a tmpfs
     tmp = {
