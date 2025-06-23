@@ -43,6 +43,8 @@ in
           yaak
           mysql-workbench
           pgadmin4
+          yt-dlp
+          gptfdisk
         ];
         openssh.authorizedKeys.keys = [ ];
       };

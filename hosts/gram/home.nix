@@ -28,6 +28,7 @@ in
       }
     ))
     ../../modules/hm/apps/ghostty.nix
+    ../../modules/hm/apps/winapps/default.nix
     ../../modules/hm/apps/browser/zen.nix
     ../../modules/hm/apps/gimp.nix
     ../../modules/ssh/hm.nix

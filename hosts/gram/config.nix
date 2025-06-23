@@ -57,6 +57,7 @@ in
         configurationLimit = 10;
       };
       timeout = 1;
+      efi.canTouchEfiVariables = true;
     };
     # Make /tmp a tmpfs
     tmp = {
@@ -116,6 +117,7 @@ in
       pkgs.zsh # add to /etc/shells
     ];
     systemPackages = with pkgs; [
+      lz4 # for zswap
       appimage-run
       networkmanagerapplet
       playerctl
