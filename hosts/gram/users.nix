@@ -41,8 +41,6 @@ in
           qalculate-gtk
           code-cursor
           yaak
-          mysql-workbench
-          pgadmin4
           yt-dlp
           gptfdisk
         ];

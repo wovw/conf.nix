@@ -13,7 +13,7 @@ pkgs.writeShellApplication {
   text = ''
     # Script for Monitor brightness
 
-    step=10  # INCREASE/DECREASE BY THIS VALUE
+    step=1 # INCREASE/DECREASE BY THIS VALUE
 
     # From `ddcutil detect` output, possible bus numbers of external monitor
     EXTERNAL_MONITOR_BUS="8"
@@ -37,8 +37,8 @@ pkgs.writeShellApplication {
         fi
 
         # Ensure new brightness is within valid range
-        if (( new_brightness < 10 )); then
-            new_brightness=10
+        if (( new_brightness < step )); then
+            new_brightness=step
         elif (( new_brightness > 100 )); then
             new_brightness=100
         fi

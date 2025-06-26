@@ -18,10 +18,11 @@ journalctl -b --user -u {service-name} -f
 - rclone
 - [winapps](https://github.com/winapps-org/winapps)
   - reset: `podman compose --file ~/.config/winapps/compose.yaml down --rmi=all --volumes`
-  - install: `podman compose --file ~/.config/winapps/compose.yaml up -d`, windows will be available at `http://127.0.0.1:8006`
+  - install: `podman compose --file ~/.config/winapps/compose.yaml up -d`, windows will be available at `http://127.0.0.1:8006`, sign out
   - [changing `compose.yaml`](https://github.com/winapps-org/winapps/blob/main/docs/docker.md#changing-composeyaml)
   - `podman-compose --file ~/.config/winapps/compose.yaml start`
-  - `winapps-setup` -> launch windows from rofi
+  - `winapps-setup` to install windows
+  - directly start windows through rofi after boot
 
 ## wsl setup
 
