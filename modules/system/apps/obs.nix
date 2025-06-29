@@ -1,6 +1,6 @@
 { ... }:
 {
   programs.obs-studio = {
-    enable = true;
+    enable = false;
   };
 }
