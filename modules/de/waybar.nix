@@ -56,7 +56,7 @@ in
         };
         "clock" = {
           interval = 1;
-          format = " {:L%I:%M:%S %p}";
+          format = " {:%d -  %I:%M:%S %p}";
           format-alt = " {:%H:%M:%S   %Y, %d %B, %A}";
           tooltip = true;
           tooltip-format = "<tt><small>{calendar}</small></tt>";
