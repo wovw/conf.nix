@@ -19,7 +19,7 @@
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
-        font = "JetBrainsMono Nerd Font Mono 12";
+        font = "${config.stylix.fonts.monospace.name} ${toString config.stylix.fonts.sizes.applications}";
         drun-display-format = "{icon} {name}";
         display-combi = " 🖥️ ";
         display-drun = "";
@@ -211,7 +211,7 @@
           };
           "element-text" = {
             background-color = mkLiteral "transparent";
-            font = "JetBrainsMono Nerd Font Mono 12";
+            font = "${config.stylix.fonts.monospace.name} ${toString config.stylix.fonts.sizes.popups}";
             text-color = mkLiteral "inherit";
             cursor = mkLiteral "inherit";
             vertical-align = mkLiteral "0.5";

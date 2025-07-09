@@ -47,7 +47,7 @@
     ];
     style = ''
       * {
-        font-family: "JetBrainsMono NF", FontAwesome, sans-serif;
+        font-family: "${config.stylix.fonts.monospace.name}", FontAwesome, sans-serif;
       	background-image: none;
       	transition: 20ms;
       }

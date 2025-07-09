@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 with lib;
@@ -173,7 +174,7 @@ in
     style = concatStrings [
       ''
         * {
-          font-family: JetbrainsMono Nerd Font;
+          font-family: ${config.stylix.fonts.monospace.name};
           font-size: 14px;
           min-height: 0;
         }

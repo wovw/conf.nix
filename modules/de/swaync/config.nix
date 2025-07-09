@@ -62,7 +62,7 @@
   '';
   xdg.configFile."swaync/style.css".text = ''
     * {
-      font-family: JetBrainsMono Nerd Font Mono;
+      font-family: ${config.stylix.fonts.monospace.name};
       font-weight: bold;
     }
     .control-center .notification-row:focus,

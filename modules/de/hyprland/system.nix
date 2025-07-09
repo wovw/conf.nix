@@ -14,7 +14,6 @@
     alsa-utils
     swaynotificationcenter
     wev
-    kdePackages.xwaylandvideobridge
 
     normcap
     grim # wayland support for normcap
