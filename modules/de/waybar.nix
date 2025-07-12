@@ -162,7 +162,7 @@ in
             "󰂂"
             "󰁹"
           ];
-          tooltip = false;
+          tooltip = true;
         };
         "backlight" = {
           format = "☀ {}%";
