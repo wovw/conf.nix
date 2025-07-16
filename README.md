@@ -16,6 +16,7 @@ journalctl -b --user -u {service-name} -f
 - `sudo passwd {username}` to change password
 - github repos
 - rclone
+  - `rclone bisync` for gdrive things, use `--resync` initially
 - [winapps](https://github.com/winapps-org/winapps)
   - reset: `podman compose --file ~/.config/winapps/compose.yaml down --rmi=all --volumes`
   - install: `podman compose --file ~/.config/winapps/compose.yaml up -d`, windows will be available at `http://127.0.0.1:8006`, sign out
