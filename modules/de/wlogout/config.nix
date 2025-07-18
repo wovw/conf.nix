@@ -22,7 +22,7 @@
       }
       {
         label = "logout";
-        action = "hyprctl dispatch exit";
+        action = "uwsm stop"; # https://wiki.hypr.land/Configuring/Dispatchers/#list-of-dispatchers
         text = "Exit";
         keybind = "e";
       }

@@ -50,8 +50,8 @@
       mkHostConfig =
         {
           host,
-          system,
           username,
+          system ? "x86_64-linux",
           modules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
@@ -111,7 +111,6 @@
       nixosConfigurations = {
         gram = mkHostConfig {
           host = "gram";
-          system = "x86_64-linux";
           username = "wovw";
           modules = [
             (
@@ -126,7 +125,6 @@
         };
         harpe = mkHostConfig rec {
           host = "harpe";
-          system = "x86_64-linux";
           username = "wovw";
           modules = [
             nixos-wsl.nixosModules.default
@@ -139,7 +137,6 @@
         };
         kfc = mkHostConfig {
           host = "kfc";
-          system = "x86_64-linux";
           username = "krispy";
         };
       };
