@@ -47,12 +47,6 @@
       enable = true;
       package = pkgs.usbmuxd2;
     };
-    # to make hyprland / hypridle work
-    logind = {
-      powerKeyLongPress = "poweroff";
-      powerKey = "suspend";
-      lidSwitch = "ignore";
-    };
     pipewire = {
       enable = true;
       alsa.enable = true;
