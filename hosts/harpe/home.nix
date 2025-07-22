@@ -1,4 +1,6 @@
 {
+  pkgs,
+  host,
   ...
 }@args:
 let
@@ -11,7 +13,8 @@ in
   # Import Program Configurations
   imports = [
     (import ../../modules/hm/config.nix (args // { inherit gitUsername gitEmail; }))
+    (import ../../modules/theme/hm.nix { inherit pkgs; })
+    (import ../../modules/ssh/hm.nix { inherit host; })
     ../../modules/hm/devenv/default.nix
-    ../../modules/ssh/hm.nix
   ];
 }
