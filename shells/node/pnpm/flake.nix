@@ -21,16 +21,11 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nodejs_22
-            (pnpm.override {
-              version = "10.6.1";
-              hash = "sha256-gSBIRaOWliqcS0nMLWyvu0mnWGUtPCQ/ISjLxjgIT+I=";
-            })
+            pnpm
             zsh
           ];
 
           shellHook = ''
-            export VERCEL_ENV=development
-
             exec zsh
           '';
         };

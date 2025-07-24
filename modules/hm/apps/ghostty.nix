@@ -17,5 +17,7 @@
     confirm-close-surface = false
     window-decoration = none
     theme = tokyonight
+
+    keybind = ctrl+enter=ignore
   '';
 }

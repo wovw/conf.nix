@@ -1,8 +1,8 @@
-{ pkgs, ... }@args:
+{ pkgs, ... }:
 {
   programs.dconf.enable = true;
   imports = [
-    (import ./nautilus.nix (args))
+    (import ./nautilus.nix ({ inherit pkgs; }))
   ];
 
   security.pam.services.login.enableGnomeKeyring = true;

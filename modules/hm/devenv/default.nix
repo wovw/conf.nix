@@ -80,15 +80,6 @@
             eval "$(uv generate-shell-completion zsh)"
             eval "$(uvx --generate-shell-completion zsh)"
 
-            function y() {
-                local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-                yazi "$@" --cwd-file="$tmp"
-                if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-                    builtin cd -- "$cwd"
-                fi
-                rm -f -- "$tmp"
-            }
-
             function session-widget() {
                 # Preserve terminal context by using zsh's BUFFER
                 BUFFER="tmux-sessionizer"
@@ -98,7 +89,6 @@
             zle -N session-widget
             bindkey '^f' session-widget
           '';
-
         in
         lib.mkMerge [
           zshConfig
@@ -139,9 +129,6 @@
         set -g allow-passthrough on
         set -ga update-environment TERM
         set -ga update-environment TERM_PROGRAM
-
-        # image.nvim
-        set -g visual-activity off
 
         # Shift Alt vim keys to switch windows
         bind -n M-H previous-window

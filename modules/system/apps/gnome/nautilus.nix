@@ -1,4 +1,4 @@
-{ pkgs, terminal, ... }:
+{ pkgs }:
 {
   environment = {
     systemPackages = with pkgs; [
@@ -8,10 +8,7 @@
     ];
     pathsToLink = [ "/share/thumbnailers" ];
   };
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    inherit terminal;
-  };
+  programs.nautilus-open-any-terminal.enable = true;
   services = {
     gnome.sushi.enable = true;
     gvfs.enable = true;

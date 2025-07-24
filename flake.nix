@@ -104,7 +104,8 @@
                 };
               }
             )
-          ] ++ modules;
+          ]
+          ++ modules;
         };
     in
     {

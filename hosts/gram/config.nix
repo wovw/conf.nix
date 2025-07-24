@@ -3,9 +3,9 @@
   username,
   options,
   ...
-}@args:
+}:
 let
-  inherit (import ./variables.nix) wallpaper terminal;
+  inherit (import ./variables.nix) wallpaper;
 in
 {
   imports = [
@@ -22,7 +22,7 @@ in
     ../../modules/system/config/resolved.nix
     ../../modules/system/apps/obs.nix
     ../../modules/system/apps/gaming.nix
-    (import ../../modules/system/apps/gnome/default.nix (args // { inherit terminal; }))
+    ../../modules/system/apps/gnome/default.nix
     ../../modules/de/hyprland/system.nix
     ../../modules/de/greetd/login.nix
   ];
