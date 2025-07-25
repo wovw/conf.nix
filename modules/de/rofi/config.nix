@@ -28,10 +28,10 @@
         run-command = "uwsm app -- {cmd}";
 
         # vim keybindings
-        kb-row-up = "Up,Control+k";
+        kb-row-up = "Up,Control+p";
         kb-row-left = "Left,Control+h";
         kb-row-right = "Right,Control+l";
-        kb-row-down = "Down,Control+j";
+        kb-row-down = "Down,Control+n";
         kb-accept-entry = "Control+z,Control+y,Return,KP_Enter";
 
         # fixing up
