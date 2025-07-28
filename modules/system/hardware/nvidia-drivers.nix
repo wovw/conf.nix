@@ -14,6 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    # https://wiki.nixos.org/wiki/NVIDIA#Kernel_modules_from_NVIDIA
     services.xserver.videoDrivers = [ "nvidia" ];
 
     # OpenGL
@@ -21,7 +22,7 @@ in
       enable = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-        egl-wayland
+        egl-wayland # https://wiki.hypr.land/Nvidia/#further-installation
         libvdpau
         libGL
       ];

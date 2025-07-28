@@ -14,8 +14,8 @@ in
   $mainMod=${modifier}
 
   bind = ${modifier},Space,exec,${rofi}
-  bind = ${modifier},Return,exec,uwsm app -- ${terminal}
-  bind = ${modifier},T,exec,uwsm app -- ${terminal} -e yazi
+  bind = ${modifier},Return,exec,${terminal}
+  bind = ${modifier},T,exec,${terminal} -e yazi
   bind = ${modifier}, B, exec, pidof waybar >/dev/null && pkill -SIGUSR1 waybar || waybar &
   bind = ${modifier}SHIFT,N,exec, ${swaync}
 

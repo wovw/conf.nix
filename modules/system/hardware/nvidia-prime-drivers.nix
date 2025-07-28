@@ -26,9 +26,9 @@ in
       prime = {
         # offload = {
         #   enable = true;
-        #   enableOffloadCmd = true;
+        #   enableOffloadCmd = true; # use with `nvidia-offload` command to start specific apps with dGPU
         # };
-        reverseSync.enable = true;
+        reverseSync.enable = true; # always use dGPU
 
         # lspci | grep -e VGA -e 3D
         intelBusId = "${cfg.intelBusID}";

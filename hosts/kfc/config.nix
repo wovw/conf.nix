@@ -10,6 +10,7 @@ in
   imports = [
     ./hardware.nix
     ./users.nix
+    ../../modules/system/hardware/tools.nix
     ../../modules/system/hardware/amd-drivers.nix
     ../../modules/system/config/common.nix
     (import ../../modules/theme/system.nix ({ inherit pkgs wallpaper; }))
@@ -73,9 +74,6 @@ in
     networkmanagerapplet
     playerctl
     imv
-    mpv
-    clinfo
-    vulkan-tools
   ];
 
   # Services to start

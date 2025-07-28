@@ -11,9 +11,11 @@ in
   imports = [
     ./hardware.nix
     ./users.nix
+    ../../modules/system/hardware/tools.nix
     ../../modules/system/hardware/nvidia-drivers.nix
     ../../modules/system/hardware/nvidia-prime-drivers.nix
     ../../modules/system/hardware/intel-drivers.nix
+    ../../modules/system/hardware/mouse.nix
     ../../modules/system/config/virtualization.nix
     ../../modules/system/config/common.nix
     (import ../../modules/theme/system.nix ({ inherit pkgs wallpaper; }))
@@ -122,9 +124,6 @@ in
       networkmanagerapplet
       playerctl
       imv
-      mpv
-      clinfo
-      vulkan-tools
     ];
   };
 

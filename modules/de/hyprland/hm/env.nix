@@ -4,7 +4,6 @@
     # hyprland
     export SDL_VIDEODRIVER=wayland
     export CLUTTER_BACKEND=wayland
-    export GDK_DISABLE=vulkan
     export GDK_BACKEND=wayland,x11,*
     export QT_AUTO_SCREEN_SCALE_FACTOR=1
     export QT_QPA_PLATFORM=wayland;xcb

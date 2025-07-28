@@ -12,6 +12,6 @@ pkgs.writeShellApplication {
       pkill -x rofi
       exit 0
     fi
-    uwsm app -- rofi -show drun -modi drun,run,emoji
+    rofi -show drun -modi drun,run,emoji
   '';
 }

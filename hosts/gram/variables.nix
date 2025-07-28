@@ -6,5 +6,5 @@
   gitEmail = "anthonypasala12@gmail.com";
 
   # Program Options
-  terminal = "ghostty +new-window";
+  terminal = "ghostty";
 }

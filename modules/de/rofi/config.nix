@@ -25,7 +25,6 @@
         display-drun = "";
         display-run = "";
         display-emoji = "👀";
-        run-command = "uwsm app -- {cmd}";
 
         # vim keybindings
         kb-row-up = "Up,Control+p";

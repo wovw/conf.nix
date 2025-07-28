@@ -6,5 +6,5 @@
   gitEmail = "vskrishan@tamu.edu";
 
   # Program Options
-  terminal = "ghostty +new-window";
+  terminal = "ghostty";
 }
