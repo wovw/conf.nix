@@ -2,11 +2,12 @@
   inputs,
   system,
   config,
+  pkgs,
   ...
 }:
 {
   home.packages = [
-    inputs.ghostty.packages."${system}".default
+    pkgs.ghostty
   ];
   xdg.configFile."ghostty/config".text = ''
     background = 000000
