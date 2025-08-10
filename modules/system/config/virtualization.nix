@@ -27,4 +27,6 @@
       backend = "podman";
     };
   };
+
+  hardware.nvidia-container-toolkit.enable = true;
 }
