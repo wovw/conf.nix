@@ -1,5 +1,6 @@
 {
   pkgs,
+  username,
   ...
 }:
 {
@@ -27,6 +28,10 @@
       backend = "podman";
     };
   };
+  users.extraUsers."${username}".extraGroups = [
+    "podman"
+    "libvirtd" # https://wiki.nixos.org/wiki/OSX-KVM
+  ];
 
   hardware.nvidia-container-toolkit.enable = true;
 }
