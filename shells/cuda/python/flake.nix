@@ -58,8 +58,6 @@
 
           # jupyter setup
           uv add --dev ipykernel
-
-          exec zsh
         '';
       };
     };

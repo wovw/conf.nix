@@ -22,12 +22,7 @@
           packages = with pkgs; [
             nodejs_22
             pnpm
-            zsh
           ];
-
-          shellHook = ''
-            exec zsh
-          '';
         };
       }
     );

@@ -30,6 +30,7 @@
 
   home.sessionVariables = {
     RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
+    NODE_COMPILE_CACHE = "$HOME/.cache/nodejs-compile-cache";
 
     # Go
     GOPATH = "$HOME/go";
