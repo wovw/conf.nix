@@ -8,10 +8,10 @@
 
   services = {
     # to make hyprland / hypridle work
-    logind = {
-      powerKeyLongPress = "poweroff";
-      powerKey = "suspend";
-      lidSwitch = "ignore";
+    logind.settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandlePowerKeyLongPress = "poweroff";
+      HandlePowerKey = "suspend";
     };
   };
 }
