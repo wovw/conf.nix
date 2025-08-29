@@ -31,7 +31,7 @@ in
 
   boot = {
     # Kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     kernelPatches = [
       {
         name = "Rust Support";
@@ -127,8 +127,8 @@ in
     ];
   };
 
-  # Services to start
   services = {
+    scx.enable = true; # by default uses scx_rustland scheduler
     libinput.enable = true;
     fstrim.enable = true;
     flatpak.enable = true;

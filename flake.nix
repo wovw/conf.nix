@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +42,7 @@
       nixos-wsl,
       stylix,
       nix-index-database,
+      chaotic,
       ...
     }@inputs:
     let
@@ -62,6 +64,7 @@
           };
           modules = [
             ./hosts/${host}/config.nix
+            chaotic.nixosModules.default
             stylix.nixosModules.stylix
             nix-index-database.nixosModules.nix-index
             (
