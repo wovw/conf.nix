@@ -9,6 +9,7 @@
     gamescopeSession.enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
   };
 
   # https://wiki.nixos.org/wiki/Lutris
