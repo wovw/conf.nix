@@ -34,6 +34,12 @@
         python312Packages.pylatexenc # markdown preview
         lua51Packages.jsregexp # luasnip
         inputs.nil.packages.${system}.default
+
+        # snacks.image
+        imagemagick
+        ghostscript # gs
+        tectonic
+        mermaid-cli # mmdc
       ];
     };
   };
