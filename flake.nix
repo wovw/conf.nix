@@ -31,6 +31,10 @@
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rofi-tools = {
+      url = "github:szaffarano/rofi-tools";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
