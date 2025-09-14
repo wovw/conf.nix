@@ -9,9 +9,5 @@ in
   exec-once = nm-applet --indicator
   exec-once = swaync
 
-  # clipboard manager
-  exec-once = wl-paste --type text --watch cliphist store
-  exec-once = wl-paste --type image --watch cliphist store
-
   exec-once = ${monitor-connect}
 ''

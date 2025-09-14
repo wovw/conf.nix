@@ -1,6 +1,5 @@
-{ pkgs, ... }@args:
+{ ... }@args:
 {
-  # Create XDG Dirs
   xdg = {
     userDirs = {
       enable = true;

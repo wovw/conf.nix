@@ -2,6 +2,7 @@
   lib,
   host,
   pkgs,
+  inputs,
   INTERNAL,
   EXTERNAL,
   terminal,
@@ -39,6 +40,7 @@ with lib;
             })
           }
           ${import ./startup.nix { inherit pkgs; }}
+          ${import ./clipboard.nix { inherit inputs pkgs modifier; }}
           ${builtins.readFile ./decor.conf}
           ${
             (import ./keybinds.nix {
