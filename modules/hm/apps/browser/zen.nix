@@ -95,7 +95,11 @@
             "application/pdf"
             "text/plain"
             "text/html"
-            "image/*"
+            "image/png"
+            "image/jpeg"
+            "image/gif"
+            "image/webp"
+            "image/svg+xml"
           ]
       );
     in
