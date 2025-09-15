@@ -26,7 +26,6 @@ in
           "uinput"
           "i2c"
           "dialout"
-          "podman"
         ];
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
