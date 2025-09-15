@@ -8,8 +8,8 @@
 {
   home.packages = with pkgs; [
     sccache
-    nodejs_22
     pnpm
+    fnm
     python312
     zig
     uv
@@ -80,6 +80,7 @@
 
             eval "$(uv generate-shell-completion zsh)"
             eval "$(uvx --generate-shell-completion zsh)"
+            eval "$(fnm env --use-on-cd --shell zsh)"
 
             function session-widget() {
                 # Preserve terminal context by using zsh's BUFFER
