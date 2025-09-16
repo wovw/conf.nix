@@ -41,6 +41,7 @@ in
           yaak
           yt-dlp
           gptfdisk
+          zoom-us
         ];
         openssh.authorizedKeys.keys = [ ];
       };
