@@ -1,6 +1,4 @@
 {
-  inputs,
-  system,
   config,
   pkgs,
   ...
@@ -17,7 +15,7 @@
     window-padding-x = 4
     confirm-close-surface = false
     window-decoration = none
-    theme = tokyonight
+    theme = TokyoNight
 
     keybind = ctrl+enter=ignore
   '';
