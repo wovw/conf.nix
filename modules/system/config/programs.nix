@@ -36,6 +36,7 @@
     wget
     exiftool
     libqalculate
+    ncdu
   ];
 
   services = {
