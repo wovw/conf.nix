@@ -40,7 +40,10 @@
   ];
 
   services = {
-    tzupdate.enable = true;
+    tzupdate = {
+      enable = true;
+      timer.enable = false;
+    };
     upower.enable = true;
   };
 }
