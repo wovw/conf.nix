@@ -15,10 +15,6 @@ pkgs.writeShellApplication {
 
     step=1 # INCREASE/DECREASE BY THIS VALUE
 
-    # From `ddcutil detect` output, possible bus numbers of external monitor
-    EXTERNAL_MONITOR_BUS="8"
-    EXTERNAL_MONITOR_BUS_2="11"
-
     # Get laptop brightness
     get_laptop_backlight() {
         brightnessctl -m | cut -d, -f4 | sed 's/%//'
@@ -47,11 +43,7 @@ pkgs.writeShellApplication {
         brightnessctl set "$new_brightness%" &
 
         # monitor brightness
-        ddcutil setvcp 10 "$new_brightness" \
-          --bus "$EXTERNAL_MONITOR_BUS" \
-          --sleep-multiplier .1 &
-        ddcutil setvcp 10 "$new_brightness" \
-          --bus "$EXTERNAL_MONITOR_BUS_2" \
+        ddcutil setvcp 10 $new_brightness \
           --sleep-multiplier .1 &
     }
 
