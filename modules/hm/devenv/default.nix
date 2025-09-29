@@ -3,6 +3,8 @@
   username,
   host,
   lib,
+  gitEmail,
+  gitUsername,
   ...
 }:
 {
@@ -23,6 +25,7 @@
   ];
 
   imports = [
+    (import ./git.nix { inherit gitEmail gitUsername; })
     ./neovim.nix
     ./starship.nix
     ./yazi/default.nix

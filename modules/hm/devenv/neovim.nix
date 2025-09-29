@@ -7,7 +7,6 @@
 {
   home = {
     packages = with pkgs; [
-      lazygit
       tree-sitter
 
       lua51Packages.lua
