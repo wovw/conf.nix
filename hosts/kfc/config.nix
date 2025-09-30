@@ -20,11 +20,12 @@ in
     ../../modules/de/hyprland/system.nix
     ../../modules/de/greetd/direct.nix
     ../../modules/ssh/system.nix
+    ../../modules/system/apps/gaming.nix
   ];
 
   boot = {
     # Kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     kernelPatches = [
       {
         name = "Rust Support";
