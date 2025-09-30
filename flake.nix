@@ -68,7 +68,6 @@
           };
           modules = [
             ./hosts/${host}/config.nix
-            chaotic.nixosModules.default
             stylix.nixosModules.stylix
             nix-index-database.nixosModules.nix-index
             (
@@ -121,6 +120,7 @@
           host = "gram";
           username = "wovw";
           modules = [
+            chaotic.nixosModules.default
             (
               { ... }:
               {
@@ -146,6 +146,9 @@
         kfc = mkHostConfig {
           host = "kfc";
           username = "krispy";
+          modules = [
+            chaotic.nixosModules.default
+          ];
         };
       };
     };
