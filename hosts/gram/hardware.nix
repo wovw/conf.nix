@@ -37,12 +37,6 @@
     ];
   };
 
-  # extra 500gb ssd
-  fileSystems."/D" = {
-    device = "/dev/disk/by-uuid/f948e880-7e56-400f-b63d-82d53b5f5b5f";
-    fsType = "ext4";
-  };
-
   swapDevices = [
     { device = "/dev/disk/by-uuid/3331808e-e294-48c0-a2b3-5e01a7d2b1ae"; }
   ];
