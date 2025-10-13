@@ -10,8 +10,8 @@ pkgs.writeShellApplication {
   text = ''
     handle() {
       case $1 in monitoradded*)
-        hyprctl dispatch moveworkspacetomonitor "1 2"
-        hyprctl dispatch moveworkspacetomonitor "2 2"
+        hyprctl dispatch moveworkspacetomonitor "1 1"
+        hyprctl dispatch moveworkspacetomonitor "2 1"
       esac
     }
 
