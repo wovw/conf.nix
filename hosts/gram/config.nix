@@ -30,7 +30,6 @@ in
   ];
 
   boot = {
-    # Kernel
     kernelPackages = pkgs.linuxPackages_cachyos;
     kernelPatches = [
       {
@@ -41,13 +40,14 @@ in
         };
       }
     ];
-    # https://wiki.nixos.org/wiki/Swap#Zswap_swap_cache
     kernelParams = [
+      "8250.nr_uarts=0" # disable unused legacy serial ports
+
+      # https://wiki.nixos.org/wiki/Swap#Zswap_swap_cache
       "zswap.enabled=1" # enables zswap
       "zswap.compressor=lz4" # compression algorithm
       "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
     ];
-    initrd.systemd.enable = true; # required for `lz4` compression
     kernelModules = [
       "uinput"
     ];
@@ -56,9 +56,8 @@ in
       systemd-boot = {
         enable = true;
         editor = false;
-        configurationLimit = 10;
+        configurationLimit = 5;
       };
-      timeout = 1;
       efi.canTouchEfiVariables = true;
     };
     # Make /tmp a tmpfs

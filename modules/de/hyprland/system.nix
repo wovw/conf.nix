@@ -66,22 +66,14 @@
       ];
     };
   };
-  systemd = {
-    services = {
-      usbmuxd.serviceConfig = {
-        # fix shutdown hanging
-        TimeoutStopSec = 5;
-        KillMode = "mixed";
-      };
-      "NetworkManager-wait-online".enable = false; # don't wait for network on startup
-    };
-  };
 
   # ddcutil
   hardware.i2c.enable = true;
 
   # Bluetooth Support
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
   services.blueman.enable = true;
 }
