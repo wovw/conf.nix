@@ -1,5 +1,26 @@
-{ host, ... }:
+{ host, lib, ... }:
 {
+  boot = {
+    loader.timeout = 1;
+    initrd = {
+      verbose = false;
+      systemd.enable = true;
+    };
+    kernelParams = [
+      "quiet" # Reduce console output
+      "udev.loglevel=3" # Only show errors
+    ];
+    consoleLogLevel = 0;
+
+    # Optimize module loading
+    kernel.sysctl = {
+      # Reduce swappiness for SSD systems
+      "vm.swappiness" = lib.mkDefault 10;
+      # Improve responsiveness
+      "vm.vfs_cache_pressure" = lib.mkDefault 50;
+    };
+  };
+
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -38,5 +59,48 @@
         return polkit.Result.YES;
       }
     })
+  '';
+
+  systemd = {
+    services = {
+      # Don't wait for udev to settle
+      systemd-udev-settle.enable = false;
+
+      # Don't wait for network before considering boot complete
+      "NetworkManager-wait-online".enable = false;
+
+      # Prevent hanging on shutdown
+      usbmuxd.serviceConfig = {
+        TimeoutStopSec = 5;
+        KillMode = "mixed";
+      };
+
+      # Enable parallel startup for more services
+      systemd-journal-flush.after = lib.mkForce [ ];
+      systemd-tmpfiles-setup.after = lib.mkForce [ ];
+
+      # Optimize to start on-demand rather than at boot
+      avahi-daemon.wantedBy = lib.mkForce [ ]; # socket activation
+      bluetooth.wantedBy = lib.mkForce [ ]; # blueman
+      upower.wantedBy = lib.mkForce [ ]; # starts when battery status queried
+    };
+    sockets.avahi-daemon.wantedBy = [ "sockets.target" ]; # Will start automatically when needed via socket activation
+
+    # Disable core dumps (slight performance improvement)
+    coredump.enable = lib.mkDefault false;
+
+    # Reduce default timeouts for all services
+    settings.Manager = {
+      DefaultTimeoutStartSec = 30;
+      DefaultTimeoutStopSec = 15;
+      DefaultTimeoutAbortSec = 15;
+    };
+  };
+
+  # Reduce journal size and improve performance
+  services.journald.extraConfig = ''
+    SystemMaxUse=100M
+    RuntimeMaxUse=50M
+    MaxRetentionSec=1week
   '';
 }
