@@ -108,7 +108,18 @@ update_xmcl() {
   echo "Checking XMCL version..."
 
   release=$(get_xmcl_latest)
-  remote_version=$(echo "$release" | jq -r '.tag_name' | sed 's/^v//')
+  # Use jq's null coalescing and suppress errors
+  remote_version=$(echo "$release" | jq -r '.tag_name // empty' 2>/dev/null | sed 's/^v//')
+
+  # Check if we got a valid version
+  if [ -z "$remote_version" ]; then
+    echo "Failed to get XMCL version from GitHub API"
+    if ! $ci; then
+      echo "API Response (first 500 chars):"
+      echo "$release" | head -c 500
+    fi
+    return
+  fi
 
   local_version=$(jq -r '.xmcl.version' sources.json)
 
@@ -130,7 +141,7 @@ update_xmcl() {
 
   # Prefetch the AppImage
   echo "Prefetching XMCL AppImage..."
-  prefetch_output=$(nix store prefetch-file --json "$url")
+  prefetch_output=$(nix store prefetch-file --json --name "xmcl-${remote_version}.AppImage" "$url")
   hash=$(echo "$prefetch_output" | jq -r '.hash')
 
   # Update sources.json
