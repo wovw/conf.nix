@@ -108,12 +108,13 @@ update_xmcl() {
   echo "Checking XMCL version..."
 
   release=$(get_xmcl_latest)
-  # Use jq's null coalescing and suppress errors
-  remote_version=$(echo "$release" | jq -r '.tag_name // empty' 2>/dev/null | sed 's/^v//')
 
-  # Check if we got a valid version
+  # Use grep to extract tag_name to avoid jq parsing errors with control characters in body
+  remote_version=$(echo "$release" | grep -o '"tag_name"[[:space:]]*:[[:space:]]*"[^"]*"' | head -1 | sed 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' | sed 's/^v//')
+
+  # Validate we got a version
   if [ -z "$remote_version" ]; then
-    echo "Failed to get XMCL version from GitHub API"
+    echo "Failed to extract XMCL version from GitHub API"
     if ! $ci; then
       echo "API Response (first 500 chars):"
       echo "$release" | head -c 500
