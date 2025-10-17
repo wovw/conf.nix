@@ -6,35 +6,51 @@
   pkgs,
 }:
 let
+  sources = builtins.fromJSON (builtins.readFile ../../../sources.json);
+  lunarSrc = sources.lunar;
+
+  version = lunarSrc.version;
+  hash = lunarSrc.hash;
+  url = builtins.replaceStrings [ "{version}" ] [ version ] lunarSrc.url;
+
+  # for manual updates
   update = pkgs.writeShellApplication {
     name = "update";
 
     runtimeInputs = with pkgs; [
       curl
       yq
+      jq
     ];
 
     text = ''
       set -eu -o pipefail
 
-      target="$(dirname "$(readlink -f "$0")")/package.nix"
+      target="../../../sources.json"
       host="https://launcherupdates.lunarclientcdn.com"
       metadata=$(curl "$host/latest-linux.yml")
       version=$(echo "$metadata" | yq .version -r)
       hash=$(echo "$metadata" | yq .sha512 -r)
 
-      sed -i "s@version = .*;@version = \"$version\";@g" "$target"
-      sed -i "s@hash.* = .*;@hash = \"sha512-$hash\";@g" "$target"
+      url="https://launcherupdates.lunarclientcdn.com/Lunar%20Client-$version.AppImage"
+
+      jq --arg version "$version" \
+         --arg hash "sha512-$hash" \
+         --arg url "$url" \
+         '.lunar.version = $version | .lunar.hash = $hash | .lunar.url = $url' \
+         "$target" > "$target.tmp"
+      mv "$target.tmp" "$target"
+
+      echo "Updated Lunar to version $version"
     '';
   };
 in
 appimageTools.wrapType2 rec {
   pname = "lunarclient";
-  version = "3.3.5";
+  inherit version;
 
   src = fetchurl {
-    url = "https://launcherupdates.lunarclientcdn.com/Lunar%20Client-${version}.AppImage";
-    hash = "sha512-DHDo+4qZvsagquMKwdkXG0CBQh0fRPogNdMrOcUbDcisml7/j2sBe+jjOSLOB4ipOB1ULSXmqBugtvb6gDUbzQ==";
+    inherit url hash;
   };
 
   nativeBuildInputs = [ makeWrapper ];

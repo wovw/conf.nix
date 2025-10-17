@@ -1,0 +1,12 @@
+{
+  "lunar": {
+    "version": "3.3.5",
+    "hash": "sha512-DHDo+4qZvsagquMKwdkXG0CBQh0fRPogNdMrOcUbDcisml7/j2sBe+jjOSLOB4ipOB1ULSXmqBugtvb6gDUbzQ==",
+    "url": "https://launcherupdates.lunarclientcdn.com/Lunar%20Client-{version}.AppImage"
+  },
+  "xmcl": {
+    "version": "0.51.1",
+    "hash": "sha256-dhptGQNKjeCHBkuSCbkcrYJ/F/rx2HicRfAES5VWaxM=",
+    "url": "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v{version}/xmcl-{version}-x86_64.AppImage"
+  }
+}

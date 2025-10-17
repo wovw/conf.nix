@@ -1,0 +1,86 @@
+name: Update Flake Inputs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # Daily at midnight UTC
+
+jobs:
+  update-flake:
+    name: Update flake.lock
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          nix_path: nixpkgs=channel:nixpkgs-unstable
+
+      - name: Setup Nix Magic Cache
+        uses: DeterminateSystems/flakehub-cache-action@main
+
+      - name: Update flake inputs
+        id: update
+        run: |
+          # Store old flake.lock hash
+          old_hash=$(sha256sum flake.lock | cut -d' ' -f1)
+          
+          # Update flake
+          nix flake update
+          
+          # Store new flake.lock hash
+          new_hash=$(sha256sum flake.lock | cut -d' ' -f1)
+          
+          # Check if anything changed
+          if [ "$old_hash" = "$new_hash" ]; then
+            echo "No updates available"
+            echo "should_update=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Flake inputs updated"
+            echo "should_update=true" >> "$GITHUB_OUTPUT"
+            
+            # Create commit message with updated inputs
+            git diff flake.lock | grep '^\+.*"narHash"' | wc -l | xargs -I {} echo "chore(flake): update {} input(s)" >> commit_message.txt
+            
+            # Get list of updated inputs (simplified)
+            echo "Updated inputs:" >> commit_details.txt
+            git diff flake.lock | grep -E '^\+.*"(owner|repo|rev|lastModified)"' | head -20 >> commit_details.txt || true
+            
+            commit_msg=$(cat commit_message.txt)
+            echo "commit_message=$commit_msg" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Test build gram configuration
+        id: test
+        if: steps.update.outputs.should_update == 'true'
+        run: |
+          echo "Testing gram configuration build..."
+          
+          # Try to build the system configuration
+          if nix build .#nixosConfigurations.gram.config.system.build.toplevel --no-link --print-build-logs; then
+            echo "Build successful"
+            echo "build_success=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Build failed"
+            echo "build_success=false" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Commit changes
+        if: steps.update.outputs.should_update == 'true' && steps.test.outputs.build_success == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "${{ steps.update.outputs.commit_message }}"
+          file_pattern: "flake.lock"
+
+      - name: Comment on failure
+        if: failure() && steps.update.outputs.should_update == 'true'
+        run: |
+          echo "::warning::Flake update available but build test failed. Manual intervention required."
+          echo "Please check the build logs and update manually if needed."
