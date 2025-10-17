@@ -81,9 +81,9 @@ update_lunar() {
 
   url="https://launcherupdates.lunarclientcdn.com/Lunar%20Client-${remote_version}.AppImage"
 
-  # Prefetch the AppImage
+  # Prefetch the AppImage with a valid name
   echo "Prefetching Lunar Client AppImage..."
-  prefetch_output=$(nix store prefetch-file --json "$url")
+  prefetch_output=$(nix store prefetch-file --json --name "lunarclient-${remote_version}.AppImage" "$url")
   sha256=$(echo "$prefetch_output" | jq -r '.hash')
 
   # We also want to keep the sha512 for reference
