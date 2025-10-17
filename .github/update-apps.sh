@@ -26,7 +26,7 @@ with_retry() {
       sleep 1
     else
       echo "[TRACE] [cmd=$*] output: $output" 1>&2
-      echo "$output" | tr -d '\000-\031'
+      printf '%s' "$output" | tr -d '\000-\010\013-\031'
       return $status
     fi
   done
