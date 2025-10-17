@@ -5,8 +5,8 @@
     "url": "https://launcherupdates.lunarclientcdn.com/Lunar%20Client-3.4.9.AppImage"
   },
   "xmcl": {
-    "version": "0.51.1",
-    "hash": "sha256-dhptGQNKjeCHBkuSCbkcrYJ/F/rx2HicRfAES5VWaxM=",
-    "url": "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v{version}/xmcl-{version}-x86_64.AppImage"
+    "version": "0.52.7",
+    "hash": "sha256-lfSooc2vGzOJdjpDJ4Kiad9EUaLlFTR7YphHf8IBLyc=",
+    "url": "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v0.52.7/xmcl-0.52.7-x86_64.AppImage"
   }
 }
