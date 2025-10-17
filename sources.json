@@ -1,8 +1,8 @@
 {
   "lunar": {
-    "version": "3.3.5",
-    "hash": "sha512-DHDo+4qZvsagquMKwdkXG0CBQh0fRPogNdMrOcUbDcisml7/j2sBe+jjOSLOB4ipOB1ULSXmqBugtvb6gDUbzQ==",
-    "url": "https://launcherupdates.lunarclientcdn.com/Lunar%20Client-{version}.AppImage"
+    "version": "3.4.9",
+    "hash": "sha512-lzJFzOpJDCp8G+dZEcfvORJTHI5tqpvOcXGwyrSN+raaZJcCYbqLJC30u8trsNV7vgjUzoJdnhLHhwsTQp4RpQ==",
+    "url": "https://launcherupdates.lunarclientcdn.com/Lunar%20Client-3.4.9.AppImage"
   },
   "xmcl": {
     "version": "0.51.1",
