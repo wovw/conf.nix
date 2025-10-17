@@ -4,12 +4,18 @@
 }:
 with pkgs;
 let
+  sources = builtins.fromJSON (builtins.readFile ../../../sources.json);
+  xmclSrc = sources.xmcl;
+
   pname = "xmcl";
-  version = "0.51.1";
+  version = xmclSrc.version;
+  hash = xmclSrc.hash;
+  url = builtins.replaceStrings [ "{version}" ] [ version ] xmclSrc.url;
+
   src = fetchurl {
-    url = "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v${version}/${pname}-${version}-x86_64.AppImage";
-    hash = "sha256-dhptGQNKjeCHBkuSCbkcrYJ/F/rx2HicRfAES5VWaxM=";
+    inherit url hash;
   };
+
   appimageContents = appimageTools.extractType2 { inherit pname src version; };
 
   meta = with lib; {
