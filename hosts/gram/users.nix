@@ -19,7 +19,6 @@ in
         extraGroups = [
           "networkmanager"
           "wheel"
-          "kvm"
           "scanner"
           "lp"
           "input"

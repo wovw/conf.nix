@@ -38,8 +38,10 @@
     };
   };
   users.extraUsers."${username}".extraGroups = [
+    "kvm"
     "podman"
-    "libvirtd" # https://wiki.nixos.org/wiki/OSX-KVM
+    "libvirt"
+    "libvirtd"
   ];
 
   hardware.nvidia-container-toolkit.enable = true;

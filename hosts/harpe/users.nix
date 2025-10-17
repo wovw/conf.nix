@@ -19,7 +19,6 @@ in
         extraGroups = [
           "wheel"
           "scanner"
-          "kvm"
           "lp"
           "input"
           "uinput"

@@ -16,21 +16,6 @@ in
   config = mkIf cfg.enable {
     services.xserver.videoDrivers = [ "modesetting" ]; # Intel graphics + work with Nvidia prime
 
-    boot = {
-      # Optimize Intel graphics initialization
-      kernelParams = [
-        "i915.fastboot=1" # Fast display initialization
-        "i915.enable_fbc=1" # Framebuffer compression
-        "i915.enable_guc=3" # Enable GuC and HuC firmware
-      ];
-      # https://wiki.nixos.org/wiki/OSX-KVM
-      extraModprobeConfig = ''
-        options kvm_intel nested=1
-        options kvm_intel emulate_invalid_guest_state=0
-        options kvm ignore_msrs=1
-      '';
-    };
-
     nixpkgs.config.packageOverrides = pkgs: {
       vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
     };
