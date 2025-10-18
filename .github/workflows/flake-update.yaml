@@ -57,7 +57,7 @@ jobs:
           fi
 
       - name: Commit changes
-        if: steps.update.outputs.should_update == 'true' && steps.test.outputs.build_success == 'true'
+        if: steps.update.outputs.should_update == 'true'
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "${{ steps.update.outputs.commit_message }}"
