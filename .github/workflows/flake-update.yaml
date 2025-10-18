@@ -46,7 +46,7 @@ jobs:
             echo "should_update=true" >> "$GITHUB_OUTPUT"
             
             # Create commit message with updated inputs
-            git diff flake.lock | grep '^\+.*"narHash"' | wc -l | xargs -I {} echo "chore(flake): update {} input(s)" >> commit_message.txt
+            echo "up" >> commit_message.txt
             
             # Get list of updated inputs (simplified)
             echo "Updated inputs:" >> commit_details.txt
