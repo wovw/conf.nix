@@ -7,9 +7,7 @@
     git = {
       enable = true;
       lfs.enable = true;
-      userName = gitUsername;
-      userEmail = gitEmail;
-      extraConfig = {
+      settings = {
         user.name = gitUsername;
         user.email = gitEmail;
 
