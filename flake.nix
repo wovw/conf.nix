@@ -39,7 +39,6 @@
       url = "github:szaffarano/rofi-tools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-ddcci-nvidia.url = "github:poogas/nixos-ddcci-nvidia";
   };
 
   outputs =
