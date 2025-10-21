@@ -44,7 +44,7 @@ pkgs.writeShellApplication {
 
         # monitor brightness
         ddcutil setvcp 10 $new_brightness \
-          --sleep-multiplier .1 &
+          --sleep-multiplier .1 --bus 11 &
     }
 
     case "$1" in

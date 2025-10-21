@@ -15,6 +15,7 @@ in
     ../../modules/system/hardware/nvidia-drivers.nix
     ../../modules/system/hardware/nvidia-prime-drivers.nix
     ../../modules/system/hardware/intel-drivers.nix
+    ../../modules/system/hardware/ddcci.nix
     ../../modules/system/hardware/mouse.nix
     ../../modules/system/config/virtualization.nix
     ../../modules/system/config/common.nix
@@ -80,6 +81,7 @@ in
   drivers.intel.enable = true;
   drivers.nvidia.enable = true;
   drivers.nvidia-prime.enable = true;
+  hardware.ddcci.enable = true;
 
   # Enable networking
   networking = {
