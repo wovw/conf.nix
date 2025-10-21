@@ -17,6 +17,9 @@ in
     # https://wiki.nixos.org/wiki/NVIDIA#Kernel_modules_from_NVIDIA
     services.xserver.videoDrivers = [ "nvidia" ];
 
+    # https://www.ddcutil.com/nvidia/
+    boot.extraModprobeConfig = "options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100";
+
     # OpenGL
     hardware.graphics = {
       enable = true;

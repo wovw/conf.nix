@@ -14,6 +14,7 @@ pkgs.writeShellApplication {
     # Script for Monitor brightness
 
     step=1 # INCREASE/DECREASE BY THIS VALUE
+    EXTERNAL_MONITOR_BUS=11 # ddcutil detect
 
     # Get laptop brightness
     get_laptop_backlight() {
@@ -44,7 +45,7 @@ pkgs.writeShellApplication {
 
         # monitor brightness
         ddcutil setvcp 10 $new_brightness \
-          --sleep-multiplier .1 &
+          --sleep-multiplier .1 --bus $EXTERNAL_MONITOR_BUS &
     }
 
     case "$1" in

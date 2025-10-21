@@ -20,6 +20,7 @@
     repomix
     jdk23
     pscale
+    amp-cli
     (import ./scripts/tmux-sessionizer.nix { inherit pkgs; })
     (import ./scripts/rebuild.nix { inherit pkgs username host; })
   ];
