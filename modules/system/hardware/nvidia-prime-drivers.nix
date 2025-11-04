@@ -23,13 +23,9 @@ in
   # https://wiki.nixos.org/wiki/NVIDIA
   config = mkIf cfg.enable {
     hardware.nvidia.prime = {
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true; # use with `nvidia-offload` command to start specific apps with dGPU
-      # };
-      reverseSync.enable = true;
+      reverseSync.enable = true; # dGPU is always used + primary output device
 
-      # lspci | grep -e VGA -e 3D
+      # lspci -d ::03xx
       intelBusId = "${cfg.intelBusID}";
       nvidiaBusId = "${cfg.nvidiaBusID}";
     };
