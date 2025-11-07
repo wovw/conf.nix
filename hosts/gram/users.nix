@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  inputs,
   ...
 }:
 
@@ -41,6 +42,7 @@ in
           yt-dlp
           gptfdisk
           zoom-us
+          inputs.affinity-nix.packages.x86_64-linux.v3
         ];
         openssh.authorizedKeys.keys = [ ];
       };
