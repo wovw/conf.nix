@@ -15,9 +15,6 @@
     export XDG_SESSION_TYPE=wayland
     export XDG_SESSION_DESKTOP=Hyprland
 
-    # electron >28 apps (may help)
-    export ELECTRON_OZONE_PLATFORM_HINT=auto
-
     # nix
     export NIXOS_OZONE_WL=1
     export NIXPKGS_ALLOW_UNFREE=1
