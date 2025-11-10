@@ -18,7 +18,6 @@
     go
     tokei
     repomix
-    jdk23
     pscale
     amp-cli
     (import ./scripts/tmux-sessionizer.nix { inherit pkgs; })
