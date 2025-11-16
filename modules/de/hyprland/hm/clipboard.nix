@@ -1,10 +1,10 @@
 {
   inputs,
-  pkgs,
   modifier,
+  system,
 }:
 let
-  clipboard = "${inputs.rofi-tools.packages.${pkgs.system}.rofi-cliphist}/bin/rofi-cliphist";
+  clipboard = "${inputs.rofi-tools.packages.${system}.rofi-cliphist}/bin/rofi-cliphist";
 in
 ''
   exec-once = wl-paste --type text --watch cliphist store

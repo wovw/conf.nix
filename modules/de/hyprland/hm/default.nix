@@ -6,6 +6,7 @@
   INTERNAL,
   EXTERNAL,
   terminal,
+  system,
   ...
 }:
 
@@ -40,7 +41,7 @@ with lib;
             })
           }
           ${import ./startup.nix { inherit pkgs; }}
-          ${import ./clipboard.nix { inherit inputs pkgs modifier; }}
+          ${import ./clipboard.nix { inherit inputs system modifier; }}
           ${builtins.readFile ./decor.conf}
           ${
             (import ./keybinds.nix {
