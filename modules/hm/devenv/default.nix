@@ -25,7 +25,7 @@
   ];
 
   imports = [
-    (import ./git.nix { inherit gitEmail gitUsername; })
+    (import ./git.nix { inherit host gitEmail gitUsername; })
     ./neovim.nix
     ./starship.nix
     ./yazi/default.nix
