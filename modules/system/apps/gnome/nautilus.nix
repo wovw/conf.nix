@@ -5,6 +5,8 @@
       nautilus
       libheif
       libheif.out
+      ntfs3g
+      dislocker
     ];
     pathsToLink = [ "/share/thumbnailers" ];
   };
