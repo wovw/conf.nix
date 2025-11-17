@@ -2,7 +2,7 @@
 {
   # sshd daemon for incoming connections
   services.openssh = {
-    enable = true;
+    enable = false;
     settings = {
       PasswordAuthentication = false;
     };
