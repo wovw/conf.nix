@@ -41,6 +41,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     affinity-nix.url = "github:mrshmllow/affinity-nix";
+    xmcl = {
+      url = "github:x45iq/xmcl-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

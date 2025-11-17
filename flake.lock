@@ -1414,6 +1414,7 @@
         "rust-overlay": "rust-overlay_2",
         "stylix": "stylix",
         "winapps": "winapps_2",
+        "xmcl": "xmcl",
         "zen-browser": "zen-browser"
       }
     },
@@ -1766,6 +1767,26 @@
       "original": {
         "owner": "winapps-org",
         "repo": "winapps",
+        "type": "github"
+      }
+    },
+    "xmcl": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763155422,
+        "narHash": "sha256-HvmWvOjw/EjjGbtcrqMSnjaTsSWQC1WGNYahDZWcLSM=",
+        "owner": "x45iq",
+        "repo": "xmcl-nix",
+        "rev": "feb2bce3cc99be722802e21308498421b49fbf44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "x45iq",
+        "repo": "xmcl-nix",
         "type": "github"
       }
     },
