@@ -1,4 +1,4 @@
-name: Update Apps (Lunar & XMCL)
+name: Update Apps (XMCL)
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   update-apps:
-    name: Update Lunar and XMCL
+    name: Update XMCL
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -72,10 +72,6 @@ jobs:
 
       - name: Setup Nix Magic Cache
         uses: DeterminateSystems/flakehub-cache-action@main
-
-      - name: Build Lunar Client
-        run: |
-          nix build .#nixosConfigurations.gram.config.home-manager.users.wovw.home.packages --no-link --print-build-logs 2>&1 | grep -i lunar || echo "Lunar build check completed"
 
       - name: Build XMCL
         run: |

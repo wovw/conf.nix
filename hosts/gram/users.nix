@@ -35,7 +35,7 @@ in
           qbittorrent
           spotify
           (callPackage ../../modules/hm/apps/xmcl.nix { })
-          (callPackage ../../modules/hm/apps/lunar.nix { })
+          lunar-client
           qalculate-gtk
           code-cursor
           yaak

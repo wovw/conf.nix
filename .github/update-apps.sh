@@ -35,10 +35,6 @@ with_retry() {
   exit 1
 }
 
-get_lunar_latest() {
-  with_retry curl -sL "https://launcherupdates.lunarclientcdn.com/latest-linux.yml" 2>/dev/null
-}
-
 get_xmcl_latest() {
   with_retry curl -sL \
     -H "Accept: application/vnd.github+json" \
@@ -53,56 +49,7 @@ write_output() {
   fi
 }
 
-commit_lunar_version=""
 commit_xmcl_version=""
-
-update_lunar() {
-  echo "Checking Lunar Client version..."
-
-  metadata=$(get_lunar_latest)
-  remote_version=$(echo "$metadata" | grep "^version:" | sed 's/version: //' | tr -d '\r')
-  remote_hash=$(echo "$metadata" | grep "^sha512:" | sed 's/sha512: //' | tr -d '\r')
-
-  local_version=$(jq -r '.lunar.version' sources.json)
-
-  echo "Local: $local_version | Remote: $remote_version"
-
-  if [ "$local_version" = "$remote_version" ]; then
-    echo "Lunar Client is up to date"
-    return
-  fi
-
-  echo "Lunar Client version mismatch, updating..."
-
-  if $only_check; then
-    write_output "should_update=true"
-    exit 0
-  fi
-
-  url="https://launcherupdates.lunarclientcdn.com/Lunar%20Client-${remote_version}.AppImage"
-
-  # Prefetch the AppImage with a valid name
-  echo "Prefetching Lunar Client AppImage..."
-  prefetch_output=$(nix store prefetch-file --json --name "lunarclient-${remote_version}.AppImage" "$url")
-  sha256=$(echo "$prefetch_output" | jq -r '.hash')
-
-  # We also want to keep the sha512 for reference
-  hash="sha512-${remote_hash}"
-
-  # Update sources.json
-  jq --arg version "$remote_version" \
-    --arg hash "$hash" \
-    --arg url "$url" \
-    '.lunar.version = $version | .lunar.hash = $hash | .lunar.url = $url' \
-    sources.json >sources.json.tmp
-  mv sources.json.tmp sources.json
-
-  echo "Updated Lunar Client to $remote_version"
-
-  if $ci; then
-    commit_lunar_version="$remote_version"
-  fi
-}
 
 update_xmcl() {
   echo "Checking XMCL version..."
@@ -163,7 +110,6 @@ update_xmcl() {
 main() {
   set -e
 
-  update_lunar
   update_xmcl
 
   if $only_check && $ci; then
@@ -175,10 +121,6 @@ main() {
     # Prepare commit message
     init_message="chore(update):"
     message="$init_message"
-
-    if [ "$commit_lunar_version" != "" ]; then
-      message="$message lunar to $commit_lunar_version"
-    fi
 
     if [ "$commit_xmcl_version" != "" ]; then
       if [ "$message" != "$init_message" ]; then

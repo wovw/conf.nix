@@ -1,9 +1,4 @@
 {
-  "lunar": {
-    "version": "3.4.9",
-    "hash": "sha512-lzJFzOpJDCp8G+dZEcfvORJTHI5tqpvOcXGwyrSN+raaZJcCYbqLJC30u8trsNV7vgjUzoJdnhLHhwsTQp4RpQ==",
-    "url": "https://launcherupdates.lunarclientcdn.com/Lunar%20Client-3.4.9.AppImage"
-  },
   "xmcl": {
     "version": "0.52.7",
     "hash": "sha256-lfSooc2vGzOJdjpDJ4Kiad9EUaLlFTR7YphHf8IBLyc=",
