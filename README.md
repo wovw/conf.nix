@@ -10,6 +10,16 @@ nix repl ~/conf.nix#nixosConfigurations.{hostname}.config
 journalctl -b --user -u {service-name} -f
 ```
 
+### mounting bitlocker drive
+
+```sh
+sudo dislocker-fuse -v -V /dev/nvme1n1p1 -p{recovery_key} -- /mnt/bitlocker-fuse && sudo mount -o loop -t ntfs-3g /mnt/bitlocker-fuse/dislocker-file /mnt/windows
+```
+
+```sh
+sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
+```
+
 ## manual things
 
 * [lanzaboote setup](https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md)
@@ -18,7 +28,6 @@ journalctl -b --user -u {service-name} -f
 * `sudo passwd {username}` to change password
 * github repos
 * rclone
-  * `rclone bisync` for gdrive things, use `--resync` initially
 * [winapps](https://github.com/winapps-org/winapps)
   * reset: `podman compose --file ~/.config/winapps/compose.yaml down --rmi=all --volumes`
   * install: `podman compose --file ~/.config/winapps/compose.yaml up -d`, windows will be available at `http://127.0.0.1:8006`, sign out
@@ -43,14 +52,13 @@ journalctl -b --user -u {service-name} -f
   * push, replace https remote with ssh remote in git and `.gitmodules`, etc
 * `cd ~/conf.nix && sudo nixos-rebuild boot --flake .#{hostname}` and follow the above install link to restart NixOS
 
-## References
+## References / Inspirations
 
-* nixos config
-
+* nixos
   * <https://github.com/Zaney/zaneyos>
   * <https://github.com/librephoenix/nixos-config>
 
-* nvim config
+* nvim
   * <https://github.com/ThePrimeagen/init.lua>
   * <https://github.com/nvim-lua/kickstart.nvim>
   * <https://www.lazyvim.org>
