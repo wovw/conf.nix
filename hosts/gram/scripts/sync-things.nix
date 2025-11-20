@@ -28,33 +28,36 @@ let
       notify-send -h "string:x-canonical-private-synchronous:$NOTIF_TAG" \
           "Google Drive Sync" "Initializing synchronization..." \
           -i system-software-update
+      echo "Initializing synchronization..."
 
       # lock file safety check
       if pgrep -x "rclone" > /dev/null; then
           notify-send -h "string:x-canonical-private-synchronous:$NOTIF_TAG" \
               "Sync Skipped" "Another rclone process is already running." \
               -u critical
+          echo "Another rclone process is already running."
           exit 0
       fi
 
       ERR_LOG=$(mktemp)
 
       # run bisync
-      # --stats 2s: Updates notification every 2 seconds
-      # --stats-one-line: Makes it easy to grep
       # --force: Forces past minor non-critical errors
+      # -L: sync symlinks
       # --recover: Attempts to heal the directory structure if desynced
+      # --stats 2s: Updates notification every 2 seconds
       # 2>&1: Redirects stderr to stdout to pipe it
-      # set +e: disable error exit for the pipe to catch the result
 
-      set +e 
+      set +e # disable error exit for the pipe to catch the result
       rclone bisync "$LOCAL_DIR" "$REMOTE_NAME:$REMOTE_PATH" \
           --force \
+          -L \
           --recover \
           --verbose \
-          --stats 2s \
-          --stats-one-line 2>&1 | \
+          --stats 2s 2>&1 | \
       while read -r line; do
+          echo "$line"
+
           # Check if the line contains transfer stats
           if echo "$line" | grep -q "Transferred:"; then
               # awk extracts: "Transferred: 1.2M / 10M, 12%, 100k/s" -> "1.2M / 10M, 12%, 100k/s"
@@ -74,13 +77,15 @@ let
 
       if [ -s "$ERR_LOG" ]; then
            notify-send -h "string:x-canonical-private-synchronous:$NOTIF_TAG" \
-              "Sync Completed with Errors" "Check logs with: journalctl --user -u gdrive-sync" \
+              "Sync Completed with Errors" "Check logs with: journalctl --user -u gdrive-sync-things" \
               -u critical \
               -i dialog-error
+          echo "Sync Completed with Errors"
       else
            notify-send -h "string:x-canonical-private-synchronous:$NOTIF_TAG" \
               "Sync Finished" "Your folder is up to date." \
               -i weather-clear
+          echo "Sync Finished"
       fi
 
       rm -f "$ERR_LOG"
