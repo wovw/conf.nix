@@ -4,14 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -52,7 +47,6 @@
       nixpkgs,
       home-manager,
       oskars-dotfiles,
-      rust-overlay,
       nixos-wsl,
       stylix,
       nix-index-database,
@@ -81,25 +75,6 @@
             ./hosts/${host}/config.nix
             stylix.nixosModules.stylix
             nix-index-database.nixosModules.nix-index
-            (
-              { pkgs, ... }:
-              {
-                nixpkgs.overlays = [
-                  rust-overlay.overlays.default
-                ];
-                environment.systemPackages = [
-                  (pkgs.rust-bin.selectLatestNightlyWith (
-                    toolchain:
-                    toolchain.default.override {
-                      extensions = [
-                        "rust-src"
-                        "rust-analyzer"
-                      ];
-                    }
-                  ))
-                ];
-              }
-            )
             home-manager.nixosModules.home-manager
             (
               { pkgs, ... }:
