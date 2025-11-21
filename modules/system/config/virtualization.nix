@@ -6,7 +6,7 @@
 {
   environment.sessionVariables = {
     LIBVIRT_DEFAULT_URI = "qemu:///system";
-    DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/podman/podman.sock";
+    DOCKER_HOST = "unix://\${XDG_RUNTIME_DIR}/podman/podman.sock";
     ZSH_DISABLE_COMPFIX = "true";
   };
   environment.systemPackages = with pkgs; [

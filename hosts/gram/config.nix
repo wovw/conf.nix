@@ -47,6 +47,8 @@ in
       "zswap.enabled=1" # enables zswap
       "zswap.compressor=lz4" # compression algorithm
       "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
+
+      "pci=noaer" # disable AER for non-fatal errors
     ];
     kernelModules = [
       "uinput"
@@ -103,7 +105,6 @@ in
         libimobiledevice
       ];
     };
-    kdeconnect.enable = true;
   };
 
   environment = {

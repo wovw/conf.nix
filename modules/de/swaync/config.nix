@@ -29,8 +29,6 @@
       "widgets": [
         "title",
         "mpris",
-        "volume",
-        "backlight",
         "dnd",
         "notifications"
       ],
@@ -45,18 +43,12 @@
         },
         "label": {
           "max-lines": 1,
-          "text": "Notification Center"
+          "text": "Notifications"
         },
         "mpris": {
           "image-size": 96,
           "image-radius": 7
-        },
-        "volume": {
-          "label": "󰕾"
-        },
-        "backlight": {
-          "label": "󰃟"
-        },
+        }
       }
     }
   '';
@@ -68,7 +60,7 @@
     .control-center .notification-row:focus,
     .control-center .notification-row:hover {
       opacity: 0.9;
-      background: #${config.lib.stylix.colors.base00}
+      background: #${config.lib.stylix.colors.base00};
     }
     .notification-row {
       outline: none;
@@ -105,7 +97,7 @@
       box-shadow: none;
       background: #${config.lib.stylix.colors.base0D};
       transition: all .15s ease-in-out;
-      border: none
+      border: none;
     }
     .notification-action {
       border: 2px solid #${config.lib.stylix.colors.base0D};
@@ -115,7 +107,7 @@
     .notification-default-action:hover,
     .notification-action:hover {
       color: #${config.lib.stylix.colors.base0B};
-      background: #${config.lib.stylix.colors.base0B}
+      background: #${config.lib.stylix.colors.base0B};
     }
     .notification-default-action {
       border-radius: 5px;
@@ -123,52 +115,52 @@
     }
     .notification-default-action:not(:only-child) {
       border-bottom-left-radius: 7px;
-      border-bottom-right-radius: 7px
+      border-bottom-right-radius: 7px;
     }
     .notification-action:first-child {
       border-bottom-left-radius: 10px;
-      background: #${config.lib.stylix.colors.base00}
+      background: #${config.lib.stylix.colors.base00};
     }
     .notification-action:last-child {
       border-bottom-right-radius: 10px;
-      background: #${config.lib.stylix.colors.base00}
+      background: #${config.lib.stylix.colors.base00};
     }
     .inline-reply {
-      margin-top: 8px
+      margin-top: 8px;
     }
     .inline-reply-entry {
       background: #${config.lib.stylix.colors.base00};
       color: #${config.lib.stylix.colors.base05};
       caret-color: #${config.lib.stylix.colors.base05};
       border: 1px solid #${config.lib.stylix.colors.base09};
-      border-radius: 5px
+      border-radius: 5px;
     }
     .inline-reply-button {
       margin-left: 4px;
       background: #${config.lib.stylix.colors.base00};
       border: 1px solid #${config.lib.stylix.colors.base09};
       border-radius: 5px;
-      color: #${config.lib.stylix.colors.base05}
+      color: #${config.lib.stylix.colors.base05};
     }
     .inline-reply-button:disabled {
       background: initial;
       color: #${config.lib.stylix.colors.base03};
-      border: 1px solid transparent
+      border: 1px solid transparent;
     }
     .inline-reply-button:hover {
-      background: #${config.lib.stylix.colors.base00}
+      background: #${config.lib.stylix.colors.base00};
     }
     .body-image {
       margin-top: 6px;
       background-color: #${config.lib.stylix.colors.base05};
-      border-radius: 5px
+      border-radius: 5px;
     }
     .summary {
       font-size: 16px;
       font-weight: 700;
       background: transparent;
       color: rgba(158, 206, 106, 1);
-      text-shadow: none
+      text-shadow: none;
     }
     .time {
       font-size: 16px;
@@ -176,14 +168,14 @@
       background: transparent;
       color: #${config.lib.stylix.colors.base05};
       text-shadow: none;
-      margin-right: 18px
+      margin-right: 18px;
     }
     .body {
       font-size: 15px;
       font-weight: 400;
       background: transparent;
       color: #${config.lib.stylix.colors.base05};
-      text-shadow: none
+      text-shadow: none;
     }
     .control-center {
       background: #${config.lib.stylix.colors.base00};
@@ -191,16 +183,16 @@
       border-radius: 5px;
     }
     .control-center-list {
-      background: transparent
+      background: transparent;
     }
     .control-center-list-placeholder {
-      opacity: .5
+      opacity: .5;
     }
     .floating-notifications {
-      background: transparent
+      background: transparent;
     }
     .blank-window {
-      background: alpha(black, 0)
+      background: alpha(black, 0);
     }
     .widget-title {
       color: #${config.lib.stylix.colors.base0B};
@@ -241,11 +233,11 @@
     }
     .widget-dnd>switch slider {
       background: #${config.lib.stylix.colors.base00};
-      border-radius: 5px
+      border-radius: 5px;
     }
     .widget-dnd>switch:checked slider {
       background: #${config.lib.stylix.colors.base00};
-      border-radius: 5px
+      border-radius: 5px;
     }
     .widget-label {
         margin: 10px 10px 5px 10px;
@@ -265,48 +257,22 @@
     }
     .widget-mpris-player {
       padding: 5px 10px;
-      margin: 10px
+      margin: 10px;
     }
     .widget-mpris-title {
       font-weight: 700;
-      font-size: 1.25rem
+      font-size: 1.25rem;
     }
     .widget-mpris-subtitle {
-      font-size: 1.1rem
+      font-size: 1.1rem;
     }
     .widget-menubar>box>.menu-button-bar>button {
       border: none;
-      background: transparent
+      background: transparent;
     }
     .topbar-buttons>button {
       border: none;
-      background: transparent
-    }
-    .widget-volume {
-      background: #${config.lib.stylix.colors.base01};
-      padding: 5px;
-      margin: 10px 10px 5px 10px;
-      border-radius: 5px;
-      font-size: x-large;
-      color: #${config.lib.stylix.colors.base05};
-    }
-    .widget-volume>box>button {
-      background: #${config.lib.stylix.colors.base0B};
-      border: none
-    }
-    .per-app-volume {
-      background-color: #${config.lib.stylix.colors.base00};
-      padding: 4px 8px 8px;
-      margin: 0 8px 8px;
-      border-radius: 5px;
-    }
-    .widget-backlight {
-      background: #${config.lib.stylix.colors.base01};
-      padding: 5px;
-      margin: 10px 10px 5px 10px;
-      border-radius: 5px;
-      font-size: x-large;
-      color: #${config.lib.stylix.colors.base05}
+      background: transparent;
     }
   '';
 }

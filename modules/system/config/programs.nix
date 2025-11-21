@@ -40,10 +40,7 @@
   ];
 
   services = {
-    tzupdate = {
-      enable = true;
-      timer.enable = false;
-    };
+    automatic-timezoned.enable = true;
     upower.enable = true;
   };
 }

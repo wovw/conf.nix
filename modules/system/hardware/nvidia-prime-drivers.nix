@@ -23,7 +23,7 @@ in
   # https://wiki.nixos.org/wiki/NVIDIA
   config = mkIf cfg.enable {
     hardware.nvidia.prime = {
-      reverseSync.enable = true; # dGPU is always used + primary output device
+      sync.enable = true; # dGPU is always used + primary output device
 
       # lspci -d ::03xx
       intelBusId = "${cfg.intelBusID}";
