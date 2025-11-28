@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: 0.2.0
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: BuildTools
+      directives:
+        description: Visual Studio Build Tools
+        allowPrerelease: true
+      settings:
+        id: Microsoft.VisualStudio.BuildTools
+        source: winget
+        ensure: Present
+
+    # --- Core Environment ---
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Git
+      settings:
+        id: Git.Git
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: WezTerm
+      settings:
+        id: Wez.WezTerm
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: NerdFont
+      settings:
+        id: DEVCOM.JetBrainsMonoNerdFont
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: AzureCLI
+      settings:
+        id: Microsoft.AzureCLI
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Powershell
+      settings:
+        id: Microsoft.PowerShell
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Cursor
+      settings:
+        id: Anysphere.Cursor
+        source: winget
+        ensure: Present
+
+    # --- Languages ---
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Rustup
+      settings:
+        id: Rustlang.Rustup
+        source: winget
+        ensure: Present

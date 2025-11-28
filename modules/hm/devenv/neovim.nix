@@ -8,6 +8,7 @@
 {
   home = {
     packages = with pkgs; [
+      clang # cc for nvim-treesitter
       tree-sitter
 
       lua51Packages.lua

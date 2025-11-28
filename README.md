@@ -1,25 +1,5 @@
 # NixOS flake
 
-## useful commands
-
-```sh
-nix repl ~/conf.nix#nixosConfigurations.{hostname}.config
-```
-
-```sh
-journalctl -b --user -u {service-name} -f
-```
-
-### mounting bitlocker drive
-
-```sh
-sudo dislocker-fuse -v -V /dev/nvme1n1p1 -p{recovery_key} -- /mnt/bitlocker-fuse && sudo mount -o loop -t ntfs-3g /mnt/bitlocker-fuse/dislocker-file /mnt/windows
-```
-
-```sh
-sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
-```
-
 ## manual things
 
 * [lanzaboote setup](https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md)
@@ -35,6 +15,26 @@ sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
   * `podman-compose --file ~/.config/winapps/compose.yaml start`
   * `winapps-setup` to install windows
   * directly start windows through rofi after boot
+
+### useful commands
+
+```sh
+nix repl ~/conf.nix#nixosConfigurations.{hostname}.config
+```
+
+```sh
+journalctl -b --user -u {service-name} -f
+```
+
+#### mounting bitlocker drive
+
+```sh
+sudo dislocker-fuse -v -V /dev/nvme1n1p1 -p{recovery_key} -- /mnt/bitlocker-fuse && sudo mount -o loop -t ntfs-3g /mnt/bitlocker-fuse/dislocker-file /mnt/windows
+```
+
+```sh
+sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
+```
 
 ## wsl setup
 
@@ -57,8 +57,51 @@ sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
 * nixos
   * <https://github.com/Zaney/zaneyos>
   * <https://github.com/librephoenix/nixos-config>
-
 * nvim
   * <https://github.com/ThePrimeagen/init.lua>
   * <https://github.com/nvim-lua/kickstart.nvim>
   * <https://www.lazyvim.org>
+
+## Windows setup steps 😔
+
+### Prereqs
+
+* check VBSCRIPT: `DISM /Online /Add-Capability /CapabilityName:VBSCRIPT~~~~`
+* enable Developer Mode in Windows Settings
+* `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+### github ssh
+
+```pwsh
+ssh-keygen -t ed25519 -C "email@example.com"
+Get-Service -Name ssh-agent | Set-Service -StartupType Manual
+Start-Service ssh-agent
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
+```
+
+```pwsh
+# paste in github
+cat ~/.ssh/id_ed25519.pub | clip 
+```
+
+### Bootstrap
+
+```pwsh
+# Install Winget & Git
+winget install --id Microsoft.AppInstaller --source winget --force
+winget install -e --id Git.Git
+```
+
+```pwsh
+git config --global core.autocrlf input
+```
+
+```pwsh
+git clone git@github.com:wovw/conf.nix.git
+```
+
+```pwsh
+# Run setup script
+cd conf.nix
+.\hosts\midd\setup.ps1
+```
