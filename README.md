@@ -93,6 +93,11 @@ winget install -e --id Git.Git
 ```
 
 ```pwsh
+# Install VS Build Tools (Launch and select C++ development)
+winget install -e --id Microsoft.VisualStudio.BuildTools
+```
+
+```pwsh
 git config --global core.autocrlf input
 ```
 
