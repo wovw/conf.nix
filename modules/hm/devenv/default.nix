@@ -20,7 +20,6 @@
     repomix
     pscale
     amp-cli
-    (import ./scripts/tmux-sessionizer.nix { inherit pkgs; })
     (import ./scripts/rebuild.nix { inherit pkgs username host; })
   ];
 
@@ -29,6 +28,7 @@
     ./neovim.nix
     ./starship.nix
     ./yazi/default.nix
+    ./tms/default.nix
   ];
 
   home.sessionVariables = {
@@ -87,7 +87,7 @@
 
             function session-widget() {
                 # Preserve terminal context by using zsh's BUFFER
-                BUFFER="tmux-sessionizer"
+                BUFFER="tms"
                 # Execute the command
                 zle accept-line
             }
@@ -126,35 +126,39 @@
         pain-control
       ];
 
-      extraConfig = ''
-        # Terminal overrides
-        set -g terminal-overrides ",xterm-ghostty:RGB"
+      extraConfig =
+        let
+          tmuxConfig = ''
+            # Terminal overrides
+            set -g terminal-overrides ",xterm-ghostty:RGB"
 
-        # yazi
-        set -g allow-passthrough on
-        set -ga update-environment TERM
-        set -ga update-environment TERM_PROGRAM
+            # yazi
+            set -g allow-passthrough on
+            set -ga update-environment TERM
+            set -ga update-environment TERM_PROGRAM
 
-        # Shift Alt vim keys to switch windows
-        bind -n M-H previous-window
-        bind -n M-L next-window
+            # Shift Alt vim keys to switch windows
+            bind -n M-H previous-window
+            bind -n M-L next-window
 
-        # Set vi mode
-        set-window-option -g mode-keys vi
+            # Set vi mode
+            set-window-option -g mode-keys vi
 
-        # Vim-style copy mode bindings
-        bind-key -T copy-mode-vi v send-keys -X begin-selection
-        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+            # Vim-style copy mode bindings
+            bind-key -T copy-mode-vi v send-keys -X begin-selection
+            bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+            bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-        bind-key -r f run-shell "tmux neww tmux-sessionizer"
-
-        # catppuccin plugin
-        set -g @catppuccin_flavor "mocha"
-        set -g status-left ""
-        set -g status-right "#{E:@catppuccin_status_application}"
-        set -ag status-right "#{E:@catppuccin_status_session}"
-      '';
+            # catppuccin plugin
+            set -g @catppuccin_flavor "mocha"
+            set -g status-left ""
+            set -g status-right "#{E:@catppuccin_status_application}"
+            set -ag status-right "#{E:@catppuccin_status_session}"
+          '';
+        in
+        lib.mkMerge [
+          tmuxConfig
+        ];
     };
   };
 }

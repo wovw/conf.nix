@@ -1,0 +1,11 @@
+[[search_dirs]]
+path = "/home/wovw/projects"
+depth = 2
+
+[[search_dirs]]
+path = "/home/wovw/work"
+depth = 1
+
+[[search_dirs]]
+path = "/home/wovw"
+depth = 1

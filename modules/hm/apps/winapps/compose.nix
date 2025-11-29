@@ -17,8 +17,8 @@
         # https://github.com/dockur/windows?tab=readme-ov-file#how-do-i-select-the-windows-version
         # https://github.com/dockur/windows?tab=readme-ov-file#how-do-i-install-a-custom-image
         VERSION: "11"
-        RAM_SIZE: "4G" # RAM allocated to the Windows VM.
-        CPU_CORES: "4" # CPU cores allocated to the Windows VM.
+        RAM_SIZE: "8G" # RAM allocated to the Windows VM.
+        CPU_CORES: "6" # CPU cores allocated to the Windows VM.
         DISK_SIZE: "256G" # Size of the primary hard disk.
         #DISK2_SIZE: "32G" # Uncomment to add an additional hard disk to the Windows VM. Ensure it is mounted as a volume below.
         USERNAME: "${username}" # Uncomment to set a custom Windows username. The default is 'Docker'.
