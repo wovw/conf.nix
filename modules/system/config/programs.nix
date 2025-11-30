@@ -14,7 +14,6 @@
     file
     vim
     killall
-    eza
     git
     unzip
     unrar
