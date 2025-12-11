@@ -1,11 +1,12 @@
 {
   pkgs,
-  modifier,
   INTERNAL,
 }:
 let
-  brightness = pkgs.callPackage ../../scripts/brightness.nix { };
-  toggleMirror = pkgs.callPackage ../../scripts/toggle-mirror.nix { inherit INTERNAL; };
+  brightness = "${pkgs.callPackage ../../scripts/brightness.nix { }}/bin/brightness-control";
+  toggleMirror = "${
+    pkgs.callPackage ../../scripts/toggle-mirror.nix { inherit INTERNAL; }
+  }/bin/toggle-mirror";
 in
 ''
   # https://wiki.hyprland.org/Configuring/Monitors/
@@ -17,8 +18,8 @@ in
   bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor "${INTERNAL},disable"
   bindl = , switch:off:Lid Switch,exec,hyprctl keyword monitor "${INTERNAL},preferred,0x0,1.25"
 
-  binde = , xf86MonBrightnessDown, exec, ${brightness}/bin/brightness-control --dec
-  binde = , xf86MonBrightnessUp, exec, ${brightness}/bin/brightness-control --inc
+  binde = , xf86MonBrightnessDown, exec, ${brightness} --dec
+  binde = , xf86MonBrightnessUp, exec, ${brightness} --inc
 
-  bind = $mainMod, P, exec, ${toggleMirror}/bin/toggle-mirror
+  bind = $mainMod, P, exec, ${toggleMirror}
 ''

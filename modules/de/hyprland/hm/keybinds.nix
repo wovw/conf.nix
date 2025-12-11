@@ -1,7 +1,5 @@
 {
   pkgs,
-  modifier,
-  host,
   terminal,
 }:
 let
@@ -9,8 +7,6 @@ let
   wlogout = "${pkgs.callPackage ../../wlogout/launcher.nix { }}/bin/wlogout-launcher";
 in
 ''
-  $mainMod=${modifier}
-
   bind = $mainMod,Return,exec,${terminal}
   bind = $mainMod, B, exec, pidof waybar >/dev/null && pkill -SIGUSR1 waybar || waybar &
   bind = $mainMod SHIFT,N,exec, ${swaync}

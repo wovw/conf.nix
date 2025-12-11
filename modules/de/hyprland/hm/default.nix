@@ -1,6 +1,5 @@
 {
   lib,
-  host,
   pkgs,
   INTERNAL,
   EXTERNAL,
@@ -29,12 +28,11 @@ with lib;
       concatStrings [
         ''
           $EXTERNAL = ${EXTERNAL}
+          $mainMod = ${modifier}
           ${
             (import ./keybinds.nix {
               inherit
                 pkgs
-                modifier
-                host
                 terminal
                 ;
             })
@@ -43,7 +41,6 @@ with lib;
             (import ./laptop.nix {
               inherit
                 pkgs
-                modifier
                 INTERNAL
                 ;
             })

@@ -1,7 +1,7 @@
 { pkgs }:
 let
   monitor-connect = "${
-    pkgs.callPackage ../../scripts/handle-monitor-connect.nix { }
+    pkgs.callPackage ../scripts/handle-monitor-connect.nix { }
   }/bin/handle-monitor-connect";
 in
 ''
