@@ -28,13 +28,6 @@
         user = "pants";
         identityFile = "~/.ssh/${host}_ed25519";
       };
-      "kfc" = {
-        host = "kfc";
-        hostname = "kfc.local";
-        user = "krispy";
-        identityFile = "~/.ssh/${host}_ed25519";
-      };
     };
-
   };
 }
