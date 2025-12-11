@@ -4,7 +4,7 @@
   ...
 }@args:
 let
-  inherit (import ./variables.nix) gitUsername gitEmail;
+  inherit (import ./variables.nix) gitUsername;
 in
 {
   # Home Manager Settings
@@ -13,8 +13,9 @@ in
   # Import Program Configurations
   imports = [
     ../../modules/hm/config.nix
-    (import ../../modules/theme/hm.nix { inherit pkgs; })
-    (import ../../modules/hm/devenv/default.nix (args // { inherit gitUsername gitEmail; }))
     (import ../../modules/ssh/hm.nix { inherit host; })
+    ../../modules/ssh/sops.nix
+    (import ../../modules/theme/hm.nix { inherit pkgs; })
+    (import ../../modules/hm/devenv/default.nix (args // { inherit gitUsername; }))
   ];
 }

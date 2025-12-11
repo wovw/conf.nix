@@ -1,17 +1,19 @@
 {
+  config,
   gitUsername,
-  gitEmail,
   host,
 }:
 {
   programs = {
     git = {
       enable = true;
+      includes = [
+        { inherit (config.sops.secrets.git_config) path; }
+      ];
       lfs.enable = true;
       settings = {
         user = {
           name = gitUsername;
-          email = gitEmail;
           signingkey = "~/.ssh/${host}_ed25519.pub";
         };
 

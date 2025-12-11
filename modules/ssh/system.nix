@@ -1,5 +1,4 @@
-_:
-{
+_: {
   # sshd daemon for incoming connections
   services.openssh = {
     enable = false;
@@ -8,7 +7,4 @@ _:
     };
     openFirewall = true;
   };
-
-  # ssh-agent for outgoing connections
-  programs.ssh.startAgent = true;
 }

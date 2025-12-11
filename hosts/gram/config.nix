@@ -28,6 +28,7 @@ in
     ../../modules/system/apps/gaming.nix
     ../../modules/de/hyprland/system.nix
     ../../modules/de/greetd/login.nix
+    ../../modules/ssh/system.nix
   ];
 
   boot = {
