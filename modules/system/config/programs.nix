@@ -34,7 +34,6 @@
     curl
     wget
     exiftool
-    libqalculate
     ncdu
   ];
 

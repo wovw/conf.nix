@@ -21,7 +21,6 @@
     wl-clipboard
     ifuse
     libimobiledevice
-    cliphist
     hyprpicker
     hyprshot
     hyprland-qtutils

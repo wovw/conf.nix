@@ -7,7 +7,6 @@
 with lib;
 let
   wlogout = pkgs.callPackage ./wlogout/launcher.nix { };
-  rofi = pkgs.callPackage ./rofi/launcher.nix { };
   swaync = pkgs.callPackage ./swaync/launcher.nix { };
   backlight = pkgs.callPackage ./scripts/brightness.nix { };
 in
@@ -38,7 +37,7 @@ in
         "custom/startmenu" = {
           tooltip = false;
           format = "";
-          on-click = "${rofi}/bin/rofi-launcher";
+          on-click = "vicinae vicinae://toggle";
         };
         "hyprland/workspaces" = {
           format = "{icon}";

@@ -20,5 +20,5 @@ in
   binde = , xf86MonBrightnessDown, exec, ${brightness}/bin/brightness-control --dec
   binde = , xf86MonBrightnessUp, exec, ${brightness}/bin/brightness-control --inc
 
-  bind = ${modifier}, P, exec, ${toggleMirror}/bin/toggle-mirror
+  bind = $mainMod, P, exec, ${toggleMirror}/bin/toggle-mirror
 ''

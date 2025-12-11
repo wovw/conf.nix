@@ -5,48 +5,44 @@
   terminal,
 }:
 let
-  rofi = "${pkgs.callPackage ../../rofi/launcher.nix { }}/bin/rofi-launcher";
   swaync = "${pkgs.callPackage ../../swaync/launcher.nix { }}/bin/swaync-launcher";
   wlogout = "${pkgs.callPackage ../../wlogout/launcher.nix { }}/bin/wlogout-launcher";
 in
 ''
   $mainMod=${modifier}
 
-  bind = ${modifier},Space,exec,${rofi}
-  bind = ${modifier},Return,exec,${terminal}
-  bind = ${modifier},T,exec,${terminal} -e yazi
-  bind = ${modifier}, B, exec, pidof waybar >/dev/null && pkill -SIGUSR1 waybar || waybar &
-  bind = ${modifier}SHIFT,N,exec, ${swaync}
+  bind = $mainMod,Return,exec,${terminal}
+  bind = $mainMod, B, exec, pidof waybar >/dev/null && pkill -SIGUSR1 waybar || waybar &
+  bind = $mainMod SHIFT,N,exec, ${swaync}
 
   bind = CTRL ALT, Delete, exec, hyprctl dispatch exit 0
-  bind = ${modifier},Q,killactive,
-  bind = ${modifier}SHIFT,Q, exec, kill $(hyprctl activewindow | grep -o 'pid: [0-9]*' | cut -d' ' -f2)
-  bind = ${modifier},F,fullscreen,
-  bind = ${modifier}SHIFT,F,togglefloating,
-  bind = ${modifier}ALT,L, exec, pidof hyprlock || hyprlock -q
+  bind = $mainMod,Q,killactive,
+  bind = $mainMod SHIFT,Q, exec, kill $(hyprctl activewindow | grep -o 'pid: [0-9]*' | cut -d' ' -f2)
+  bind = $mainMod,F,fullscreen,
+  bind = $mainMod SHIFT,F,togglefloating,
+  bind = $mainModALT,L, exec, pidof hyprlock || hyprlock -q
   bind = CTRL ALT, P, exec, ${wlogout}
 
-  bind = ${modifier},E,exec,rofi -show emoji -modi emoji
-  bind = ${modifier}SHIFT,C,exec,hyprpicker -a
+  bind = $mainMod SHIFT,C,exec,hyprpicker -a
 
   # move windows
-  bind = ${modifier}SHIFT,left,movewindow,l
-  bind = ${modifier}SHIFT,right,movewindow,r
-  bind = ${modifier}SHIFT,up,movewindow,u
-  bind = ${modifier}SHIFT,down,movewindow,d
-  bind = ${modifier}SHIFT,h,movewindow,l
-  bind = ${modifier}SHIFT,l,movewindow,r
-  bind = ${modifier}SHIFT,k,movewindow,u
-  bind = ${modifier}SHIFT,j,movewindow,d
+  bind = $mainMod SHIFT,left,movewindow,l
+  bind = $mainMod SHIFT,right,movewindow,r
+  bind = $mainMod SHIFT,up,movewindow,u
+  bind = $mainMod SHIFT,down,movewindow,d
+  bind = $mainMod SHIFT,h,movewindow,l
+  bind = $mainMod SHIFT,l,movewindow,r
+  bind = $mainMod SHIFT,k,movewindow,u
+  bind = $mainMod SHIFT,j,movewindow,d
 
-  bind = ${modifier},left,movefocus,l
-  bind = ${modifier},right,movefocus,r
-  bind = ${modifier},up,movefocus,u
-  bind = ${modifier},down,movefocus,d
-  bind = ${modifier},h,movefocus,l
-  bind = ${modifier},l,movefocus,r
-  bind = ${modifier},k,movefocus,u
-  bind = ${modifier},j,movefocus,d
+  bind = $mainMod,left,movefocus,l
+  bind = $mainMod,right,movefocus,r
+  bind = $mainMod,up,movefocus,u
+  bind = $mainMod,down,movefocus,d
+  bind = $mainMod,h,movefocus,l
+  bind = $mainMod,l,movefocus,r
+  bind = $mainMod,k,movefocus,u
+  bind = $mainMod,j,movefocus,d
 
   # Cycle windows if floating bring to top
   bind = ALT, tab, cyclenext
@@ -66,10 +62,10 @@ in
   bind = ,XF86AudioStop, exec, playerctl stop
 
   # screenshot bindings
-  bind = ${modifier}, S, exec, hyprshot -m window
-  bind =${modifier} SHIFT, S, exec, hyprshot -m region --clipboard-only
+  bind = $mainMod, S, exec, hyprshot -m window
+  bind =$mainMod SHIFT, S, exec, hyprshot -m region --clipboard-only
   bind = , Print, exec, hyprshot -m output
-  bind = ${modifier} SHIFT, T, exec, normcap # text extract
+  bind = $mainMod SHIFT, T, exec, normcap # text extract
 
   bind = SUPER ALT, S, exec, speech-to-text
 
@@ -79,32 +75,32 @@ in
   bind = $mainMod SHIFT, m, movecurrentworkspacetomonitor, +1
 
   # switch workspaces
-  bind = ${modifier},1,workspace,1
-  bind = ${modifier},2,workspace,2
-  bind = ${modifier},3,workspace,3
-  bind = ${modifier},4,workspace,4
-  bind = ${modifier},5,workspace,5
-  bind = ${modifier},6,workspace,6
-  bind = ${modifier},7,workspace,7
-  bind = ${modifier},8,workspace,8
-  bind = ${modifier},9,workspace,9
-  bind = ${modifier},0,workspace,10
+  bind = $mainMod,1,workspace,1
+  bind = $mainMod,2,workspace,2
+  bind = $mainMod,3,workspace,3
+  bind = $mainMod,4,workspace,4
+  bind = $mainMod,5,workspace,5
+  bind = $mainMod,6,workspace,6
+  bind = $mainMod,7,workspace,7
+  bind = $mainMod,8,workspace,8
+  bind = $mainMod,9,workspace,9
+  bind = $mainMod,0,workspace,10
 
   # special workspace
-  bind = ${modifier}SHIFT,U,movetoworkspace,special
-  bind = ${modifier},U,togglespecialworkspace
+  bind = $mainMod SHIFT,U,movetoworkspace,special
+  bind = $mainMod,U,togglespecialworkspace
 
   # move active window to workspace
-  bind = ${modifier}SHIFT,1,movetoworkspace,1
-  bind = ${modifier}SHIFT,2,movetoworkspace,2
-  bind = ${modifier}SHIFT,3,movetoworkspace,3
-  bind = ${modifier}SHIFT,4,movetoworkspace,4
-  bind = ${modifier}SHIFT,5,movetoworkspace,5
-  bind = ${modifier}SHIFT,6,movetoworkspace,6
-  bind = ${modifier}SHIFT,7,movetoworkspace,7
-  bind = ${modifier}SHIFT,8,movetoworkspace,8
-  bind = ${modifier}SHIFT,9,movetoworkspace,9
-  bind = ${modifier}SHIFT,0,movetoworkspace,10
+  bind = $mainMod SHIFT,1,movetoworkspace,1
+  bind = $mainMod SHIFT,2,movetoworkspace,2
+  bind = $mainMod SHIFT,3,movetoworkspace,3
+  bind = $mainMod SHIFT,4,movetoworkspace,4
+  bind = $mainMod SHIFT,5,movetoworkspace,5
+  bind = $mainMod SHIFT,6,movetoworkspace,6
+  bind = $mainMod SHIFT,7,movetoworkspace,7
+  bind = $mainMod SHIFT,8,movetoworkspace,8
+  bind = $mainMod SHIFT,9,movetoworkspace,9
+  bind = $mainMod SHIFT,0,movetoworkspace,10
 
   # Scroll through existing workspaces with mainMod + scroll
   bind = $mainMod, mouse_down, workspace, e+1
@@ -113,6 +109,6 @@ in
   bind = $mainMod, comma, workspace, e-1
 
   # Move/resize windows with mainMod + LMB/RMB and dragging
-  bindm = ${modifier},mouse:272,movewindow
-  bindm = ${modifier},mouse:273,resizewindow
+  bindm = $mainMod,mouse:272,movewindow
+  bindm = $mainMod,mouse:273,resizewindow
 ''

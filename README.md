@@ -14,7 +14,7 @@
   * [changing `compose.yaml`](https://github.com/winapps-org/winapps/blob/main/docs/docker.md#changing-composeyaml)
   * `podman-compose --file ~/.config/winapps/compose.yaml start`
   * `winapps-setup` to install windows
-  * directly start windows through rofi after boot
+  * directly start windows through vicinae after boot
 
 ### useful commands
 

@@ -2,11 +2,9 @@
   lib,
   host,
   pkgs,
-  inputs,
   INTERNAL,
   EXTERNAL,
   terminal,
-  system,
   ...
 }:
 
@@ -32,18 +30,6 @@ with lib;
         ''
           $EXTERNAL = ${EXTERNAL}
           ${
-            (import ./laptop.nix {
-              inherit
-                pkgs
-                modifier
-                INTERNAL
-                ;
-            })
-          }
-          ${import ./startup.nix { inherit pkgs; }}
-          ${import ./clipboard.nix { inherit inputs system modifier; }}
-          ${builtins.readFile ./decor.conf}
-          ${
             (import ./keybinds.nix {
               inherit
                 pkgs
@@ -53,6 +39,18 @@ with lib;
                 ;
             })
           }
+          ${
+            (import ./laptop.nix {
+              inherit
+                pkgs
+                modifier
+                INTERNAL
+                ;
+            })
+          }
+          ${import ./startup.nix { inherit pkgs; }}
+          ${builtins.readFile ./vicinae.conf}
+          ${builtins.readFile ./decor.conf}
           ${builtins.readFile ./settings.conf}
           ${builtins.readFile ./window-rules.conf}
         ''

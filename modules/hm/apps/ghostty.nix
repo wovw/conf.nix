@@ -19,4 +19,12 @@
 
     keybind = ctrl+enter=ignore
   '';
+  xdg.mimeApps = {
+    defaultApplications = {
+      "x-scheme-handler/terminal" = "com.mitchellh.ghostty.desktop";
+    };
+    associations.added = {
+      "x-scheme-handler/terminal" = "com.mitchellh.ghostty.desktop";
+    };
+  };
 }

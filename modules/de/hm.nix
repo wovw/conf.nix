@@ -1,5 +1,4 @@
-{ ... }@args:
-{
+args: {
   xdg = {
     userDirs = {
       enable = true;
@@ -8,8 +7,8 @@
   };
 
   imports = [
-    (import ./rofi/config.nix (args))
-    (import ./hyprland/hm/default.nix (args))
+    ./vicinae.nix
+    (import ./hyprland/hm/default.nix args)
     ./waybar.nix
     ./swaync/config.nix
     ./wlogout/config.nix

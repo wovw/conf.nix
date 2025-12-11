@@ -36,7 +36,6 @@ in
           qbittorrent
           spotify
           lunar-client
-          qalculate-gtk
           code-cursor
           yaak
           yt-dlp

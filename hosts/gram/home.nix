@@ -14,8 +14,8 @@ let
 in
 {
   home.stateVersion = "23.11";
+  xdg.mimeApps.enable = true;
 
-  # Import Program Configurations
   imports = [
     ../../modules/hm/config.nix
     (import ../../modules/theme/hm.nix { inherit pkgs; })
