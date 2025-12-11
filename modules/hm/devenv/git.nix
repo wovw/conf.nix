@@ -9,13 +9,15 @@
       enable = true;
       lfs.enable = true;
       settings = {
-        user.name = gitUsername;
-        user.email = gitEmail;
+        user = {
+          name = gitUsername;
+          email = gitEmail;
+          signingkey = "~/.ssh/${host}_ed25519.pub";
+        };
 
         # commit signing
         commit.gpgsign = "true";
         gpg.format = "ssh";
-        user.signingkey = "~/.ssh/${host}_ed25519.pub";
 
         # https://blog.gitbutler.com/how-git-core-devs-configure-git/
 

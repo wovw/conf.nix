@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
     rust-overlay.url = "github:oxalica/rust-overlay";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
@@ -17,7 +17,10 @@
     stylix.url = "github:danth/stylix";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake/beta";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
     oskars-dotfiles = {
       url = "github:oskardotglobal/.dotfiles/nix";
@@ -29,14 +32,8 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    rofi-tools = {
-      url = "github:szaffarano/rofi-tools";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    winapps.url = "github:winapps-org/winapps";
+    vicinae.url = "github:vicinaehq/vicinae";
     affinity-nix.url = "github:mrshmllow/affinity-nix";
     xmcl = {
       url = "github:x45iq/xmcl-nix";
@@ -52,8 +49,9 @@
       nixos-wsl,
       stylix,
       nix-index-database,
-      chaotic,
+      nix-cachyos-kernel,
       lanzaboote,
+      vicinae,
       ...
     }@inputs:
     let
@@ -62,7 +60,8 @@
           host,
           username,
           system ? "x86_64-linux",
-          modules ? [ ],
+          nixosModules ? [ ],
+          homeManagerModules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -94,12 +93,12 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "backup";
-                  users.${username}.imports = [ ./hosts/${host}/home.nix ];
+                  users.${username}.imports = [ ./hosts/${host}/home.nix ] ++ homeManagerModules;
                 };
               }
             )
           ]
-          ++ modules;
+          ++ nixosModules;
         };
     in
     {
@@ -107,12 +106,15 @@
         gram = mkHostConfig {
           host = "gram";
           username = "wovw";
-          modules = [
-            # secure boot
+          nixosModules = [
             lanzaboote.nixosModules.lanzaboote
             (
               { pkgs, lib, ... }:
               {
+                nixpkgs.overlays = [
+                  oskars-dotfiles.overlays.spotx
+                  nix-cachyos-kernel.overlay
+                ];
 
                 environment.systemPackages = [
                   # For debugging and troubleshooting Secure Boot.
@@ -131,35 +133,21 @@
                 };
               }
             )
-
-            chaotic.nixosModules.default
-            (
-              { ... }:
-              {
-                nixpkgs.overlays = [
-                  oskars-dotfiles.overlays.spotx
-                ];
-              }
-            )
+          ];
+          homeManagerModules = [
+            vicinae.homeManagerModules.default
           ];
         };
         harpe = mkHostConfig rec {
           host = "harpe";
           username = "wovw";
-          modules = [
+          nixosModules = [
             nixos-wsl.nixosModules.default
             {
               system.stateVersion = "24.05";
               wsl.enable = true;
               wsl.defaultUser = username;
             }
-          ];
-        };
-        kfc = mkHostConfig {
-          host = "kfc";
-          username = "krispy";
-          modules = [
-            chaotic.nixosModules.default
           ];
         };
       };

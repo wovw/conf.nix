@@ -12,10 +12,7 @@ let
 in
 {
   home.packages = [ gimp-plugins ];
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "image/*" = "gimp.desktop";
-    };
+  xdg.mimeApps.defaultApplications = {
+    "image/*" = "gimp.desktop";
   };
 }

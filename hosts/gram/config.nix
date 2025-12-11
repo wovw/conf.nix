@@ -18,19 +18,20 @@ in
     ../../modules/system/hardware/mouse.nix
     ../../modules/system/config/virtualization.nix
     ../../modules/system/config/common.nix
-    (import ../../modules/theme/system.nix ({ inherit pkgs wallpaper; }))
+    (import ../../modules/theme/system.nix { inherit pkgs wallpaper; })
     ../../modules/system/config/nix.nix
+    ../../modules/system/config/secret.nix
     ../../modules/system/config/programs.nix
     ../../modules/system/config/resolved.nix
     ../../modules/system/apps/obs.nix
+    ../../modules/system/apps/nautilus.nix
     ../../modules/system/apps/gaming.nix
-    ../../modules/system/apps/gnome/default.nix
     ../../modules/de/hyprland/system.nix
     ../../modules/de/greetd/login.nix
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
     kernelPatches = [
       {
         name = "Rust Support";
@@ -78,24 +79,27 @@ in
     };
   };
 
-  # Extra Module Options
-  drivers.intel.enable = true;
-  drivers.nvidia.enable = true;
-  drivers.nvidia-prime.enable = true;
+  drivers = {
+    # Extra Module Options
+    intel.enable = true;
+    nvidia.enable = true;
+    nvidia-prime.enable = true;
+  };
 
   # Enable networking
   networking = {
     networkmanager.enable = true;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
-
-    firewall.enable = true;
-    # Open ports in the firewall.
-    firewall.allowedTCPPorts = [
-      25565 # mc lan
-    ];
-    firewall.allowedUDPPorts = [
-      25565 # mc lan
-    ];
+    firewall = {
+      enable = true;
+      # Open ports in the firewall.
+      allowedTCPPorts = [
+        25565 # mc lan
+      ];
+      allowedUDPPorts = [
+        25565 # mc lan
+      ];
+    };
   };
 
   programs = {

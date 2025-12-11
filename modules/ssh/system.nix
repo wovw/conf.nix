@@ -1,4 +1,4 @@
-{ ... }:
+_:
 {
   # sshd daemon for incoming connections
   services.openssh = {

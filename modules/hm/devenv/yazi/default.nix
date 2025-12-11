@@ -38,15 +38,6 @@
       };
       folder-rules = ./plugins/folder-rules.yazi;
     };
-    flavors = {
-      tokyo-night = ./flavors/tokyo-night.yazi;
-    };
-    theme = {
-      flavor = {
-        dark = "tokyo-night";
-        light = "tokyo-night";
-      };
-    };
 
     initLua = ./init.lua;
 

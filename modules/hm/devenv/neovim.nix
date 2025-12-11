@@ -14,6 +14,7 @@
       lua51Packages.lua
       lua51Packages.luarocks
 
+      statix
       nixfmt-rfc-style
     ];
 
