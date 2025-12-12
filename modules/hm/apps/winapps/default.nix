@@ -1,13 +1,13 @@
 {
+  pkgs,
   config,
   inputs,
-  system,
   username,
   ...
 }:
 {
   home.packages = [
-    inputs.winapps.packages."${system}".winapps
+    inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
   ];
   xdg.configFile."winapps/compose.yaml".text = ''${
     (import ./compose.nix { inherit config username; })

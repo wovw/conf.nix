@@ -2,7 +2,6 @@
   pkgs,
   username,
   inputs,
-  system,
   ...
 }:
 
@@ -41,8 +40,8 @@ in
           yt-dlp
           gptfdisk
           zoom-us
-          inputs.xmcl.packages."${system}".default
-          inputs.affinity-nix.packages."${system}".v3
+          inputs.xmcl.packages.${pkgs.stdenv.hostPlatform.system}.default
+          inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.v3
         ];
         openssh.authorizedKeys.keys = [ ];
       };

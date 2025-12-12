@@ -2,7 +2,6 @@
   pkgs,
   config,
   inputs,
-  system,
   ...
 }:
 {
@@ -35,7 +34,7 @@
         lua-language-server
         python312Packages.pylatexenc # markdown preview
         lua51Packages.jsregexp # luasnip
-        inputs.nil.packages.${system}.default
+        inputs.nil.packages.${pkgs.stdenv.hostPlatform.system}.default
 
         # snacks.image
         imagemagick

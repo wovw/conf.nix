@@ -1,7 +1,7 @@
 # https://github.com/luisnquin/nixos-config/blob/main/home/modules/programs/browser/zen.nix
 {
   inputs,
-  system,
+  pkgs,
   ...
 }:
 {
@@ -74,7 +74,7 @@
             inherit name;
             value =
               let
-                zen-browser = inputs.zen-browser.packages.${system}.beta;
+                zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta;
               in
               zen-browser.meta.desktopFileName;
           })
