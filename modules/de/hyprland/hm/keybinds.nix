@@ -3,13 +3,12 @@
   terminal,
 }:
 let
-  swaync = "${pkgs.callPackage ../../swaync/launcher.nix { }}/bin/swaync-launcher";
   wlogout = "${pkgs.callPackage ../../wlogout/launcher.nix { }}/bin/wlogout-launcher";
 in
 ''
   bind = $mainMod,Return,exec,${terminal}
   bind = $mainMod, B, exec, pidof waybar >/dev/null && pkill -SIGUSR1 waybar || waybar &
-  bind = $mainMod SHIFT,N,exec, ${swaync}
+  bind = $mainMod SHIFT,N,exec, swaync-client -t -sw
 
   bind = CTRL ALT, Delete, exec, hyprctl dispatch exit 0
   bind = $mainMod,Q,killactive,

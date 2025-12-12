@@ -55,7 +55,6 @@
       nix-index-database,
       nix-cachyos-kernel,
       lanzaboote,
-      vicinae,
       ...
     }@inputs:
     let
@@ -137,9 +136,6 @@
                 };
               }
             )
-          ];
-          homeManagerModules = [
-            vicinae.homeManagerModules.default
           ];
         };
         harpe = mkHostConfig rec {

@@ -7,6 +7,7 @@ in
 ''
   exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   exec-once = nm-applet --indicator
+  exec-once = swaync
 
   exec-once = ${monitor-connect}
 ''

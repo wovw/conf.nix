@@ -10,7 +10,7 @@ args: {
     ./vicinae.nix
     (import ./hyprland/hm/default.nix args)
     ./waybar.nix
-    ./swaync/config.nix
+    ./swaync.nix
     ./wlogout/config.nix
   ];
 

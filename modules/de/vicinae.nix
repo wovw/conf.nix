@@ -1,19 +1,17 @@
+{ inputs, ... }:
 {
-  config,
-  ...
-}:
-{
+  imports = [
+    inputs.vicinae.homeManagerModules.default
+  ];
   services.vicinae = {
     enable = true;
     autoStart = true;
     settings = {
-      faviconService = "twenty"; # twenty | google | none
-      font.size = config.stylix.fonts.sizes.applications;
-      popToRootOnClose = false;
+      faviconService = "twenty";
+      popToRootOnClose = true;
       rootSearch.searchFiles = false;
       window = {
-        csd = true;
-        rounding = 10;
+        csd = false;
       };
     };
   };
