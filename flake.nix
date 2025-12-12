@@ -53,7 +53,6 @@
       nixos-wsl,
       stylix,
       nix-index-database,
-      nix-cachyos-kernel,
       lanzaboote,
       ...
     }@inputs:
@@ -62,14 +61,12 @@
         {
           host,
           username,
-          system ? "x86_64-linux",
           nixosModules ? [ ],
           homeManagerModules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit
-              system
               inputs
               username
               host
@@ -90,7 +87,6 @@
                       username
                       inputs
                       host
-                      system
                       ;
                   };
                   useGlobalPkgs = true;
@@ -116,7 +112,6 @@
               {
                 nixpkgs.overlays = [
                   oskars-dotfiles.overlays.spotx
-                  nix-cachyos-kernel.overlay
                 ];
 
                 environment.systemPackages = [

@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   username,
   options,
@@ -32,16 +33,8 @@ in
   ];
 
   boot = {
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
-    kernelPatches = [
-      {
-        name = "Rust Support";
-        patch = null;
-        features = {
-          rust = true;
-        };
-      }
-    ];
+    kernelPackages =
+      inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages-cachyos-latest-lto;
     kernelParams = [
       "8250.nr_uarts=0" # disable unused legacy serial ports
 
