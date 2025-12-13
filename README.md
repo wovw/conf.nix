@@ -15,6 +15,7 @@
   * `podman-compose --file ~/.config/winapps/compose.yaml start`
   * `winapps-setup` to install windows
   * directly start windows through vicinae after boot
+* [setting up garnix with autoupdates](https://blake.bruell.com/articles/automatic-flake-updates-with-garnix)
 
 ### useful commands
 
