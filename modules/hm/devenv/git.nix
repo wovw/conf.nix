@@ -60,6 +60,13 @@
         push.recurseSubmodules = "on-demand";
       };
     };
-    lazygit.enable = true;
+    lazygit = {
+      enable = true;
+      settings = {
+        git = {
+          overrideGpg = true;
+        };
+      };
+    };
   };
 }
