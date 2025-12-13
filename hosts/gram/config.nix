@@ -34,7 +34,7 @@ in
 
   boot = {
     kernelPackages =
-      inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages-cachyos-latest-lto;
+      inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages-cachyos-bore-lto;
     kernelParams = [
       "8250.nr_uarts=0" # disable unused legacy serial ports
 
@@ -126,7 +126,6 @@ in
   };
 
   services = {
-    scx.enable = true; # by default uses scx_rustland scheduler
     libinput.enable = true;
     fstrim.enable = true;
     flatpak.enable = true;

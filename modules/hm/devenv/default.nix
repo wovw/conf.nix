@@ -14,7 +14,6 @@
     pnpm
     fnm
     python312
-    zig
     uv
     go
     tokei
