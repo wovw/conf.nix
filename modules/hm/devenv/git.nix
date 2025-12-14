@@ -68,5 +68,17 @@
         };
       };
     };
+    gh = {
+      enable = true;
+      hosts = {
+        "github.com" = {
+          user = gitUsername;
+        };
+      };
+      settings = {
+        git_protocol = "ssh";
+        prompt = "enabled";
+      };
+    };
   };
 }

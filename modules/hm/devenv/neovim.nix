@@ -7,7 +7,6 @@
 {
   home = {
     packages = with pkgs; [
-      gh
       clang # cc for nvim-treesitter
       tree-sitter
 
