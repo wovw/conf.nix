@@ -12,14 +12,13 @@
     eza
     sccache
     pnpm
-    fnm
+    nodejs
     python312
     uv
     go
     tokei
     repomix
     pscale
-    amp-cli
     (import ./scripts/rebuild.nix { inherit pkgs username host; })
   ];
 
@@ -83,7 +82,6 @@
 
             eval "$(uv generate-shell-completion zsh)"
             eval "$(uvx --generate-shell-completion zsh)"
-            eval "$(fnm env --use-on-cd --shell zsh)"
 
             function session-widget() {
                 # Preserve terminal context by using zsh's BUFFER

@@ -28,7 +28,7 @@
           mkShell {
             # https://wiki.nixos.org/wiki/Tauri
             nativeBuildInputs = [
-              fnm
+              nodejs_25
               pnpm
               (rust-bin.stable.latest.default.override {
                 extensions = [

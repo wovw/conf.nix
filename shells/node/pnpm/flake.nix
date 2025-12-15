@@ -20,7 +20,7 @@
       {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            fnm
+            nodejs_25
             pnpm
           ];
         };
