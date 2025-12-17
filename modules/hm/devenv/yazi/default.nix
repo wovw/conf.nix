@@ -5,6 +5,7 @@
 {
   home.packages = with pkgs; [
     ripdrag
+    trash-cli
   ];
 
   programs.yazi = {
@@ -37,6 +38,12 @@
         sha256 = "sha256-jlZgN93HjfK+7H27Ifk7fs0jJaIdnOyY1wKxHz1wX2c=";
       };
       folder-rules = ./plugins/folder-rules.yazi;
+      recycle-bin = pkgs.fetchFromGitHub {
+        owner = "uhs-robert";
+        repo = "recycle-bin.yazi";
+        rev = "master";
+        sha256 = "sha256-CasCXkE8ig2INqx1mJj0wyxUVD1WFNM7aZ0SITXEsx0=";
+      };
     };
 
     initLua = ./init.lua;
@@ -102,6 +109,14 @@
         {
           on = [ "<C-n>" ];
           run = "shell 'ripdrag \"$@\" -x 2>/dev/null &' --confirm";
+        }
+        {
+          on = [
+            "R"
+            "b"
+          ];
+          run = "plugin recycle-bin";
+          desc = "Open Recycle Bin menu";
         }
       ];
     };
