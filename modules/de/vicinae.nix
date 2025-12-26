@@ -5,7 +5,7 @@
   ];
   services.vicinae = {
     enable = true;
-    autoStart = true;
+    systemd.enable = true;
     settings = {
       faviconService = "twenty";
       popToRootOnClose = true;

@@ -35,8 +35,6 @@ in
           qbittorrent
           spotify
           lunar-client
-          code-cursor
-          yaak
           yt-dlp
           gptfdisk
           zoom-us

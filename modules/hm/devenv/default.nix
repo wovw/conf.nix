@@ -11,8 +11,8 @@
   home.packages = with pkgs; [
     eza
     sccache
+    code-cursor
     pnpm
-    nodejs
     python312
     uv
     go

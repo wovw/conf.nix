@@ -15,6 +15,7 @@
 
       statix
       nixfmt-rfc-style
+      oxfmt
     ];
 
     sessionVariables = {
