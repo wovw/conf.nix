@@ -97,6 +97,10 @@
       DefaultTimeoutStopSec = 15;
       DefaultTimeoutAbortSec = 15;
     };
+
+    tmpfiles.rules = [
+      "d /tmp 1777 root root 7d"
+    ];
   };
 
   # Reduce journal size and improve performance
