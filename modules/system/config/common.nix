@@ -109,4 +109,6 @@
     RuntimeMaxUse=50M
     MaxRetentionSec=1week
   '';
+
+  environment.localBinInPath = true;
 }
