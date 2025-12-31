@@ -5,7 +5,7 @@ config.prefer_egl = true
 
 config.font = wezterm.font("JetBrains Mono")
 config.font_size = 12.0
-config.window_background_opacity = 0.75
+config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE" -- Minimal borders
 
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }

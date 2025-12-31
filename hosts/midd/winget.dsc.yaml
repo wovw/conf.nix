@@ -21,6 +21,13 @@ properties:
         ensure: Present
 
     - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: flatbuffers
+      settings:
+        id: Google.flatBuffers
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: WezTerm
       settings:
         id: Wez.WezTerm
