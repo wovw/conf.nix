@@ -15,12 +15,11 @@ function New-Symlink ($Source, $Target) {
 
 winget configure .\hosts\midd\winget.dsc.yaml --accept-configuration-agreements
 
-New-Symlink -Source (Resolve-Path ".\hosts\midd\wezterm.lua") -Target "$env:USERPROFILE\.wezterm.lua"
+New-Symlink -Source (Resolve-Path ".\hosts\midd\.cargo\config.toml") -Target "$env:USERPROFILE\.cargo\config.toml"
 
 # --- Rust Setup ---
 Write-Host ":: Setting up Rust (MSVC)..." -ForegroundColor Green
 rustup default nightly-msvc
-rustup component add rust-analyzer
 cargo install tree-sitter-cli
 cargo install trusted-signing-cli
 

@@ -2,6 +2,7 @@
 properties:
   configurationVersion: 0.2.0
   resources:
+    # --- Rust ---
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: BuildTools
       directives:
@@ -12,18 +13,46 @@ properties:
         source: winget
         ensure: Present
 
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: LLVM
+      settings:
+        id: LLVM.LLVM
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: sccache
+      settings:
+        id: Mozilla.sccache
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: flatbuffers
+      settings:
+        id: Google.flatBuffers
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Rustup
+      settings:
+        id: Rustlang.Rustup
+        source: winget
+        ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: cmake
+      settings:
+        id: Kitware.CMake
+        source: winget
+        ensure: Present
+
     # --- Core Environment ---
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: Git
       settings:
         id: Git.Git
-        source: winget
-        ensure: Present
-
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: WezTerm
-      settings:
-        id: Wez.WezTerm
         source: winget
         ensure: Present
 
@@ -55,10 +84,3 @@ properties:
         source: winget
         ensure: Present
 
-    # --- Languages ---
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: Rustup
-      settings:
-        id: Rustlang.Rustup
-        source: winget
-        ensure: Present
