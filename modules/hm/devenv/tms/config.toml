@@ -1,3 +1,5 @@
+bookmarks = [".context/confect"]
+
 [[search_dirs]]
 path = "/home/wovw/projects"
 depth = 2

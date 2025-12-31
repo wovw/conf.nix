@@ -139,6 +139,10 @@
             bind -n M-H previous-window
             bind -n M-L next-window
 
+            # Ctrl Alt vim keys to switch active sessions
+            bind -n M-C-h switch-client -p
+            bind -n M-C-l switch-client -n
+
             # Set vi mode
             set-window-option -g mode-keys vi
 
