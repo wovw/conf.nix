@@ -13,6 +13,7 @@
   * install: `podman compose --file ~/.config/winapps/compose.yaml up -d`, windows will be available at `http://127.0.0.1:8006`, sign out
   * [changing `compose.yaml`](https://github.com/winapps-org/winapps/blob/main/docs/docker.md#changing-composeyaml)
   * `podman-compose --file ~/.config/winapps/compose.yaml start`
+  * [test rdp if any issues](https://github.com/winapps-org/winapps#step-4-test-freerdp)
   * `winapps-setup` to install windows
   * directly start windows through vicinae after boot
 * [setting up garnix with autoupdates](https://blake.bruell.com/articles/automatic-flake-updates-with-garnix)
@@ -66,49 +67,8 @@ sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
 
 ## Windows setup steps 😔
 
-### Prereqs
-
-* check VBSCRIPT: `DISM /Online /Add-Capability /CapabilityName:VBSCRIPT~~~~`
-* enable Developer Mode in Windows Settings
-* `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
-
-### github ssh
+* [download setup script](https://github.com/wovw/conf.nix/blob/main/hosts/midd/setup.ps1)
 
 ```pwsh
-ssh-keygen -t ed25519 -C "email@example.com"
-Get-Service -Name ssh-agent | Set-Service -StartupType Manual
-Start-Service ssh-agent
-ssh-add $env:USERPROFILE\.ssh\id_ed25519
-```
-
-```pwsh
-# paste in github
-cat ~/.ssh/id_ed25519.pub | clip 
-```
-
-### Bootstrap
-
-```pwsh
-# Install Winget & Git
-winget install --id Microsoft.AppInstaller --source winget --force
-winget install -e --id Git.Git
-```
-
-```pwsh
-# Install VS Build Tools (Launch and select C++ development)
-winget install -e --id Microsoft.VisualStudio.BuildTools
-```
-
-```pwsh
-git config --global core.autocrlf input
-```
-
-```pwsh
-git clone git@github.com:wovw/conf.nix.git
-```
-
-```pwsh
-# Run setup script
-cd conf.nix
-.\hosts\midd\setup.ps1
+PowerShell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
 ```
