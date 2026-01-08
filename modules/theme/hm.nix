@@ -14,7 +14,7 @@
       neovim.enable = false;
       neovide.enable = false;
     };
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.papirus-icon-theme;
       dark = "Papirus-Dark";

@@ -21,36 +21,33 @@ with lib;
     enable = true;
     xwayland.enable = true;
     systemd.enable = false; # using uwsm instead
-    extraConfig =
-      let
-        modifier = "SUPER";
-      in
-      concatStrings [
-        ''
-          $EXTERNAL = ${EXTERNAL}
-          $mainMod = ${modifier}
-          ${
-            (import ./keybinds.nix {
-              inherit
-                pkgs
-                terminal
-                ;
-            })
-          }
-          ${
-            (import ./laptop.nix {
-              inherit
-                pkgs
-                INTERNAL
-                ;
-            })
-          }
-          ${import ./startup.nix { inherit pkgs; }}
-          ${builtins.readFile ./vicinae.conf}
-          ${builtins.readFile ./decor.conf}
-          ${builtins.readFile ./settings.conf}
-          ${builtins.readFile ./window-rules.conf}
-        ''
-      ];
+
+    # https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/#using-the-home-manager-module-with-nixos
+    package = null;
+    portalPackage = null;
+
+    settings = {
+      "$mainMod" = "SUPER";
+      "$EXTERNAL" = EXTERNAL;
+    };
+    extraConfig = concatStrings [
+      (import ./keybinds.nix {
+        inherit
+          pkgs
+          terminal
+          ;
+      })
+      (import ./laptop.nix {
+        inherit
+          pkgs
+          INTERNAL
+          ;
+      })
+      (import ./startup.nix { inherit pkgs; })
+      (builtins.readFile ./vicinae.conf)
+      (builtins.readFile ./decor.conf)
+      (builtins.readFile ./settings.conf)
+      (builtins.readFile ./window-rules.conf)
+    ];
   };
 }
