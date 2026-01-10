@@ -19,6 +19,7 @@
     tokei
     repomix
     pscale
+    amp-cli
     (import ./scripts/rebuild.nix { inherit pkgs username host; })
   ];
 

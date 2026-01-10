@@ -1,21 +1,20 @@
 {
-  lib,
   pkgs,
   INTERNAL,
   EXTERNAL,
   terminal,
   ...
 }:
-
-with lib;
 {
-  imports = [
-    ../lock/hm.nix
-    ./env.nix
-  ];
   services = {
-    hyprpaper.enable = true; # config in stylix
+    hyprpaper = {
+      enable = true; # config in stylix
+      settings = {
+        splash = false;
+      };
+    };
     hyprpolkitagent.enable = true;
+    network-manager-applet.enable = true;
   };
   wayland.windowManager.hyprland = {
     enable = true;
@@ -30,24 +29,21 @@ with lib;
       "$mainMod" = "SUPER";
       "$EXTERNAL" = EXTERNAL;
     };
-    extraConfig = concatStrings [
-      (import ./keybinds.nix {
-        inherit
-          pkgs
-          terminal
-          ;
-      })
-      (import ./laptop.nix {
-        inherit
-          pkgs
-          INTERNAL
-          ;
-      })
-      (import ./startup.nix { inherit pkgs; })
-      (builtins.readFile ./vicinae.conf)
-      (builtins.readFile ./decor.conf)
-      (builtins.readFile ./settings.conf)
-      (builtins.readFile ./window-rules.conf)
-    ];
   };
+
+  imports = [
+    ../lock/hm.nix
+    ./env.nix
+
+    # settings imports
+    (import ./startup.nix { inherit pkgs; })
+    ./variables.nix
+    (import ./keybinds.nix {
+      inherit pkgs terminal;
+    })
+    (import ./laptop.nix {
+      inherit pkgs INTERNAL;
+    })
+    ./window-rules.nix
+  ];
 }
