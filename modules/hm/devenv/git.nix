@@ -56,7 +56,10 @@
         };
         pull.rebase = "true";
 
-        submodule.recurse = "true";
+        submodule = {
+          recurse = "true";
+          fetchJobs = 8;
+        };
         push.recurseSubmodules = "on-demand";
       };
     };
