@@ -170,6 +170,7 @@ if ((Get-Command sccache -ErrorAction SilentlyContinue) -or (scoop list sccache)
         [System.Environment]::SetEnvironmentVariable('RUSTC_WRAPPER', 'sccache', 'User')
     }
     $env:RUSTC_WRAPPER = 'sccache' 
+    $env:SCCACHE_CACHE_SIZE = '50G'
 } else {
     Write-Warning "sccache command not found! RUSTC_WRAPPER was NOT set."
 }

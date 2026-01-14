@@ -33,6 +33,7 @@
 
   home.sessionVariables = {
     RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
+    SCCACHE_CACHE_SIZE = "50G";
     NODE_COMPILE_CACHE = "$HOME/.cache/nodejs-compile-cache";
 
     # Go
