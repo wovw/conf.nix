@@ -25,6 +25,7 @@
     hyprshot
     hyprland-qtutils
     wl-mirror
+    wayscriber
   ];
 
   programs.hyprland = {

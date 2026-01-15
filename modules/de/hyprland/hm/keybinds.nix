@@ -74,7 +74,7 @@ in
       "$mainMod SHIFT, S, exec, hyprshot -m region --clipboard-only"
       ", Print, exec, hyprshot -m output"
       "$mainMod SHIFT, T, exec, normcap" # text extract
-      "SUPER ALT, S, exec, speech-to-text"
+      "$mainMod, D, exec, wayscriber --active" # draw on screen
 
       # --- Workspace Navigation ---
       "$mainMod, tab, workspace, m+1"
