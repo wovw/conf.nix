@@ -23,27 +23,13 @@
     };
 
     plugins = {
-      starship = pkgs.fetchFromGitHub {
-        owner = "Rolv-Apneseth";
-        repo = "starship.yazi";
-        rev = "master";
-        sha256 = "sha256-YkDkMC2SJIfpKrt93W/v5R3wOrYcat7QTbPrWqIKXG8=";
-      };
-      smart-paste = ./plugins/smart-paste.yazi;
-      arrow = ./plugins/arrow.yazi;
-      wl-clipboard = pkgs.fetchFromGitHub {
-        owner = "grappas";
-        repo = "wl-clipboard.yazi";
-        rev = "master";
-        sha256 = "sha256-jlZgN93HjfK+7H27Ifk7fs0jJaIdnOyY1wKxHz1wX2c=";
-      };
+      inherit (pkgs.yaziPlugins)
+        smart-paste
+        starship
+        wl-clipboard
+        recycle-bin
+        ;
       folder-rules = ./plugins/folder-rules.yazi;
-      recycle-bin = pkgs.fetchFromGitHub {
-        owner = "uhs-robert";
-        repo = "recycle-bin.yazi";
-        rev = "master";
-        sha256 = "sha256-CasCXkE8ig2INqx1mJj0wyxUVD1WFNM7aZ0SITXEsx0=";
-      };
     };
 
     initLua = ./init.lua;
@@ -91,11 +77,11 @@
         }
         {
           on = [ "k" ];
-          run = "plugin arrow -1";
+          run = "arrow -1";
         }
         {
           on = [ "j" ];
-          run = "plugin arrow 1";
+          run = "arrow 1";
         }
         {
           on = [ "<C-y>" ];
