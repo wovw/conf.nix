@@ -1,4 +1,7 @@
-bookmarks = [".context/confect"]
+bookmarks = [
+    ".context/confect",
+    ".context/bun",
+]
 
 [[search_dirs]]
 path = "/home/wovw/projects"

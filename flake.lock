@@ -1272,6 +1272,26 @@
         "type": "github"
       }
     },
+    "opencode": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768651458,
+        "narHash": "sha256-ftgRnQB8LLnZUzL85s4WhP+ZDVnkEj34nnDbum5fdmw=",
+        "owner": "anomalyco",
+        "repo": "opencode",
+        "rev": "a58d1be8226c749f015047c15c47950735cd9370",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anomalyco",
+        "repo": "opencode",
+        "type": "github"
+      }
+    },
     "oskars-dotfiles": {
       "inputs": {
         "flake-parts": "flake-parts_4",
@@ -1351,6 +1371,7 @@
         "nix-index-database": "nix-index-database",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_7",
+        "opencode": "opencode",
         "oskars-dotfiles": "oskars-dotfiles",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
