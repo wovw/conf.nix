@@ -1,6 +1,6 @@
 {
   # cuda setup from https://gist.github.com/r3rer3/de4be0ad6be012264c641222eecb359a
-  description = "Python Jupyter + CUDA";
+  description = "Python CUDA";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -42,7 +42,6 @@
           libGLU
           libGL
 
-          python312
           uv
         ];
 
@@ -55,9 +54,6 @@
 
           uv sync
           source .venv/bin/activate
-
-          # jupyter setup
-          uv add --dev ipykernel
         '';
       };
     };
