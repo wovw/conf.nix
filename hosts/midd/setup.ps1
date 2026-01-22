@@ -81,6 +81,25 @@ Set-ItemProperty -Path $themeKey -Name "SystemUsesLightTheme" -Value 0 -Type DWo
 Set-ItemProperty -Path $themeKey -Name "AppsUseLightTheme" -Value 0 -Type DWord -Force
 Write-Host "   -> Dark Mode enabled." -ForegroundColor DarkGray
 
+# Disable Edge Password Manager (Enforced Policy)
+Write-Host ":: Enforcing Edge Policies..." -ForegroundColor Green
+$edgePolicy = "HKLM:\SOFTWARE\Policies\Microsoft\Edge"
+if (-not (Test-Path $edgePolicy)) { New-Item -Path $edgePolicy -Force | Out-Null }
+# Set to 0 to disable the password manager completely
+Set-ItemProperty -Path $edgePolicy -Name "PasswordManagerEnabled" -Value 0 -Type DWord -Force
+Write-Host "   -> Edge Password Manager disabled via Policy." -ForegroundColor DarkGray
+
+# Explorer Settings (Show Hidden Files & Extensions)
+Write-Host ":: Configuring File Explorer..." -ForegroundColor Green
+$explorerKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+if (-not (Test-Path $explorerKey)) { New-Item -Path $explorerKey -Force | Out-Null }
+# Hidden = 1 (Show hidden files), 2 (Do not show)
+Set-ItemProperty -Path $explorerKey -Name "Hidden" -Value 1 -Type DWord -Force
+# HideFileExt = 0 (Show file extensions), 1 (Hide extensions)
+Set-ItemProperty -Path $explorerKey -Name "HideFileExt" -Value 0 -Type DWord -Force
+
+Write-Host "   -> Hidden files and file extensions are now visible." -ForegroundColor DarkGray
+
 # Disable Annoyances (Tips, Tricks, Welcome Experience, Suggested Apps)
 $contentKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
 if (-not (Test-Path $contentKey)) { New-Item -Path $contentKey -Force | Out-Null }
