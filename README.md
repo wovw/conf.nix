@@ -67,7 +67,7 @@ sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
 
 ## Windows setup steps 😔
 
-* [download setup script](https://github.com/wovw/conf.nix/blob/main/hosts/midd/setup.ps1)
+* [download setup script](./hosts/midd/setup.ps1)
 
 ```pwsh
 PowerShell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
