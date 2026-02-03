@@ -143,7 +143,7 @@ foreach ($bucket in $buckets) {
 
 # Scoop Packages
 $scoopPackages = @(
-    "pwsh", "llvm", "sccache", "cmake", "rustup",
+    "pwsh", "llvm", "sccache", "cmake", "rustup", "qbittorrent",
     "azure-cli", "flatc", "JetBrainsMono-NF", "cursor-latest"
 )
 
@@ -174,6 +174,23 @@ if ($vsInfo -notmatch "Microsoft.VisualStudio.BuildTools") {
     Write-Host " Done."
 } else {
     Write-Host "   -> VS Build Tools appear to be installed." -ForegroundColor DarkGray
+}
+
+# Microsoft Store Apps (Winget)
+# Use the Store ID e.g. `winget search "Raycast" --source msstore`
+$storeApps = @(
+    "9PFXXSHC64H3" # Raycast
+)
+
+Write-Host ":: Installing Microsoft Store Apps..." -ForegroundColor Green
+foreach ($appId in $storeApps) {
+    winget list --id $appId --source msstore > $null 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "   -> Installing Store App: $appId"
+        winget install --id $appId --source msstore --accept-package-agreements --accept-source-agreements
+    } else {
+        Write-Host "   -> $appId already installed." -ForegroundColor DarkGray
+    }
 }
 
 # --- Update env ---
