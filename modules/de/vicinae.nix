@@ -1,4 +1,9 @@
-{ inputs, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     inputs.vicinae.homeManagerModules.default
@@ -13,7 +18,13 @@
       window = {
         csd = false;
       };
+      launcher_window = {
+        opacity = lib.mkForce 0.7;
+      };
     };
+    extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
+      it-tools
+    ];
   };
 
   wayland.windowManager.hyprland.settings = {

@@ -34,6 +34,10 @@
     };
     winapps.url = "github:winapps-org/winapps";
     vicinae.url = "github:vicinaehq/vicinae";
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     affinity-nix.url = "github:mrshmllow/affinity-nix";
     xmcl = {
       url = "github:x45iq/xmcl-nix";

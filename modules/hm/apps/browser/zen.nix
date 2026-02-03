@@ -53,6 +53,7 @@
 
           "gfx.webrender.all" = true;
           "network.http.http3.enabled" = true;
+          "network.protocol-handler.expose.raycast" = true; # raycast / vicinae links (e.g. auth)
         };
       };
   };
