@@ -60,6 +60,7 @@ sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
 * nixos
   * <https://github.com/Zaney/zaneyos>
   * <https://github.com/librephoenix/nixos-config>
+  * <https://lazamar.co.uk/nix-versions>
 * nvim
   * <https://github.com/ThePrimeagen/init.lua>
   * <https://github.com/nvim-lua/kickstart.nvim>

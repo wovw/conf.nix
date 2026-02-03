@@ -55,10 +55,5 @@ in
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
-
-    nixpkgs.config.packageOverrides = pkgs: {
-      btop = pkgs.btop.override { cudaSupport = true; };
-      obs-studio = pkgs.obs-studio.override { cudaSupport = true; };
-    };
   };
 }
