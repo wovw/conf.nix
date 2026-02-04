@@ -21,6 +21,11 @@ if ([string]::IsNullOrWhiteSpace($gitEmail)) {
     Write-Error "Email is required for setup. Exiting."
     exit 1
 }
+$gitUsername = Read-Host ":: Enter your username for Git"
+if ([string]::IsNullOrWhiteSpace($gitUsername)) {
+    Write-Error "Username is required for setup. Exiting."
+    exit 1
+}
 
 # --- System Prerequisites ---
 
@@ -243,6 +248,7 @@ if (Test-Path $sshKeyFile) {
 # Git Config
 Write-Host ":: Configuring Git..." -ForegroundColor Green
 git config --global user.email $gitEmail
+git config --global user.name $gitUsername
 git config --global core.autocrlf input
 
 # Clone conf.nix
