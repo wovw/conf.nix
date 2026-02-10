@@ -28,9 +28,20 @@
     wayscriber
   ];
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
+  programs = {
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+    nix-ld = {
+      libraries = with pkgs; [
+        # for oklch-color-picker.nvim
+        wayland
+        libxkbcommon
+        libGL
+        libglvnd
+      ];
+    };
   };
 
   # Extra Portal Configuration
