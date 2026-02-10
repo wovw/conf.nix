@@ -5,7 +5,6 @@
   host,
   lib,
   gitUsername,
-  inputs,
   ...
 }:
 {
@@ -21,7 +20,7 @@
     repomix
     pscale
     amp-cli
-    inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
+    opencode
     (import ./scripts/rebuild.nix { inherit pkgs username host; })
   ];
 
