@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   username,
@@ -8,21 +9,29 @@
   ...
 }:
 {
-  home.packages = with pkgs; [
-    eza
-    sccache
-    code-cursor
-    pnpm
-    python312
-    uv
-    go
-    tokei
-    repomix
-    pscale
-    amp-cli
-    opencode
-    (import ./scripts/rebuild.nix { inherit pkgs username host; })
-  ];
+  home.packages =
+    let
+      llms = with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+        opencode
+        amp
+        kilocode-cli
+      ];
+    in
+    with pkgs;
+    [
+      eza
+      sccache
+      code-cursor
+      pnpm
+      python312
+      uv
+      go
+      tokei
+      repomix
+      pscale
+      (import ./scripts/rebuild.nix { inherit pkgs username host; })
+    ]
+    ++ llms;
 
   imports = [
     (import ./git.nix { inherit config host gitUsername; })
