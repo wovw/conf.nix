@@ -149,8 +149,11 @@ foreach ($bucket in $buckets) {
 # Scoop Packages
 $scoopPackages = @(
     "pwsh", "llvm", "sccache", "cmake", "rustup", "qbittorrent",
-    "azure-cli", "flatc", "JetBrainsMono-NF", "cursor-latest"
+    "azure-cli", "dotnet-sdk", "flatc", "JetBrainsMono-NF", "cursor-latest",
+    "direnv", "fastfetch"
 )
+# Point bash to git shim (for direnv)
+scoop shim add bash "$env:USERPROFILE\scoop\apps\git\current\bin\bash.exe"
 
 Write-Host ":: Installing Scoop Packages..." -ForegroundColor Green
 foreach ($pkg in $scoopPackages) {
