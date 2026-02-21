@@ -149,8 +149,8 @@ foreach ($bucket in $buckets) {
 # Scoop Packages
 $scoopPackages = @(
     "pwsh", "llvm", "sccache", "cmake", "rustup", "qbittorrent",
-    "azure-cli", "dotnet-sdk", "flatc", "JetBrainsMono-NF", "cursor-latest",
-    "direnv", "fastfetch"
+    "dotnet-sdk", "flatc", "JetBrainsMono-NF", "cursor-latest",
+    "direnv", "fastfetch", "opencode-desktop"
 )
 # Point bash to git shim (for direnv)
 scoop shim add bash "$env:USERPROFILE\scoop\apps\git\current\bin\bash.exe"
@@ -162,6 +162,9 @@ foreach ($pkg in $scoopPackages) {
         scoop install $pkg
     }
 }
+
+# Code signing doesn't work when installed via Scoop
+winget install --exact --id Microsoft.AzureCLI
 
 # VS Build Tools (Winget)
 Write-Host ":: Checking Visual Studio Build Tools..." -ForegroundColor Green
