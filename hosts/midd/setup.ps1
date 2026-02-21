@@ -287,6 +287,9 @@ if (-not (Test-Path $repoPath)) {
 # --- Rust Setup ---
 Write-Host ":: Setting up Rust (MSVC)..." -ForegroundColor Green
 
+# install binstall
+Set-ExecutionPolicy Unrestricted -Scope Process; iex (iwr "https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1").Content
+
 if (Get-Command rustup -ErrorAction SilentlyContinue) {
     rustup default nightly
 
@@ -295,7 +298,7 @@ if (Get-Command rustup -ErrorAction SilentlyContinue) {
             Write-Host "   -> $BinaryName already installed." -ForegroundColor DarkGray
         } else {
             Write-Host "   -> Installing $CrateName..."
-            cargo install $CrateName
+            cargo binstall $CrateName -y
         }
     }
     Install-Crate "tree-sitter-cli" "tree-sitter"
