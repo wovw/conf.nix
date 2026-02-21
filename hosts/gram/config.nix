@@ -25,7 +25,6 @@ in
     ../../modules/system/config/programs.nix
     ../../modules/system/config/resolved.nix
     ../../modules/system/apps/obs.nix
-    ../../modules/system/apps/nautilus.nix
     ../../modules/system/apps/gaming.nix
     ../../modules/de/hyprland/system.nix
     ../../modules/de/greetd/login.nix
@@ -122,6 +121,7 @@ in
       networkmanagerapplet
       playerctl
       imv
+      spacedrive
     ];
   };
 
