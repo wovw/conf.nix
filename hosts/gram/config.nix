@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   username,
   options,
@@ -32,8 +31,7 @@ in
   ];
 
   boot = {
-    kernelPackages =
-      inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages-cachyos-bore-lto;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
     kernelParams = [
       "8250.nr_uarts=0" # disable unused legacy serial ports
 

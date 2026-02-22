@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     rust-overlay.url = "github:oxalica/rust-overlay";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
@@ -54,7 +54,6 @@
     {
       nixpkgs,
       home-manager,
-      oskars-dotfiles,
       nixos-wsl,
       stylix,
       nix-index-database,
@@ -116,7 +115,8 @@
               { pkgs, lib, ... }:
               {
                 nixpkgs.overlays = [
-                  oskars-dotfiles.overlays.spotx
+                  inputs.oskars-dotfiles.overlays.spotx
+                  inputs.nix-cachyos-kernel.overlays.pinned
                 ];
 
                 environment.systemPackages = [
