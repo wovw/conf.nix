@@ -28,6 +28,12 @@
         user = "pants";
         identityFile = "~/.ssh/${host}_ed25519";
       };
+      "sta" = {
+        host = "sta";
+        hostname = "ec2-18-237-98-177.us-west-2.compute.amazonaws.com";
+        user = "ubuntu";
+        identityFile = "~/.ssh/sta_ed25519";
+      };
     };
   };
 }
