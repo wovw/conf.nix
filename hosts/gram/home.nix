@@ -31,7 +31,7 @@ in
     ))
     ../../modules/hm/apps/ghostty.nix
     ../../modules/hm/apps/winapps/default.nix
-    ../../modules/hm/apps/browser/zen.nix
+    ../../modules/hm/apps/zen/default.nix
     ../../modules/hm/apps/gimp.nix
     ../../modules/hm/apps/mpv.nix
     (import ../../modules/ssh/hm.nix { inherit host; })
