@@ -38,6 +38,7 @@ in
           yt-dlp
           gptfdisk
           zoom-us
+          discord
           inputs.xmcl.packages.${pkgs.stdenv.hostPlatform.system}.default
           inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.v3
         ];

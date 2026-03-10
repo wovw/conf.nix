@@ -8,6 +8,7 @@
 * `sudo passwd {username}` to change password
 * github repos
 * rclone
+* audio: check `wpctl status` and set deepfilter as default for noise cancelling, don't use other softwares' built-in noise cancelling
 * [winapps](https://github.com/winapps-org/winapps)
   * reset: `podman compose --file ~/.config/winapps/compose.yaml down --rmi=all --volumes`
   * install: `podman compose --file ~/.config/winapps/compose.yaml up -d`, windows will be available at `http://127.0.0.1:8006`, sign out
