@@ -25,7 +25,6 @@ in
     ../../modules/system/config/resolved.nix
     ../../modules/system/apps/obs.nix
     ../../modules/system/apps/gaming.nix
-    ../../modules/system/apps/spacedrive.nix
     ../../modules/system/apps/nautilus.nix
     ../../modules/de/audio.nix
     ../../modules/de/hyprland/system.nix
