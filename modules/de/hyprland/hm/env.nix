@@ -26,6 +26,7 @@
     export NVD_BACKEND=direct
     export __GL_VRR_ALLOWED=0
     export __GL_GSYNC_ALLOWED=1
+    export __NV_PRIME_RENDER_OFFLOAD=1;
   '';
 
   xdg.configFile."uwsm/env-hyprland".text = ''
