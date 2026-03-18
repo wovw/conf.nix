@@ -48,7 +48,6 @@
         shellHook = ''
           # CUDA setup
           export CUDA_PATH=${pkgs.cudaPackages.cudatoolkit}
-          export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
           export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
           export EXTRA_CCFLAGS="-I/usr/include"
 
