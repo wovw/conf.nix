@@ -11,15 +11,15 @@
         { inherit (config.sops.secrets.git_config) path; }
       ];
       lfs.enable = true;
+      signing = {
+        format = "ssh";
+        signByDefault = true;
+      };
       settings = {
         user = {
           name = gitUsername;
           signingkey = "~/.ssh/${host}_ed25519.pub";
         };
-
-        # commit signing
-        commit.gpgsign = "true";
-        gpg.format = "ssh";
 
         # https://blog.gitbutler.com/how-git-core-devs-configure-git/
 

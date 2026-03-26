@@ -20,4 +20,5 @@
       dark = "Papirus-Dark";
     };
   };
+  gtk.gtk4.theme = null;
 }
