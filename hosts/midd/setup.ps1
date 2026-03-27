@@ -15,16 +15,37 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 Write-Host ":: Starting Windows Setup..." -ForegroundColor Cyan
 
-# --- Get email ---
-$gitEmail = Read-Host ":: Enter your email for Git and SSH"
-if ([string]::IsNullOrWhiteSpace($gitEmail)) {
-    Write-Error "Email is required for setup. Exiting."
-    exit 1
+# --- Get Git email and username ---
+$gitEmail = $null
+$gitUsername = $null
+
+# Attempt to auto-detect existing config if Git is already installed
+if (Get-Command git -ErrorAction SilentlyContinue) {
+    Write-Host ":: Checking existing Git configuration..." -ForegroundColor DarkGray
+    $gitEmail = (git config --global user.email 2>$null).Trim()
+    $gitUsername = (git config --global user.name 2>$null).Trim()
 }
-$gitUsername = Read-Host ":: Enter your username for Git"
+
+# Prompt only if the email was not found
+if ([string]::IsNullOrWhiteSpace($gitEmail)) {
+    $gitEmail = Read-Host ":: Enter your email for Git and SSH"
+    if ([string]::IsNullOrWhiteSpace($gitEmail)) {
+        Write-Error "Email is required for setup. Exiting."
+        exit 1
+    }
+} else {
+    Write-Host "   -> Found existing Git email: $gitEmail" -ForegroundColor DarkGray
+}
+
+# Prompt only if the username was not found
 if ([string]::IsNullOrWhiteSpace($gitUsername)) {
-    Write-Error "Username is required for setup. Exiting."
-    exit 1
+    $gitUsername = Read-Host ":: Enter your username for Git"
+    if ([string]::IsNullOrWhiteSpace($gitUsername)) {
+        Write-Error "Username is required for setup. Exiting."
+        exit 1
+    }
+} else {
+    Write-Host "   -> Found existing Git username: $gitUsername" -ForegroundColor DarkGray
 }
 
 # --- System Prerequisites ---
