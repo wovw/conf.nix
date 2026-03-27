@@ -24,7 +24,7 @@
         USERNAME: "${username}" # Uncomment to set a custom Windows username. The default is 'Docker'.
         PASSWORD: "asdf" # Uncomment to set a password for the Windows user. There is no default password.
         HOME: "${config.home.homeDirectory}" # Set path to Linux user home folder.
-      privileged: true # Grant the Windows VM extended privileges.
+      privileged: false # Grant the Windows VM extended privileges.
       ports:
         - 8006:8006 # Map '8006' on Linux host to '8006' on Windows VM --> For VNC Web Interface @ http://127.0.0.1:8006.
         - 3389:3389/tcp # Map '3389' on Linux host to '3389' on Windows VM --> For Remote Desktop Protocol (RDP).

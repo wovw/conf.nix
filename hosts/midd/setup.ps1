@@ -68,6 +68,7 @@ try {
 }
 
 # --- Windows Preferences & Cleanup ---
+
 Write-Host ":: Applying Windows Preferences..." -ForegroundColor Green
 
 # Activation
@@ -123,6 +124,34 @@ $runKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
 Remove-ItemProperty -Path $runKey -Name "OneDrive" -ErrorAction SilentlyContinue
 Write-Host "   -> OneDrive disabled via Group Policy registry key." -ForegroundColor DarkGray
 
+# --- Time & Location (Dynamic) ---
+Write-Host ":: Configuring Dynamic Timezone & Sync..." -ForegroundColor Green
+
+# Enable System Location Services (Strict dependency for auto-timezone)
+$locationPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location"
+if (-not (Test-Path $locationPath)) { New-Item -Path $locationPath -Force | Out-Null }
+Set-ItemProperty -Path $locationPath -Name "Value" -Value "Allow" -Type String -Force
+Write-Host "   -> System Location Consent: Granted." -ForegroundColor DarkGray
+
+# Enable and Start Auto Time Zone Updater
+Set-Service -Name tzautoupdate -StartupType Automatic
+Start-Service -Name tzautoupdate -ErrorAction SilentlyContinue
+Write-Host "   -> Auto Time Zone Updater: Running." -ForegroundColor DarkGray
+
+# Ensure Windows Time Service is running and force a sync (Resolves immediate drift)
+Set-Service -Name W32Time -StartupType Automatic
+Start-Service -Name W32Time -ErrorAction SilentlyContinue
+
+Write-Host "   -> Forcing NTP Time Sync..." -ForegroundColor DarkGray
+# w32tm /resync can fail if the service just started or the network adapter is unready.
+# Evaluating the output prevents script termination while verifying the state.
+$syncResult = w32tm /resync /force 2>&1 | Out-String
+if ($syncResult -match "successfully") {
+    Write-Host "   -> Time synced successfully." -ForegroundColor DarkGray
+} else {
+    Write-Warning "Time sync requested but pending network/service availability."
+}
+
 # --- Package Management (Scoop & Winget) ---
 
 # Scoop Bootstrap
@@ -150,10 +179,8 @@ foreach ($bucket in $buckets) {
 $scoopPackages = @(
     "pwsh", "llvm", "sccache", "cmake", "rustup", "qbittorrent",
     "dotnet-sdk", "flatc", "JetBrainsMono-NF", "cursor-latest",
-    "direnv", "fastfetch", "opencode-desktop"
+    "fastfetch", "opencode-desktop"
 )
-# Point bash to git shim (for direnv)
-scoop shim add bash "$env:USERPROFILE\scoop\apps\git\current\bin\bash.exe"
 
 Write-Host ":: Installing Scoop Packages..." -ForegroundColor Green
 foreach ($pkg in $scoopPackages) {
