@@ -23,6 +23,7 @@
 
         # https://blog.gitbutler.com/how-git-core-devs-configure-git/
 
+        core.symlinks = "true";
         column.ui = "auto";
         branch.sort = "-committerdate";
         tag.sort = "version:refname";
