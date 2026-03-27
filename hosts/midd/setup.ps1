@@ -200,7 +200,7 @@ foreach ($bucket in $buckets) {
 $scoopPackages = @(
     "pwsh", "llvm", "sccache", "cmake", "rustup", "qbittorrent",
     "dotnet-sdk", "flatc", "JetBrainsMono-NF", "cursor-latest",
-    "fastfetch", "opencode-desktop"
+    "fastfetch", "opencode-desktop", "mise"
 )
 
 Write-Host ":: Installing Scoop Packages..." -ForegroundColor Green
@@ -268,6 +268,52 @@ if ((Get-Command sccache -ErrorAction SilentlyContinue) -or (scoop list sccache)
     $env:SCCACHE_CACHE_SIZE = '50G'
 } else {
     Write-Warning "sccache command not found! RUSTC_WRAPPER was NOT set."
+}
+
+# --- Mise Configuration for pwsh (PowerShell 7) ---
+Write-Host ":: Configuring mise in pwsh profile..." -ForegroundColor Green
+
+if (Get-Command pwsh -ErrorAction SilentlyContinue) {
+    # We pass a script block directly into a pwsh sub-process.
+    # This guarantees $PROFILE resolves to the PS7 path and avoids PS5.1 encoding quirks.
+    $MiseSetupScript = @'
+    $ErrorActionPreference = "Stop"
+    $miseInitStr = '(&mise activate pwsh) | Out-String | Invoke-Expression'
+    
+    # Ensure the profile directory and file exist
+    if (-not (Test-Path $PROFILE)) {
+        $profileDir = Split-Path $PROFILE -Parent
+        if (-not (Test-Path $profileDir)) { New-Item -ItemType Directory -Path $profileDir -Force | Out-Null }
+        New-Item -ItemType File -Path $PROFILE -Force | Out-Null
+    }
+
+    # Idempotent check and append
+    $profileContent = Get-Content $PROFILE -Raw -ErrorAction SilentlyContinue
+    if ([string]::IsNullOrWhiteSpace($profileContent) -or $profileContent -notmatch 'mise activate pwsh') {
+        # Add a newline if the file isn't empty and doesn't end with one
+        if (-not [string]::IsNullOrWhiteSpace($profileContent) -and -not $profileContent.EndsWith("`n")) {
+            Add-Content -Path $PROFILE -Value "" -NoNewline
+            Add-Content -Path $PROFILE -Value "`n"
+        }
+        Add-Content -Path $PROFILE -Value $miseInitStr
+        Write-Output "true"
+    } else {
+        Write-Output "false"
+    }
+'@
+
+    # Execute the block and capture the output to determine the result
+    $setupResult = & pwsh -NoProfile -Command $MiseSetupScript
+    
+    if ($setupResult -eq "true") {
+        Write-Host "   -> Added mise init to pwsh profile." -ForegroundColor DarkGray
+    } elseif ($setupResult -eq "false") {
+        Write-Host "   -> mise init already exists in pwsh profile." -ForegroundColor DarkGray
+    } else {
+        Write-Warning "Unexpected output while configuring mise profile."
+    }
+} else {
+    Write-Warning "pwsh not found! Could not configure mise profile."
 }
 
 # --- SSH & Git Configuration ---
