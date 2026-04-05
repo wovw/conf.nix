@@ -15,7 +15,6 @@
 
   home.sessionVariables = {
     DEFAULT_BROWSER = "zen";
-    BROWSER = "zen";
 
     # firefox
     MOZ_ENABLE_WAYLAND = 1;
