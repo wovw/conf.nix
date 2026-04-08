@@ -56,7 +56,7 @@ sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
   * push, replace https remote with ssh remote in git and `.gitmodules`, etc
 * `cd ~/conf.nix && sudo nixos-rebuild boot --flake .#{hostname}` and follow the above install link to restart NixOS
 
-## References / Inspirations
+## References & Resources
 
 * nixos
   * <https://github.com/Zaney/zaneyos>

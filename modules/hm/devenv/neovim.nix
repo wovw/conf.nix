@@ -43,6 +43,8 @@
         tectonic
         mermaid-cli # mmdc
       ];
+      withRuby = false;
+      withPython3 = false;
     };
   };
 

@@ -28,7 +28,6 @@
       go
       tokei
       repomix
-      pscale
       (import ./scripts/rebuild.nix { inherit pkgs username host; })
     ]
     ++ llms;
