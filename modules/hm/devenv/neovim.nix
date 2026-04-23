@@ -48,6 +48,8 @@
     };
   };
 
+  # Prevent home-manager's neovim module from creating init.lua to symlink the whole directory.
+  xdg.configFile."nvim/init.lua".enable = pkgs.lib.mkForce false;
   xdg.configFile."nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/conf.nix/modules/hm/devenv/nvim";
 }
