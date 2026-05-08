@@ -23,7 +23,9 @@
       sccache
       code-cursor
       pnpm
+      nodejs
       python312
+      rust-bin.stable.latest.default
       uv
       go
       tokei

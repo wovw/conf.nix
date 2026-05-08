@@ -1,16 +1,11 @@
-bookmarks = [
-    ".context/confect",
-    ".context/bun",
-]
-
 [[search_dirs]]
-path = "/home/wovw/projects"
+path = "/home/mippbipp/projects"
 depth = 2
 
 [[search_dirs]]
-path = "/home/wovw/work"
+path = "/home/mippbipp/work"
 depth = 1
 
 [[search_dirs]]
-path = "/home/wovw"
+path = "/home/mippbipp"
 depth = 1

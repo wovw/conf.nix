@@ -369,7 +369,7 @@ if (-not (Test-Path $repoPath)) {
 
     Write-Host ":: Cloning conf.nix repo..." -ForegroundColor Green
     try {
-        git clone --quiet git@github.com:wovw/conf.nix.git $repoPath
+        git clone --quiet git@github.com:mippbipp/conf.nix.git $repoPath
     } catch {
         Write-Error "Failed to clone repository. Did you add the SSH key to GitHub?"
         exit 1

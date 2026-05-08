@@ -3,7 +3,7 @@
 # Script for rclone bisync, make sure to init with `--resync` flag before service runs
 
 let
-  authorizedUser = "wovw";
+  authorizedUser = "mippbipp";
   driveSyncHelper = pkgs.writeShellApplication {
     name = "gdrive-sync-things";
 

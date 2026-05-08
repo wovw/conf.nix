@@ -8,7 +8,6 @@
 * `sudo passwd {username}` to change password
 * github repos
 * rclone
-* audio: check `wpctl status` and set deepfilter as default for noise cancelling, don't use other softwares' built-in noise cancelling
 * [winapps](https://github.com/winapps-org/winapps)
   * reset: `podman compose --file ~/.config/winapps/compose.yaml down --rmi=all --volumes`
   * install: `podman compose --file ~/.config/winapps/compose.yaml up -d`, windows will be available at `http://127.0.0.1:8006`, sign out
@@ -48,7 +47,7 @@ sudo umount /mnt/windows && sudo sudo umount /mnt/bitlocker-fuse
   * edit `wsl.defaultUser` to desired username
   * follow <https://nix-community.github.io/NixOS-WSL/how-to/change-username.html>
 * set NixOS as default distro to prevent startup errors (`wsl -s NixOS`)
-* `git clone --recurse-submodules --remote-submodules https://github.com/wovw/conf.nix.git`
+* `git clone --recurse-submodules --remote-submodules https://github.com/mippbipp/conf.nix.git`
 * set username and hostname in `flake.nix` `nixosConfigurations.{hostname}`
   * if changing hostname, change folder's name in `hosts` folder
 * change variables in `hosts/{hostname}/variables.nix`

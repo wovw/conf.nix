@@ -117,7 +117,7 @@
       nixosConfigurations = {
         gram = mkHostConfig {
           host = "gram";
-          username = "wovw";
+          username = "mippbipp";
           nixosModules = [
             lanzaboote.nixosModules.lanzaboote
             (
@@ -127,6 +127,7 @@
                   inputs.oskars-dotfiles.overlays.spotx
                   inputs.nix-cachyos-kernel.overlays.pinned
                   inputs.affinity-nix.overlays.default
+                  inputs.rust-overlay.overlays.default
                 ];
 
                 environment.systemPackages = [
@@ -150,7 +151,7 @@
         };
         harpe = mkHostConfig rec {
           host = "harpe";
-          username = "wovw";
+          username = "mippbipp";
           nixosModules = [
             nixos-wsl.nixosModules.default
             {
