@@ -19,7 +19,7 @@
         name = "Montserrat";
       };
       serif = {
-        package = pkgs.noto-fonts-cjk-serif;
+        package = pkgs.noto-fonts;
         name = "Noto Serif";
       };
       sizes = {
@@ -33,9 +33,6 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts-color-emoji
-      noto-fonts-cjk-sans
-      font-awesome
-      material-icons
     ];
   };
 }

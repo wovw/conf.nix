@@ -12,8 +12,8 @@
     };
     icons = {
       enable = true;
-      package = pkgs.papirus-icon-theme;
-      dark = "Papirus-Dark";
+      package = pkgs.adwaita-icon-theme;
+      dark = "Adwaita";
     };
   };
   home.pointerCursor.enable = true;
