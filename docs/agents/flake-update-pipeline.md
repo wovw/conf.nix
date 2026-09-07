@@ -185,7 +185,7 @@ invariant:
   ruleset's required checks.
 - One `hosts.<host>` record in `modules/fleet.nix`.
 - The `checks (x86_64-linux)` and `checks (aarch64-linux)` jobs need no
-  per-host edits — the wildcard build picks up every check — but both must
+  per-host edits — the step enumerates every check via `nix eval ... --apply builtins.attrNames` — but both must
   stay required in the ruleset or the registry and profile checks stop gating.
 
 The `build-matrix-sync` check fails the gate when the matrix rows and the
