@@ -1438,15 +1438,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1787214611,
-        "narHash": "sha256-/1S1j9VKypaLFMnH+dDnBASUpj+9I3sH+8wy4Wy9VAA=",
-        "owner": "yorukot",
+        "lastModified": 1788749889,
+        "narHash": "sha256-JFHObQ+3yvXapZ8KjyT7zPM68VHbi0TEtDWeM4zPQJg=",
+        "owner": "mippbipp",
         "repo": "superfile",
-        "rev": "b72f550bc6e75913f48eb49fdd258e1a2df2fe88",
+        "rev": "07044030e136093958a52e6876c03c5eca91cd4b",
         "type": "github"
       },
       "original": {
-        "owner": "yorukot",
+        "owner": "mippbipp",
+        "ref": "recursive-search",
         "repo": "superfile",
         "type": "github"
       }

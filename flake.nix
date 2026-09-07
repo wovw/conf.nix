@@ -63,7 +63,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     superfile = {
-      url = "github:yorukot/superfile";
+      url = "github:mippbipp/superfile/recursive-search";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     herdr = {
@@ -162,7 +162,7 @@
           ]
           ++ nixosModules;
         };
-    nixosConfigurations = {
+      nixosConfigurations = {
         gram = mkHostConfig {
           host = "gram";
           nixosModules = [
