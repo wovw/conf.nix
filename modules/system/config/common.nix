@@ -107,11 +107,11 @@
   };
 
   # Reduce journal size and improve performance
-  services.journald.extraConfig = ''
-    SystemMaxUse=100M
-    RuntimeMaxUse=50M
-    MaxRetentionSec=1week
-  '';
+  services.journald.settings.Journal = {
+    SystemMaxUse = "100M";
+    RuntimeMaxUse = "50M";
+    MaxRetentionSec = "1week";
+  };
 
   environment.localBinInPath = true;
 }
