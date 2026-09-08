@@ -29,10 +29,9 @@ in
     opencode2 # for `opencode2 pair` and local `--server` clients
   ];
 
-  # Same operator grant as t3code-serve.nix so the serve mapping below can be
-  # managed without sudo. Merges with that module's identical entry on hosts
-  # importing both.
-  services.tailscale.extraSetFlags = [ "--operator=${username}" ];
+  # Operator grant (`tailscale set --operator` via `tailscaled-set`) lives in
+  # ./default.nix — kept there singly so hosts importing multiple *-serve
+  # modules don't concatenate duplicate --operator flags.
 
   systemd.services.opencode2-serve = {
     description = "opencode2 API + web server (loopback, via Tailscale Serve)";

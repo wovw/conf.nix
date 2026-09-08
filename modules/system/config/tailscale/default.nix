@@ -4,12 +4,12 @@
   pkgs,
   lib,
   host,
+  username,
   ...
 }:
 let
   self = config.fleet.hosts.${host};
-  isExitNode = self.isExitNode;
-  acceptsTailnetSsh = self.acceptsTailnetSsh;
+  inherit (self) isExitNode acceptsTailnetSsh;
 in
 {
   services.tailscale = lib.mkMerge [
@@ -18,6 +18,12 @@ in
       enable = true;
       disableUpstreamLogging = true; # disables debug logging
       useRoutingFeatures = "client";
+      # Single source for the operator grant: lets $username manage
+      # `tailscale serve` without sudo via the module's `tailscaled-set`
+      # oneshot. Keep it here only — extraSetFlags lists concatenate across
+      # modules, so defining it in each *-serve.nix duplicates --operator
+      # and breaks tailscaled-set ("flag provided multiple times").
+      extraSetFlags = [ "--operator=${username}" ];
     }
 
     # Exit-node role

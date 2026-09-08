@@ -9,10 +9,9 @@
     pkgs.t3code # see flake.nix
   ];
 
-  # Allow the t3 server (running as $username) to configure `tailscale serve`
-  # without sudo. The NixOS tailscale module runs `tailscale set --operator`
-  # via the `tailscaled-set` oneshot; `t3 serve --tailscale-serve` then succeeds.
-  services.tailscale.extraSetFlags = [ "--operator=${username}" ];
+  # Operator grant (`tailscale set --operator` via `tailscaled-set`) lives in
+  # ./default.nix — kept there singly so hosts importing multiple *-serve
+  # modules don't concatenate duplicate --operator flags.
 
   systemd.services.t3code = {
     description = "t3code remote workspace server";
