@@ -45,6 +45,7 @@
 
   imports = [
     ./git.nix
+    ./skills-sync.nix
     ./neovim.nix
     ./starship.nix
     ./superfile/default.nix
