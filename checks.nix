@@ -1,8 +1,10 @@
 # Fleet-wide gate checks, one per supported system.
-#
-# Interface: a function of nixpkgs, the declared NixOS hosts, and the plain
-# Globals data (currently only nextdns). Wired once as `checks` in flake.nix.
-{ nixpkgs, nixosConfigurations, globals }:
+# Wired as `checks` in flake.nix.
+{
+  nixpkgs,
+  nixosConfigurations,
+  globals,
+}:
 let
   systems = [
     "x86_64-linux"
@@ -43,7 +45,7 @@ nixpkgs.lib.genAttrs systems (
         phantom = builtins.filter (h: !(builtins.elem h declared)) (builtins.attrNames liveRecords);
       in
       if missing == [ ] && phantom == [ ] then
-        pkgs.runCommand "fleet-correspondence" { } ''touch $out''
+        pkgs.runCommand "fleet-correspondence" { } "touch $out"
       else
         throw "fleet registry mismatch: missing records for ${builtins.toString missing}; phantom records for ${builtins.toString phantom}";
     # Locks in strictness: a typo'd Role flag and a mistyped flag
@@ -51,12 +53,21 @@ nixpkgs.lib.genAttrs systems (
     # regress to `or false` semantics.
     fleet-strictness =
       let
-        evalBad = extra: builtins.tryEval (builtins.deepSeq (nixpkgs.lib.evalModules {
-          modules = [ ./modules/fleet.nix { fleet.hosts.strictness-probe = extra; } ];
-        }).config.fleet.hosts false);
+        evalBad =
+          extra:
+          builtins.tryEval (
+            builtins.deepSeq
+              (nixpkgs.lib.evalModules {
+                modules = [
+                  ./modules/fleet.nix
+                  { fleet.hosts.strictness-probe = extra; }
+                ];
+              }).config.fleet.hosts
+              false
+          );
       in
       if !(evalBad { isExitNod = true; }).success && !(evalBad { isExitNode = "yes"; }).success then
-        pkgs.runCommand "fleet-strictness" { } ''touch $out''
+        pkgs.runCommand "fleet-strictness" { } "touch $out"
       else
         throw "fleet registry is not strict: typo'd Role flag or wrong type evaluated successfully";
     # The Build gate matrix is control-plane-adjacent YAML outside this
@@ -78,7 +89,7 @@ nixpkgs.lib.genAttrs systems (
         phantom = builtins.filter (h: !(builtins.elem h declared)) matrixHosts;
       in
       if missing == [ ] && phantom == [ ] then
-        pkgs.runCommand "build-matrix-sync" { } ''touch $out''
+        pkgs.runCommand "build-matrix-sync" { } "touch $out"
       else
         throw "build gate matrix mismatch: missing rows for ${builtins.toString missing}; phantom rows for ${builtins.toString phantom}";
     # The Build gate YAML is control-plane-adjacent text outside this flake's
@@ -90,32 +101,35 @@ nixpkgs.lib.genAttrs systems (
     # and are correct by construction, so only YAML is asserted here.
     attic-cache-sync =
       let
-        cache = globals.cache;
+        inherit (globals) cache;
         gate = builtins.readFile ./.github/workflows/build-gate.yml;
         lines = nixpkgs.lib.splitString "\n" gate;
-        collect = prefix: nixpkgs.lib.concatMap (
-          line:
-          let
-            m = builtins.match "^ *${prefix} =(.*)$" line;
-          in
-          if m == null then [ ] else m
-        ) lines;
+        collect =
+          prefix:
+          nixpkgs.lib.concatMap (
+            line:
+            let
+              m = builtins.match "^ *${prefix} =(.*)$" line;
+            in
+            if m == null then [ ] else m
+          ) lines;
         splitWords = s: builtins.filter (w: w != "") (nixpkgs.lib.splitString " " s);
         subRows = map splitWords (collect "extra-substituters");
         keyRows = map splitWords (collect "extra-trusted-public-keys");
         # Word-exact (not substring): a suffixed typo like cache:fleets must fail.
         # Scoped to the push-step lines so a stray mention in a YAML comment
         # cannot satisfy the check while the real step drifts.
-        pushLines = builtins.filter (
-          line: builtins.match "^ *attic (login|push) .*" line != null
-        ) lines;
+        pushLines = builtins.filter (line: builtins.match "^ *attic (login|push) .*" line != null) lines;
         pushWords = nixpkgs.lib.concatMap splitWords pushLines;
         subsOk = subRows != [ ] && builtins.all (row: row == cache.substituters) subRows;
         keysOk = keyRows != [ ] && builtins.all (row: row == cache.trustedKeys) keyRows;
-        pushOk = pushLines != [ ] && builtins.elem cache.endpoint pushWords && builtins.elem "cache:${cache.cacheName}" pushWords;
+        pushOk =
+          pushLines != [ ]
+          && builtins.elem cache.endpoint pushWords
+          && builtins.elem "cache:${cache.cacheName}" pushWords;
       in
       if subsOk && keysOk && pushOk then
-        pkgs.runCommand "attic-cache-sync" { } ''touch $out''
+        pkgs.runCommand "attic-cache-sync" { } "touch $out"
       else
         throw "attic cache sync mismatch: extra-substituters rows ${builtins.toJSON subRows} (expected ${builtins.toJSON cache.substituters}); extra-trusted-public-keys rows match=${builtins.toString keysOk}; push endpoint+cache ref present=${builtins.toString pushOk}";
   }

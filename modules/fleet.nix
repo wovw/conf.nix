@@ -1,16 +1,12 @@
 # Fleet registry: typed per-machine records behind one interface.
 #
 # Globals describes already-declared hosts (see ADR-0010); this module gives
-# that description a checked shape. Role flags carry types and defaults, so a
-# typo'd flag is an eval error instead of a silent `or false` fallback, and
-# unknown attrs are rejected by the submodule type. Wired once in
-# mkHostConfig; the merged records are re-exposed under the existing
-# `globals` arg name, so consumers keep their call sites.
+# that description a checked shape.
 #
 # Host<->record correspondence (every NixOS host has a non-external record
 # and vice versa) cannot see flake outputs from inside the module system, so
 # it lives in the fleet-correspondence flake check instead.
-{ config, lib, ... }:
+{ lib, ... }:
 let
   hostRecord = {
     options = {
