@@ -26,6 +26,7 @@
     ../../modules/system/config/tailscale/opencode2-serve.nix
     ../../modules/system/config/syncthing.nix
     ./attic.nix
+    ./karakeep.nix
     ./flake-updater.nix
     ./flake-deployer.nix
   ];

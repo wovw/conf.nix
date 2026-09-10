@@ -51,6 +51,12 @@
     trustedKeys = map (c: c.key) caches;
   };
 
+  # Tailnet identity: MagicDNS suffix for serve URLs. Assigned by Tailscale and
+  # stable unless the tailnet is renamed.
+  tailnet = {
+    suffix = "wampus-gamut.ts.net";
+  };
+
   # Per-machine records live in modules/fleet.nix (typed Role flags behind the
   # fleet.hosts interface). This file keeps only identity, DNS profile, and
   # cache strings, which stay plain data.
