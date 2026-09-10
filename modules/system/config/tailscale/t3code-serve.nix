@@ -20,6 +20,8 @@
       "tailscaled.service"
       "tailscaled-set.service" # runs `tailscale set --operator` before the server needs it
     ];
+    # Re-run whenever tailscaled restarts
+    partOf = [ "tailscaled.service" ];
     # For `t3 serve --tailscale-serve` to configure the serve mapping as $username
     path = [ pkgs.tailscale ];
     serviceConfig = {

@@ -40,6 +40,8 @@ in
       "tailscaled.service"
       "tailscaled-set.service" # runs `tailscale set --operator` before the mapping needs it
     ];
+    # Re-run whenever tailscaled restarts
+    partOf = [ "tailscaled.service" ];
     path = [ pkgs.tailscale ];
     # Re-applied on every (re)start; the mapping otherwise persists in
     # tailscaled state until `tailscale serve --https=8443 off`. --bg is
